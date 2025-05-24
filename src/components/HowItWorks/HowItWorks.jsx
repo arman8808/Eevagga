@@ -27,40 +27,127 @@ function HowItWorks() {
 
   const data = [
     {
-      image: wedding,
-      title: "Weddings",
-      text: "Stress-free planning for your big day",
-      link: "/search?q=&category=all",
+      category: "Entertainment Services",
+      items: [
+        {
+          image: wedding,
+          title: "Weddings",
+          text: "Stress-free planning for your big day",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Birthdays",
+          text: "Memorable celebrations for all ages",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Corporate Events",
+          text: "Professional execution, on time & on brand",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Private Parties",
+          text: "Intimate gatherings, perfectly tailored",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Religious Events",
+          text: "Ceremonies managed with care and respect",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "College & School",
+          text: "Fests, farewells & more - fun made easy",
+          link: "/search?q=&category=all",
+        },
+      ],
     },
     {
-      image: decor,
-      title: "Birthdays",
-      text: "Memorable celebrations for all ages",
-      link: "/search?q=&category=all",
+      category: "Birthday Parties",
+      items: [
+        {
+          image: wedding,
+          title: "Weddings",
+          text: "Stress-free planning for your big day",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Birthdays",
+          text: "Memorable celebrations for all ages",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Corporate Events",
+          text: "Professional execution, on time & on brand",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Private Parties",
+          text: "Intimate gatherings, perfectly tailored",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Religious Events",
+          text: "Ceremonies managed with care and respect",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "College & School",
+          text: "Fests, farewells & more - fun made easy",
+          link: "/search?q=&category=all",
+        },
+      ],
     },
     {
-      image: wedding,
-      title: "Corporate Events",
-      text: "Professional execution, on time & on brand",
-      link: "/search?q=&category=all",
-    },
-    {
-      image: decor,
-      title: "Private Parties",
-      text: "Intimate gatherings, perfectly tailored",
-      link: "/search?q=&category=all",
-    },
-    {
-      image: wedding,
-      title: "Religious Events",
-      text: "Ceremonies managed with care and respect",
-      link: "/search?q=&category=all",
-    },
-    {
-      image: decor,
-      title: "College & School",
-      text: "Fests, farewells & more - fun made easy",
-      link: "/search?q=&category=all",
+      category: "Wedding Aenue and Decor",
+      items: [
+        {
+          image: wedding,
+          title: "Weddings",
+          text: "Stress-free planning for your big day",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Birthdays",
+          text: "Memorable celebrations for all ages",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Corporate Events",
+          text: "Professional execution, on time & on brand",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "Private Parties",
+          text: "Intimate gatherings, perfectly tailored",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: wedding,
+          title: "Religious Events",
+          text: "Ceremonies managed with care and respect",
+          link: "/search?q=&category=all",
+        },
+        {
+          image: decor,
+          title: "College & School",
+          text: "Fests, farewells & more - fun made easy",
+          link: "/search?q=&category=all",
+        },
+      ],
     },
   ];
 
@@ -72,7 +159,7 @@ function HowItWorks() {
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      <div className="flex flex-col items-center justify-center max-w-6xl w-full mb-12">
+      <div className="flex flex-col items-center justify-center max-w-6xl w-full mb-6">
         {/* Title */}
         <motion.h2
           className="text-primary text-3xl md:text-4xl font-normal text-center mb-4"
@@ -85,22 +172,44 @@ function HowItWorks() {
 
       {/* Cards Grid */}
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 w-full max-w-7xl"
+        className="flex flex-col items-center  px-4 sm:px-6 lg:px-8 gap-16 w-full"
         variants={containerVariants}
       >
-        {data.map((item, index) => (
+        {data.map((category, catIndex) => (
           <motion.div
-            key={index}
-            variants={cardVariants}
-            transition={{ delay: 0.1 * index }}
-            className="col-span-1" // Ensures each card takes equal space
+            key={catIndex}
+            className="w-full max-w-7xl"
+            variants={containerVariants}
           >
-            <CategoryNewCard
-              imageUrl={item.image}
-              title={item.title}
-              text={item.text}
-              link={item?.link}
-            />
+            {/* Category Heading */}
+            <motion.h3
+              className="text-textYellow text-center   text-base md:text-base leading-6 font-bold mb-8 tracking-[0.25rem]"
+              variants={itemVariants}
+            >
+              {category.category}
+            </motion.h3>
+
+            {/* Cards Grid */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 w-full"
+              variants={containerVariants}
+            >
+              {category.items.map((item, itemIndex) => (
+                <motion.div
+                  key={itemIndex}
+                  variants={cardVariants}
+                  transition={{ delay: 0.1 * itemIndex }}
+                  className="col-span-1"
+                >
+                  <CategoryNewCard
+                    imageUrl={item.image}
+                    title={item.title}
+                    text={item.text}
+                    link={item.link}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>
