@@ -30,31 +30,37 @@ function HowItWorks() {
       image: wedding,
       title: "Weddings",
       text: "Stress-free planning for your big day",
+      link: "/search?q=&category=all",
     },
     {
       image: decor,
       title: "Birthdays",
       text: "Memorable celebrations for all ages",
+      link: "/search?q=&category=all",
     },
     {
       image: wedding,
       title: "Corporate Events",
       text: "Professional execution, on time & on brand",
+      link: "/search?q=&category=all",
     },
     {
       image: decor,
       title: "Private Parties",
       text: "Intimate gatherings, perfectly tailored",
+      link: "/search?q=&category=all",
     },
     {
       image: wedding,
       title: "Religious Events",
       text: "Ceremonies managed with care and respect",
+      link: "/search?q=&category=all",
     },
     {
       image: decor,
       title: "College & School",
       text: "Fests, farewells & more - fun made easy",
+      link: "/search?q=&category=all",
     },
   ];
 
@@ -110,6 +116,7 @@ function HowItWorks() {
               imageUrl={item.image}
               title={item.title}
               text={item.text}
+              link={item?.link}
             />
           </motion.div>
         ))}

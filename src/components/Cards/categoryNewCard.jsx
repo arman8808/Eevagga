@@ -4,7 +4,6 @@ const CategoryNewCard = ({ imageUrl, title, text, link }) => {
   return (
     <motion.a
       href={link}
-      target="_blank"
       rel="noopener noreferrer"
       className="relative block w-full overflow-hidden rounded-2xl shadow-2xl group"
       initial={{ opacity: 0, y: 40 }}
