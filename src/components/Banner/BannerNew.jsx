@@ -48,7 +48,22 @@ function BannerNew({ image, height, category }) {
       transition: { delay: 0.6, duration: 0.8, ease: "easeOut" },
     },
   };
+  const itemVariants = {
+    hidden: { x: -40, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 120, damping: 20 },
+    },
+  };
 
+const listItemVariants = {
+  hover: {
+    x: 10,
+    color: "#6A1B9A", // Changed from #FFE500
+    transition: { type: "spring", stiffness: 300 },
+  },
+};
   return (
     <motion.div
       className="relative w-full min-h-screen overflow-hidden"
@@ -77,46 +92,84 @@ function BannerNew({ image, height, category }) {
       <div className="relative z-10 container mx-auto px-6 h-full min-h-screen flex flex-col justify-center">
         <div className="hidden lg:flex items-center justify-between h-full">
           {/* Left Text Content */}
-          <motion.div className="w-1/2 pr-12" variants={textVariants}>
-            <motion.h1
-              className="text-5xl font-bold text-white mb-6"
-              whileHover={{ y: -3 }}
-            >
-              Plan Your Perfect Event.
-            </motion.h1>
-            <motion.p
-              className="text-xl text-white/90 mb-8"
-              whileHover={{ x: 5 }}
-            >
-              An all-in-one event booking platform
-            </motion.p>
-            <motion.div
-              className="text-white px-8 py-1 rounded-lg font-semibold hover:bg-opacity-90 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ul className="list-disc pl-5 space-y-2">
-                <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Choose Your Package
-                </motion.li>
-                <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Pay Securely
-                </motion.li>
-                <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Confirm Your Date
-                </motion.li>
-              </ul>
-            </motion.div>
-          </motion.div>
+<motion.div 
+  className="w-1/2 pr-12 space-y-8"
+  variants={textVariants}
+>
+  <motion.div variants={itemVariants}>
+    <motion.h1
+      className="text-5xl font-bold text-white leading-tight mb-6"
+      whileHover={{ y: -3 }}
+    >
+      Plan Your Perfect{" "}
+      <motion.span 
+        className="inline-block text-white border-b-4 border-[#FFE500] pb-1"
+        whileHover={{ 
+          rotate: [0, -2, 2, 0],
+          scale: 1.05
+        }}
+      >
+        Event
+      </motion.span>
+    </motion.h1>
+  </motion.div>
+
+  <motion.div variants={itemVariants}>
+    <motion.p
+      className="text-xl text-white/80 leading-relaxed mb-8 max-w-[500px]"
+      whileHover={{ x: 5 }}
+    >
+      Create unforgettable experiences with our comprehensive event
+      management platform
+    </motion.p>
+  </motion.div>
+
+  <motion.ul 
+    className="space-y-5 relative pl-2"
+    variants={textVariants}
+  >
+    <motion.li
+      className="flex items-center text-white text-lg group"
+      variants={itemVariants}
+      whileHover="hover"
+    >
+      <span className="w-3 h-3 bg-[#FFE500] rounded-full mr-4 transform group-hover:scale-125 transition-all" />
+      <span className="group-hover:text-[#FFE500] transition-colors">
+        Customizable event packages
+      </span>
+    </motion.li>
+    
+    <motion.li
+      className="flex items-center text-white text-lg group"
+      variants={itemVariants}
+      whileHover="hover"
+    >
+      <span className="w-3 h-3 bg-[#FFE500] rounded-full mr-4 transform group-hover:scale-125 transition-all" />
+      <span className="group-hover:text-[#FFE500] transition-colors">
+        Secure payment processing
+      </span>
+    </motion.li>
+    
+    <motion.li
+      className="flex items-center text-white text-lg group"
+      variants={itemVariants}
+      whileHover="hover"
+    >
+      <span className="w-3 h-3 bg-[#FFE500] rounded-full mr-4 transform group-hover:scale-125 transition-all" />
+      <span className="group-hover:text-[#FFE500] transition-colors">
+        Real-time availability tracking
+      </span>
+    </motion.li>
+  </motion.ul>
+
+  {/* Decorative Element */}
+  <motion.div 
+    className="absolute left-0 -bottom-20 w-64 h-64 bg-[#6A1B9A]/30 blur-[80px]"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+  />
+</motion.div>
 
           {/* Right Form */}
           <motion.div className="w-1/2 pl-12" variants={formVariants}>
