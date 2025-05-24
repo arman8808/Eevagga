@@ -50,7 +50,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white/30 backdrop-blur-md w-full fixed top-0 left-0 z-50 border-b border-white/20">
+    <nav className="bg-[#6A1B9A] w-full z-50 border-b border-[#FFE500]/20">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <motion.div 
@@ -68,8 +68,8 @@ function Navbar() {
               key={link.name}
               to={link.path}
               className={({ isActive }) => 
-                `relative text-lg font-semibold ${
-                  isActive ? "text-[#FFE500]" : "text-[#6A1B9A]"
+                `relative text-sm font-medium ${
+                  isActive ? "text-[#FFE500]" : "text-white"
                 }`
               }
             >
@@ -98,7 +98,7 @@ function Navbar() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="md:hidden text-[#6A1B9A] focus:outline-none"
+          className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
         >
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -112,7 +112,7 @@ function Navbar() {
               animate="open"
               exit="closed"
               variants={menuVariants}
-              className="md:hidden fixed top-16 right-0 w-64 h-full bg-[#6A1B9A]/95 backdrop-blur-md shadow-lg"
+              className="md:hidden fixed top-16 right-0 w-64 h-full bg-[#6A1B9A] shadow-lg"
             >
               <div className="flex flex-col p-6 space-y-8">
                 {navLinks.map((link) => (
@@ -120,10 +120,10 @@ function Navbar() {
                     key={link.name}
                     to={link.path}
                     className={({ isActive }) => 
-                      `flex items-center text-lg font-semibold py-3 px-4 rounded-lg transition-all text-sm ${
+                      `flex items-center text-sm font-medium py-3 px-4 rounded-lg transition-all ${
                         isActive 
-                          ? "text-[#FFE500] bg-[#6A1B9A]/80"
-                          : "text-[#FFE500] hover:bg-[#6A1B9A]/80"
+                          ? "text-[#FFE500] bg-[#FFE500]/20"
+                          : "text-white hover:bg-[#FFE500]/20"
                       }`
                     }
                     onClick={() => setIsOpen(false)}
