@@ -75,35 +75,17 @@ function HowItWorks() {
       <div className="flex flex-col items-center justify-center max-w-6xl w-full mb-12">
         {/* Title */}
         <motion.h2
-          className="text-primary text-3xl md:text-4xl font-bold text-center mb-4"
+          className="text-primary text-3xl md:text-4xl font-normal text-center mb-4"
           variants={itemVariants}
           transition={{ type: "spring", stiffness: 100 }}
         >
-          How it Works?
+          We Handle It All for You How it Works?
         </motion.h2>
-
-        {/* Subtitle */}
-        <motion.h5
-          className="text-textGray text-2xl md:text-3xl font-medium text-center mb-2"
-          variants={itemVariants}
-          transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-        >
-          Choose Your Celebration
-        </motion.h5>
-
-        {/* Description */}
-        <motion.p
-          className="text-textGray text-base md:text-lg font-normal text-center max-w-2xl mx-auto"
-          variants={itemVariants}
-          transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-        >
-          Pick an event type and find the perfect package in seconds.
-        </motion.p>
       </div>
 
       {/* Cards Grid */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 w-full max-w-7xl"
         variants={containerVariants}
       >
         {data.map((item, index) => (
@@ -111,6 +93,7 @@ function HowItWorks() {
             key={index}
             variants={cardVariants}
             transition={{ delay: 0.1 * index }}
+            className="col-span-1" // Ensures each card takes equal space
           >
             <CategoryNewCard
               imageUrl={item.image}
