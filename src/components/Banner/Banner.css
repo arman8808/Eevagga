@@ -1,0 +1,43 @@
+/* Banner Skeleton Animation */
+@keyframes banner-skeleton-pulse {
+    0% {
+      background-color: rgba(240, 240, 240, 0.8);
+    }
+    50% {
+      background-color: rgba(240, 240, 240, 1);
+    }
+    100% {
+      background-color: rgba(240, 240, 240, 0.8);
+    }
+  }
+  
+  .banner-skeleton {
+    animation: banner-skeleton-pulse 2s ease-in-out infinite;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Optional: Add shimmer effect for more visual interest */
+  .banner-skeleton.shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      left: 100%;
+    }
+  }

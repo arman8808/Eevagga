@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Evaga Entertainment" />
+    <meta name="p:domain_verify" content="4ffff8fe28fdfc5268597c4a91669fb1" />
+    <meta name="facebook-domain-verification" content="your_verification_id" />
+    <link rel="apple-touch-icon" href="favicon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.evagaentertainment.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=..."
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=..."
+    /></noscript>
+    <link
+      rel="preload"
+      href="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+      as="script"
+    />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+      defer
+    ></script>
+    <!-- Meta Pixel Code -->
+    <!-- <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1539348276629405");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1539348276629405&ev=PageView&noscript=1"
+    /></noscript> -->
+    <script async src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script>
+      (function () {
+        // 1. Basic initialization
+        window._fbq = window._fbq || [];
+        window.fbq = function () {
+          window._fbq.push(arguments);
+        };
+        window.fbq.push = window._fbq.push;
+        window.fbq.loaded = true;
+        window.fbq.version = "2.0";
+        window.fbq.queue = [];
+
+        // 2. Load the Facebook Pixel script
+        var script = document.createElement("script");
+        script.src = "https://connect.facebook.net/en_US/fbevents.js";
+        script.async = true;
+        script.defer = true;
+
+        // 3. Fallback if blocked by ad blocker
+        script.onerror = function () {
+          console.log("Facebook Pixel blocked - using image fallback");
+          var img = document.createElement("img");
+          img.src =
+            "https://www.facebook.com/tr?id=1539348276629405&ev=PageView&noscript=1";
+          img.style.display = "none";
+          document.body.appendChild(img);
+        };
+
+        // 4. Standard initialization
+        script.onload = function () {
+          fbq("init", "1539348276629405");
+          fbq("track", "PageView");
+        };
+
+        document.head.appendChild(script);
+      })();
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1539348276629405&ev=PageView&noscript=1"
+      />
+    </noscript>
+
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7E93XYE809"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7E93XYE809");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PQLCBFK5");
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>Evaga Entertainment</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="error-modal"></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PQLCBFK5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  </body>
+</html>
