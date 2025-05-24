@@ -1,12 +1,15 @@
 import React from 'react'
 import SliderNew from '../components/Slider/SliderNew'
-import HowItWorks from '../components/HowItWorks/HowItWorks'
+import NewCatgeories from '../components/NewCatgeories/HowItWorks'
+import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
+
 
 function HomepageNew() {
   return (
     <div className='flex flex-col gap-2'>
         <SliderNew/>
-        <HowItWorks/>
+        <NewCatgeories/>
+        <WhyChooseUs/>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import decor from "../../assets/decor.webp";
 import wedding from "../../assets/wedding.webp";
 import CategoryNewCard from "../Cards/categoryNewCard";
 
-function HowItWorks() {
+function NewCatgeories() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -217,4 +217,4 @@ function HowItWorks() {
   );
 }
 
-export default HowItWorks;
+export default NewCatgeories;
