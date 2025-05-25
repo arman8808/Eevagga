@@ -62,7 +62,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f1f8f5]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,9 +73,6 @@ const FAQSection = () => {
           <h2 className="text-primary text-4xl md:text-6xl font-normal  mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-slate-600 text-lg text-textGray mt-4">
-            Find answers to common questions about our services
-          </p>
         </motion.div>
 
         <motion.div
