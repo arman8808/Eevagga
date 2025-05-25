@@ -12,7 +12,7 @@ const ExpertSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-primary text-4xl md:text-5xl font-normal text-center"
+          className="text-primary text-4xl font-normal text-center"
         >
           Professional guidance for a seamless, stress-free event
         </motion.h2>

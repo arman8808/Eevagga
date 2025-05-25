@@ -46,7 +46,7 @@ const RealStories = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 space-y-4"
         >
-          <h2 className="text-primary text-4xl md:text-5xl font-normal text-center">
+          <h2 className="text-primary text-4xl font-normal text-center">
             Real Stories, Unforgettable Memories
           </h2>
           <motion.p

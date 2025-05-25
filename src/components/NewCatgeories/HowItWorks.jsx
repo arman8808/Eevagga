@@ -77,7 +77,7 @@ function NewCatgeories() {
       >
         {/* Main Title */}
         <motion.h2
-          className="text-primary text-4xl md:text-5xl font-normal text-center"
+          className="text-primary text-4xl font-normal text-center"
           variants={itemVariants}
           transition={{ type: "spring", stiffness: 120, damping: 15 }}
         >

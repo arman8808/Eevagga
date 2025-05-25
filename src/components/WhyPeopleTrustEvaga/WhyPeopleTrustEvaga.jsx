@@ -69,7 +69,7 @@ const WhyPeopleTrustEvaga = () => {
           className="text-center mb-16"
         >
           <motion.h2
-            className="text-4xl md:text-5xl font-normal text-center text-white mb-6"
+            className="text-4xl font-normal text-center text-white mb-6"
             initial={{ letterSpacing: "0.5em" }}
             animate={{ letterSpacing: "0.05em" }}
             transition={{ duration: 1, delay: 0.5 }}

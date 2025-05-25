@@ -193,7 +193,7 @@ const HowItWorks = () => {
 
   return (
     <section 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f4f5fa]"
       aria-labelledby="how-it-works-heading"
     >
       <div className="max-w-7xl mx-auto">
@@ -207,13 +207,11 @@ const HowItWorks = () => {
         >
           <h2 
             id="how-it-works-heading"
-           className="text-primary text-4xl md:text-5xl font-normal text-center"
+           className="text-primary text-4xl  font-normal text-center"
           >
-            How It Works
+          How Evaga Works - Simple, Transparent, Reliable
           </h2>
-          <p className="text-slate-600 text-lg md:text-xl text-textGray max-w-2xl mx-auto">
-            Three simple steps to your perfect event
-          </p>
+
         </motion.div>
 
         {/* Cards Grid */}

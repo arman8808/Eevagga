@@ -70,7 +70,7 @@ const FAQSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
-          <h2 className="text-primary text-4xl md:text-6xl font-normal  mb-6">
+          <h2 className="text-primary text-4xl font-normal  mb-6">
             Frequently Asked Questions
           </h2>
         </motion.div>
