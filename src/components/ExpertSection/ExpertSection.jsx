@@ -1,99 +1,90 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import expertImage from "../../assets/img11.webp";
+import { motion } from "framer-motion";
+import expertImage from "../../assets/img7.webp";
 
 const ExpertSection = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
-
   return (
-    <motion.section 
-      ref={ref}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Parallax Background Image */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${expertImage})`,
-          y 
-        }}
-      >
-        {/* Gradient Overlay */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-      </motion.div>
-
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
+          transition={{ duration: 0.6 }}
+         className="text-primary text-4xl md:text-5xl font-normal text-center"
         >
-          <motion.h2
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            initial={{ letterSpacing: "0.2em" }}
-            whileInView={{ letterSpacing: "0.05em" }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-          >
-            Speak to an Expert
-          </motion.h2>
-          
-          <motion.p
-            className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            Get personalized guidance from our event specialists
-          </motion.p>
+          Speak to an Expert
+        </motion.h2>
 
-          {/* Animated Button */}
-          <motion.a
-            href="/contact-expert"
-            className="inline-block px-12 py-4 rounded-full bg-white text-slate-900 font-semibold text-lg relative overflow-hidden"
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: "#6366f1",
-              color: "#ffffff"
-            }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            <span className="relative z-10">Schedule Consultation</span>
-            {/* Button Glow */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0"
-              whileHover={{ opacity: 0.2 }}
-            />
-          </motion.a>
+        {/* Text */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xl text-textGray text-center max-w-2xl mx-auto"
+        >
+          Get personalized guidance from our event specialists
+        </motion.p>
+
+        {/* Image */}
+        <motion.div
+          className="w-full max-w-5xl aspect-video rounded-3xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <img
+            src={expertImage}
+            alt="Expert consultation"
+            className="w-full h-full object-cover"
+          />
         </motion.div>
+
+        {/* Button */}
+        <motion.a
+          href="/contact-expert"
+          className="px-12 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-primary-700 transition-colors bg-primary"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.6, type: "spring" }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Schedule Free Consultation
+        </motion.a>
       </div>
 
-      {/* Scrolling Indicator */}
+      {/* Decorative elements */}
       <motion.div
-        className="absolute bottom-8 left-0 right-0 text-center text-white/80"
+        className="absolute inset-0 pointer-events-none"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ 
-          y: { duration: 2, repeat: Infinity },
-          opacity: { duration: 0.5 }
-        }}
+        transition={{ duration: 1 }}
       >
-        ↓ Scroll to explore ↓
+        {/* Animated background dots */}
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0.5, 1, 0.5],
+              transition: {
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              },
+            }}
+          />
+        ))}
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
 
