@@ -6,6 +6,7 @@ import HowItWorks from '../components/HowItWorks/HowItWorks'
 import OurWorkSection from '../components/OurWorkSection/OurWorkSection'
 import TestimonialSection from '../components/TestimonialSection/TestimonialSection'
 import WhyPeopleTrustEvaga from '../components/WhyPeopleTrustEvaga/WhyPeopleTrustEvaga'
+import RealStories from '../components/RealStories/RealStories'
 
 
 function HomepageNew() {
@@ -14,6 +15,7 @@ function HomepageNew() {
         <SliderNew/>
         <NewCatgeories/>
         <WhyPeopleTrustEvaga/>
+        <RealStories/>
         <WhyChooseUs/>
         {/* <HowItWorks/> */}
         <OurWorkSection/>
