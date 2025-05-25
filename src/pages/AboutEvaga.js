@@ -174,13 +174,37 @@ const AboutUs = () => {
             viewport={{ once: true }}
           >
             {section.type === 'image' ? (
-              <motion.img 
-                src={section.src}
-                alt={section.alt}
-                className="rounded-xl shadow-lg w-full h-64 md:h-96 object-contain"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'tween', ease: 'easeOut' }}
-              />
+          <motion.div
+  className="relative group overflow-hidden rounded-xl shadow-lg"
+  whileHover={{ scale: 1.02 }}
+  transition={{ type: 'spring', stiffness: 300 }}
+>
+  <motion.img 
+    src={section.src}
+    alt={section.alt}
+    className="w-full h-auto object-cover aspect-video"
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ 
+      type: 'spring',
+      stiffness: 100,
+      damping: 20,
+      delay: 0.2 + index * 0.1 
+    }}
+    loading="lazy"
+    onError={(e) => {
+      e.target.style.display = 'none'; // Hide broken images
+    }}
+  />
+  
+  {/* Optional Hover Overlay */}
+  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+  
+  {/* Optional Loading Skeleton */}
+  {!section.src && (
+    <div className="absolute inset-0 bg-gray-100 animate-pulse" />
+  )}
+</motion.div>
             ) : (
               <>
                 {section.title && (
