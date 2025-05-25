@@ -124,7 +124,7 @@ const RealStories = () => {
               >
                 {/* Animated Title with Dynamic Underline */}
                 <motion.h3
-                  className="text-xl font-semibold text-gray-900 relative"
+                  className="text-xl font-semibold text-gray-900 relative text-primary"
                   variants={{
                     hidden: { x: -20, opacity: 0 },
                     visible: {
