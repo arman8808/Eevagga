@@ -21,7 +21,6 @@ function HomepageNew() {
         <ExpertSection/>
         <WhyChooseUs/>
         <OurWorkSection/>
-        <OurWorkSection/>
         <FAQSection/>
     </div>
   )
