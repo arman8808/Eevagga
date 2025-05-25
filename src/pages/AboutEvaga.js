@@ -123,7 +123,7 @@ const AboutUs = () => {
       ],
     },
     {
-      title: "🌱 Our Mission",
+      title: "Our Mission",
       content:
         "To make premium event experiences accessible, organized, and visually transparent — while uplifting India’s ecosystem of local vendors, artists, and professionals.",
     },
@@ -137,7 +137,7 @@ const AboutUs = () => {
       ],
     },
     {
-      title: "🎯 Who We Serve",
+      title: "Who We Serve",
       list: [
         "Couples dreaming of perfect weddings",
         "Families planning milestone occasions",
@@ -173,7 +173,7 @@ const AboutUs = () => {
       </motion.div>
 
       {/* Content Sections */}
-      <div className="space-y-16">
+      <div className="space-y-8">
         {sections.map((section, index) => (
           <motion.section
             key={section.title || section.type || index}
@@ -237,7 +237,7 @@ const AboutUs = () => {
                 )}
 
                 {section.list && (
-                  <ul className="list-disc pl-6 space-y-3">
+                  <ul className="list-disc pl-6 space-y-2">
                     {section.list.map((item, i) => (
                       <li key={i} className="text-gray-600">
                         {item}
@@ -264,9 +264,7 @@ const AboutUs = () => {
               </>
             )}
 
-            {index < sections.length - 1 && !section.type && (
-              <div className="border-t border-gray-200 pt-8" />
-            )}
+         
           </motion.section>
         ))}
       </div>
@@ -276,12 +274,12 @@ const AboutUs = () => {
         variants={fadeIn("up", "tween", 1, 0.6)}
         className="text-center mt-16"
       >
-        <div className="border-t border-gray-200 pt-8">
+        <div className=" pt-8">
           <p
             className="text-xl md:text-2xl font-semibold mb-4"
             style={{ color: "#6A1B9A" }}
           >
-            🎉 Explore. Customize. Book. Celebrate.
+            Explore. Customize. Book. Celebrate.
           </p>
           <p className="text-lg md:text-xl text-gray-600">
             Welcome to Eevagga — Where Every Event Becomes an Experience.
