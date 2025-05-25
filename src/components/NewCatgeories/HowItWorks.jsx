@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import decor from "../../assets/decor.webp";
 import wedding from "../../assets/wedding.webp";
 import CategoryNewCard from "../Cards/categoryNewCard";
+import { internalRoutes } from "../../utils/internalRoutes";
 
 function NewCatgeories() {
   const containerVariants = {
@@ -25,39 +26,38 @@ function NewCatgeories() {
       image: wedding,
       title: "Weddings ",
       text: "Stress-free planning for your big day ",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
     {
       image: decor,
       title: "Birthdays",
       text: "Memorable celebrations for all ages",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
     {
       image: wedding,
       title: "Corporate Events",
       text: "Professional execution, on time & on brand",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
-       {
+    {
       image: decor,
       title: "College & School",
       text: "Fests, farewells & more - fun made easy",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
     {
       image: decor,
       title: "Private Parties",
       text: "Intimate gatherings, perfectly tailored",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
     {
       image: wedding,
       title: "Financial Services",
       text: "Ceremonies managed with care and respect",
-      link: "/search?q=&category=all",
+      link: internalRoutes?.bookingForm,
     },
- 
   ];
 
   return (

@@ -25,21 +25,31 @@ const images = [
   img12,
 ];
 
-
 export default function OurWorkSection() {
-const controls = useAnimation();
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
 
   useEffect(() => {
-    controls.start({
+    leftControls.start({
       x: ["0%", "-100%"],
       transition: {
         duration: 80,
         ease: "linear",
         repeat: Infinity,
-        repeatType: "loop"
-      }
+        repeatType: "loop",
+      },
     });
-  }, [controls]);
+
+    rightControls.start({
+      x: ["-100%", "0%"],
+      transition: {
+        duration: 80,
+        ease: "linear",
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    });
+  }, [leftControls, rightControls]);
 
   return (
     <section className="py-20 px-6 bg-[#6A1B9A] relative overflow-hidden">
@@ -60,23 +70,60 @@ const controls = useAnimation();
           </p>
         </motion.div>
 
-        <div className="py-8 overflow-hidden">
-          <motion.div 
+        {/* First row (slides to left) */}
+        <div className="py-4 overflow-hidden">
+          <motion.div
             className="flex"
-            animate={controls}
-            onHoverStart={() => controls.stop()}
-            onHoverEnd={() => controls.start({
-              x: ["0%", "-100%"],
-              transition: {
-                duration: 80,
-                ease: "linear",
-                repeat: Infinity
-              }
-            })}
+            animate={leftControls}
+            onHoverStart={() => leftControls.stop()}
+            onHoverEnd={() =>
+              leftControls.start({
+                x: ["0%", "-100%"],
+                transition: {
+                  duration: 80,
+                  ease: "linear",
+                  repeat: Infinity,
+                },
+              })
+            }
           >
             {[...images, ...images, ...images].map((img, index) => (
               <motion.div
-                key={index}
+                key={`left-${index}`}
+                className="relative h-64 w-64 mx-4 flex-shrink-0 rounded-xl overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={img}
+                  alt="Our work"
+                  className="h-full w-full object-cover transform transition-all duration-300"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Second row (slides to right) */}
+        <div className="py-4 overflow-hidden">
+          <motion.div
+            className="flex"
+            animate={rightControls}
+            onHoverStart={() => rightControls.stop()}
+            onHoverEnd={() =>
+              rightControls.start({
+                x: ["-100%", "0%"],
+                transition: {
+                  duration: 80,
+                  ease: "linear",
+                  repeat: Infinity,
+                },
+              })
+            }
+          >
+            {[...images, ...images, ...images].map((img, index) => (
+              <motion.div
+                key={`right-${index}`}
                 className="relative h-64 w-64 mx-4 flex-shrink-0 rounded-xl overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -92,6 +139,5 @@ const controls = useAnimation();
         </div>
       </div>
     </section>
-
   );
 }

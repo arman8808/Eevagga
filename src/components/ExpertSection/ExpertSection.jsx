@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import expertImage from "../../assets/img7.webp";
+import { internalRoutes } from "../../utils/internalRoutes";
 
 const ExpertSection = () => {
   return (
@@ -11,7 +12,7 @@ const ExpertSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-         className="text-primary text-4xl md:text-5xl font-normal text-center"
+          className="text-primary text-4xl md:text-5xl font-normal text-center"
         >
           Speak to an Expert
         </motion.h2>
@@ -44,7 +45,7 @@ const ExpertSection = () => {
 
         {/* Button */}
         <motion.a
-          href="/contact-expert"
+          href={internalRoutes?.bookingForm}
           className="px-12 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-primary-700 transition-colors bg-primary"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
