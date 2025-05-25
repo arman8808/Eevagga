@@ -1,129 +1,125 @@
 import { motion } from "framer-motion";
 
-const CategoryNewCard = ({ imageUrl, title, text, link }) => {
+const CategoryNewCard = ({
+  imageUrl,
+  title,
+  text,
+  link,
+  className = "",
+}) => {
   return (
-    <motion.a
+   <motion.a
       href={link}
-      className="block group relative overflow-hidden bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-[#6A1B9A]"
-      initial={{ opacity: 0, y: 40, rotateX: -15, scale: 0.95 }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0, 
-        rotateX: 0,
-        scale: 1,
-        transition: { 
-          type: "spring", 
-          stiffness: 120,
-          damping: 20,
-          mass: 0.5
-        } 
-      }}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative block h-[480px] w-full overflow-hidden rounded-[1.5rem] shadow-2xl"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
-      whileHover={{ 
-        scale: 1.03,
-        y: -8,
-        transition: { type: "spring", stiffness: 300 }
-      }}
-      whileTap={{ scale: 0.97 }}
+      whileHover="hover"
+      whileTap="tap"
     >
-      <div className="p-[8%]">
-        {/* Image Container */}
+      {/* Parallax Background Layer */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${imageUrl})` }}
+        variants={{
+          hover: { scale: 1.05 },
+          tap: { scale: 1.03 }
+        }}
+        transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+      />
+
+      {/* Dynamic Gradient Overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
+        variants={{
+          hover: { opacity: 0.9 },
+          tap: { opacity: 0.95 }
+        }}
+      />
+
+      {/* Floating Content Panel */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 px-8 pb-8"
+        variants={{
+          hover: { y: -20 },
+          tap: { y: -10 }
+        }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
         <motion.div
-          className="relative overflow-hidden rounded-xl mb-6"
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ 
-            scale: 1,
-            opacity: 1,
-            transition: { 
-              delay: 0.2,
-              type: "spring", 
-              bounce: 0.4 
+          className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+          variants={{
+            hover: { 
+              backgroundColor: 'rgba(255,255,255,0.08)',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.4)'
             }
           }}
         >
-          <motion.img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-64 object-cover mx-auto"
-            initial={{ scale: 1.1 }}
-            whileInView={{ scale: 1 }}
-            whileHover={{ 
-              scale: 1.15,
-              transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-            }}
-          />
-          
-          {/* Animated Gradient Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/15 to-transparent"
-            initial={{ opacity: 0 }}
-            whileHover={{ 
-              opacity: 1,
-              transition: { duration: 0.4 }
-            }}
-          />
+          {/* Inner Glow Effect */}
+          <div className="absolute inset-0 rounded-2xl pointer-events-none mix-blend-overlay shadow-[inset_0_1px_2px_rgba(255,255,255,0.15)]" />
+
+          <div className="p-6 space-y-4 relative">
+            {/* Title with Decorative Line */}
+            <motion.h3
+              className="text-3xl font-bold text-white"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              {title}
+              <motion.div
+                className="h-[2px] w-16 bg-white/40 mt-2"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.4 }}
+              />
+            </motion.h3>
+
+            {/* Description Text */}
+            <motion.p
+              className="text-white/85 leading-relaxed line-clamp-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              {text}
+            </motion.p>
+
+            {/* Animated CTA */}
+            <motion.div
+              className="flex items-center gap-2 text-white/90 hover:text-white transition-colors"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <span className="font-medium">Explore Packages</span>
+              <motion.span
+                className="text-xl"
+                variants={{
+                  hover: { x: 5 },
+                  tap: { x: 3 }
+                }}
+                transition={{ type: "spring", stiffness: 500 }}
+              >
+                ↗
+              </motion.span>
+            </motion.div>
+          </div>
         </motion.div>
+      </motion.div>
 
-        {/* Text Content */}
-        <div className="space-y-4 text-center">
-          <motion.h3
-            className="text-[1.125rem] leading-[1.125rem] font-normal text-[#6A1B9A]"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ 
-              y: 0, 
-              opacity: 1,
-              transition: { 
-                delay: 0.3,
-                type: "spring", 
-                stiffness: 150 
-              }
-            }}
-          >
-            {title}
-          </motion.h3>
-          
-          <motion.p
-            className="text-[#757575] font-light text-sm leading-5"
-            initial={{ y: 15, opacity: 0 }}
-            whileInView={{ 
-              y: 0, 
-              opacity: 1,
-              transition: { 
-                delay: 0.4,
-                type: "spring", 
-                stiffness: 150 
-              }
-            }}
-          >
-            {text}
-          </motion.p>
-        </div>
-      </div>
-
-      {/* Animated Border Layer */}
+      {/* Interactive Border Glow */}
       <motion.div
-        className="absolute inset-0 border-2 border-[#6A1B9A] rounded-2xl pointer-events-none"
-        initial={{ 
-          opacity: 0,
-          scale: 0.98
-        }}
-        whileHover={{ 
-          opacity: 1,
-          scale: 1,
-          transition: { 
-            duration: 0.4,
-            ease: "easeOut"
+        className="absolute inset-0 rounded-[1.5rem] pointer-events-none border-2 border-transparent"
+        variants={{
+          hover: {
+            borderColor: 'rgba(255,255,255,0.15)',
+            boxShadow: '0 0 40px rgba(255,255,255,0.1)'
           }
         }}
-      />
-      
-      {/* Subtle Shadow Animation */}
-      <motion.div
-        className="absolute inset-0 shadow-2xl opacity-0"
-        whileHover={{ 
-          opacity: 0.2,
-          transition: { duration: 0.3 }
-        }}
+        transition={{ duration: 0.4 }}
       />
     </motion.a>
   );
