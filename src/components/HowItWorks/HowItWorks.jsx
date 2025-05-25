@@ -175,24 +175,24 @@ import { FiSearch, FiCheckCircle, FiSettings } from "react-icons/fi";
 const HowItWorks = () => {
   const steps = [
     {
-      icon: FiSearch,
-      title: "Explore & Choose",
-      text: "Browse services by category - weddings, parties, corporate & more",
+      title: "Talk to Us ",
     },
     {
-      icon: FiCheckCircle,
-      title: "Instant Booking",
-      text: "Secure booking with verified vendors & transparent pricing",
+      title: "Discover Options ",
     },
     {
-      icon: FiSettings,
-      title: "We Handle Everything",
-      text: "Seamless coordination from start to finish",
+      title: "Get Custom Package ",
+    },
+    {
+      title: "Book Us or Stand alone services",
+    },
+    {
+      title: "Relax ",
     },
   ];
 
   return (
-    <section 
+    <section
       className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f4f5fa]"
       aria-labelledby="how-it-works-heading"
     >
@@ -202,97 +202,32 @@ const HowItWorks = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ type: 'spring', stiffness: 100 }}
+          transition={{ type: "spring", stiffness: 100 }}
           className="text-center mb-16"
         >
-          <h2 
+          <h2
             id="how-it-works-heading"
-           className="text-primary text-4xl  font-normal text-center"
+            className="text-primary text-4xl  font-normal text-center"
           >
-          How Evaga Works - Simple, Transparent, Reliable
+            How Evaga Works - Simple, Transparent, Reliable
           </h2>
-
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {steps.map((step, index) => (
-            <motion.article
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                delay: index * 0.2,
-                type: 'spring', 
-                stiffness: 80 
-              }}
-              className="group relative h-full"
-              aria-labelledby={`step-${index}-title`}
-            >
-              {/* Card Container */}
-              <div className="h-full p-8 rounded-3xl bg-white border-2 border-slate-100 hover:border-transparent transition-all relative overflow-hidden shadow-sm hover:shadow-xl">
-                {/* Animated Background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100"
-                  initial={{ scale: 0.95 }}
-                  whileHover={{ scale: 1 }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                />
-
-                {/* Floating Number */}
-                <motion.div 
-                  className="absolute top-6 right-6 text-7xl font-bold text-slate-100/60 z-0"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  aria-hidden="true"
-                >
-                  0{index + 1}
-                </motion.div>
-
-                {/* Icon Container */}
-                <motion.div
-                  className="w-16 h-16 rounded-2xl mb-8 relative bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg"
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: [0, -5, 5, 0],
-                    transition: { 
-                      duration: 0.6,
-                      rotate: { type: 'spring', stiffness: 300 }
-                    }
-                  }}
-                >
-                  <step.icon className="w-8 h-8 text-white transition-transform group-hover:scale-110" />
-                </motion.div>
-
-                {/* Content */}
-                <div className="relative space-y-4">
-                  <h3 
-                    id={`step-${index}-title`}
-                    className="text-2xl font-semibold text-primary transition-colors group-hover:text-blue-800"
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed text-base md:text-lg">
-                    {step.text}
-                  </p>
-                </div>
-
-                {/* Hover Border Animation */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl border-2 border-transparent"
-                  initial={{ opacity: 0 }}
-                  whileHover={{
-                    opacity: 1,
-                    borderColor: 'rgba(99, 102, 241, 0.2)',
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Subtle Glow Effect */}
-                <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_30px_rgba(99,102,241,0.05)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div key={index} className="flex flex-col items-center space-y-4">
+              {/* Number Circle */}
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg">
+                <span className="text-white text-2xl font-bold">
+                  {index + 1}
+                </span>
               </div>
-            </motion.article>
+
+              {/* Heading */}
+              <h3 className="text-normal font-normal text-textGray text-center">
+                {step.title}
+              </h3>
+            </div>
           ))}
         </div>
       </div>
