@@ -19,7 +19,7 @@ function HomepageNew() {
         <RealStories/>
         <HowItWorks/>
         <ExpertSection/>
-        <WhyChooseUs/>
+        {/* <WhyChooseUs/> */}
         <OurWorkSection/>
         <FAQSection/>
     </div>

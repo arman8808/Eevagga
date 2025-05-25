@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import expertImage from "../../assets/img7.webp";
+import expertImage from "../../assets/whychooseus.webp";
 import { internalRoutes } from "../../utils/internalRoutes";
 
 const ExpertSection = () => {
@@ -14,19 +14,8 @@ const ExpertSection = () => {
           transition={{ duration: 0.6 }}
           className="text-primary text-4xl md:text-5xl font-normal text-center"
         >
-          Speak to an Expert
+          Professional guidance for a seamless, stress-free event
         </motion.h2>
-
-        {/* Text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl text-textGray text-center max-w-2xl mx-auto"
-        >
-          Get personalized guidance from our event specialists
-        </motion.p>
 
         {/* Image */}
         <motion.div
@@ -54,7 +43,7 @@ const ExpertSection = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Schedule Free Consultation
+         Speak to an advisor 
         </motion.a>
       </div>
 

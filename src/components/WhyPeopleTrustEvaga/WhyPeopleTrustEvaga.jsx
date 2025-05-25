@@ -4,8 +4,8 @@ import trustBg from "../../assets/WhyPeopleTrustEvaga.webp";
 const WhyPeopleTrustEvaga = () => {
   const trustItems = [
     {
-      title: "From Start to Finish",
-      text: "we provide end-to-end service."
+      title: "End To End Service ",
+      text: "From Start to Finish, we provide end-to-end service."
     },
     {
       title: "Pricing You Can Trust",
