@@ -8,6 +8,7 @@ import WhyPeopleTrustEvaga from '../components/WhyPeopleTrustEvaga/WhyPeopleTrus
 import RealStories from '../components/RealStories/RealStories'
 import ExpertSection from '../components/ExpertSection/ExpertSection'
 import FAQSection from '../components/FAQSection/FAQSection'
+import BookingSection from '../components/BookingSection/BookingSection'
 
 
 function HomepageNew() {
@@ -18,6 +19,7 @@ function HomepageNew() {
         <WhyPeopleTrustEvaga/>
         <RealStories/>
         <HowItWorks/>
+        <BookingSection/>
         <ExpertSection/>
         {/* <WhyChooseUs/> */}
         {/* <OurWorkSection/> */}

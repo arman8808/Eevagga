@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import expertImage from "../../assets/whychooseus.webp";
-import { internalRoutes } from "../../utils/internalRoutes";
+
 
 const ExpertSection = () => {
+   const handleBooking = () => {
+    // Scroll to booking section
+    const section = document.getElementById("booking-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
@@ -33,8 +40,8 @@ const ExpertSection = () => {
         </motion.div>
 
         {/* Button */}
-        <motion.a
-          href={internalRoutes?.bookingForm}
+        <motion.button
+          onClick={handleBooking}
           className="px-12 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-primary-700 transition-colors bg-primary"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +51,7 @@ const ExpertSection = () => {
           whileTap={{ scale: 0.95 }}
         >
          Speak to an advisor 
-        </motion.a>
+        </motion.button>
       </div>
 
       {/* Decorative elements */}
