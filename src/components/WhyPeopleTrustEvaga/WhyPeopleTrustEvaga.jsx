@@ -4,20 +4,20 @@ import trustBg from "../../assets/WhyPeopleTrustEvaga.webp";
 const WhyPeopleTrustEvaga = () => {
   const trustItems = [
     {
-      title: "10+ Years Experience",
-      text: "Proven track record in event management across various industries"
+      title: "From Start to Finish",
+      text: "we provide end-to-end service."
     },
     {
-      title: "5000+ Successful Events",
-      text: "Trusted by clients for milestone celebrations and corporate functions"
+      title: "Pricing You Can Trust",
+      text: "Upfront, clear, and fair — no surprises, just honest deals."
     },
     {
-      title: "Award-Winning Team",
-      text: "Recognized professionals with industry certifications"
+      title: "Your Personal Event Partner",
+      text: "Expert guidance tailored to your unique celebration."
     },
     {
-      title: "100% Transparency",
-      text: "Clear pricing and detailed planning process"
+      title: "Effortless Event Planning",
+      text: "Smooth, simple, and stress-free from start to finish."
     }
   ];
 
