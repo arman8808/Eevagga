@@ -1,4 +1,3 @@
-import React from 'react'
 import SliderNew from '../components/Slider/SliderNew'
 import NewCatgeories from '../components/NewCatgeories/HowItWorks'
 import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs'
@@ -16,8 +15,8 @@ function HomepageNew() {
         <NewCatgeories/>
         <WhyPeopleTrustEvaga/>
         <RealStories/>
+        <HowItWorks/>
         <WhyChooseUs/>
-        {/* <HowItWorks/> */}
         <OurWorkSection/>
         <TestimonialSection/>
     </div>
