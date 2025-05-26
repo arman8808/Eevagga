@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import expertImage from "../../assets/whychooseus.webp";
+import expertImage from "../../assets/guidence.jpeg";
 
 
 const ExpertSection = () => {
