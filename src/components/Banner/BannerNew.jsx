@@ -94,14 +94,14 @@ function BannerNew({ image, height, category }) {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-         <motion.button
-  className="bg-[#FFE500] text-[#6A1B9A] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all text-lg lg:text-xl"
-  onClick={handleBooking} 
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
->
-  Free Expert Advice
-</motion.button>
+            <motion.button
+              className="bg-[#FFE500] text-[#6A1B9A] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all text-lg lg:text-xl"
+              onClick={handleBooking} 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Free Expert Advice
+            </motion.button>
           </motion.div>
         </motion.div>
 

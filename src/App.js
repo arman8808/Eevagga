@@ -76,6 +76,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const SingleBlogPage = lazy(() => import("./pages/singleBlogPage"));
 const InterestSelection = lazy(() => import("./pages/InterestSelection"));
 const BookingForm = lazy(() => import("./pages/BookingForm.js"));
+const OurService = lazy(() => import("./pages/OurService.jsx"));
 const AppContent = () => {
   const { auth } = useAuth();
   const dispatch = useDispatch();
@@ -109,11 +110,26 @@ const AppContent = () => {
       dispatch(fetchUserWishlist(userId));
     }
   }, [auth, allWishlist, userId, dispatch]);
-
+ useEffect(() => {
+    const preventDefault = (e) => e.preventDefault();
+    const events = [
+      'selectstart', 'contextmenu', 'copy', 'cut', 'dragstart'
+    ];
+    
+    events.forEach(event => {
+      document.addEventListener(event, preventDefault);
+    });
+    
+    return () => {
+      events.forEach(event => {
+        document.removeEventListener(event, preventDefault);
+      });
+    };
+  }, []);
   return (
     <>
       {/* {!noNavbarPaths.includes(location.pathname) && <DynamicNav />} */}
-      <Navbar/>
+      <Navbar />
       <GlobalEventHandlers>
         <GlobalLoader />
         <ToastContainer
@@ -165,6 +181,14 @@ const AppContent = () => {
               </Suspense>
             }
             path={internalRoutes.profile}
+          />{" "}
+          <Route
+            element={
+              <Suspense fallback={<Loader />}>
+                <OurService />
+              </Suspense>
+            }
+            path={internalRoutes.ourServices}
           />
           <Route
             element={
