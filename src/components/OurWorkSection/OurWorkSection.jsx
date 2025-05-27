@@ -1,5 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import img from "../../assets/img.webp";
 import img2 from "../../assets/img2.webp";
 import img4 from "../../assets/img4.webp";
@@ -94,11 +96,24 @@ export default function OurWorkSection() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <img
-                  src={img}
-                  alt="Our work"
-                  className="h-full w-full object-cover transform transition-all duration-300"
-                />
+             <LazyLoadImage
+            src={img}
+            alt="Our work"
+            className="h-full w-full object-cover transform transition-all duration-300 group-hover:scale-105"
+            effect="blur"
+            // placeholderSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+            wrapperClassName="lazy-carousel-image-wrapper"
+            beforeLoad={() => ({
+              style: { filter: 'blur(20px)' }
+            })}
+            afterLoad={() => ({
+              style: { 
+                filter: 'blur(0)',
+                transition: 'filter 0.4s ease-out, transform 0.3s ease'
+              }
+            })}
+            threshold={100}
+          />
               </motion.div>
             ))}
           </motion.div>
@@ -128,11 +143,24 @@ export default function OurWorkSection() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <img
+                <LazyLoadImage
                   src={img}
                   alt="Our work"
-                  className="h-full w-full object-cover transform transition-all duration-300"
-                />
+                  className="h-full w-full object-cover transform transition-all duration-300 group-hover:scale-105"
+                  effect="blur"
+                  // placeholderSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                  wrapperClassName="lazy-carousel-image-wrapper"
+                  beforeLoad={() => ({
+                    style: { filter: "blur(20px)" },
+                  })}
+                  afterLoad={() => ({
+                    style: {
+                      filter: "blur(0)",
+                      transition: "filter 0.4s ease-out, transform 0.3s ease",
+                    },
+                  })}
+                  threshold={100}
+                />{" "}
               </motion.div>
             ))}
           </motion.div>

@@ -27,6 +27,7 @@ import ThankYou from "./pages/ThankYou.js";
 import StickyAd from "./utils/StickyAd.js";
 import Navbar from "./components/navbar/Navbar.jsx";
 import AboutEvaga from "./pages/AboutEvaga";
+import OurService from "./pages/OurService.jsx";
 const Home = lazy(() => import("./pages/HomepageNew.jsx"));
 const SinglePackage = lazy(() => import("./pages/SinglePackage"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
@@ -78,7 +79,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const SingleBlogPage = lazy(() => import("./pages/singleBlogPage"));
 const InterestSelection = lazy(() => import("./pages/InterestSelection"));
 const BookingForm = lazy(() => import("./pages/BookingForm.js"));
-const OurService = lazy(() => import("./pages/OurService.jsx"));
+// const OurService = lazy(() => import("./pages/OurService.jsx"));
 const AppContent = () => {
   const { auth } = useAuth();
   const dispatch = useDispatch();
@@ -184,9 +185,9 @@ const AppContent = () => {
           />{" "}
           <Route
             element={
-              <Suspense fallback={<Loader />}>
+              // <Suspense fallback={<Loader />}>
                 <OurService />
-              </Suspense>
+              // </Suspense>
             }
             path={internalRoutes.ourServices}
           />

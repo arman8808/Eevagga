@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import whyChooseImage from "../../assets/whychooseus.webp"; // Replace with your image path
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 function WhyChooseUs() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -150,11 +152,25 @@ function WhyChooseUs() {
             }}
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#6A1B9A]/10">
-              <img
+              <LazyLoadImage
                 src={whyChooseImage}
                 alt="Why Choose Us"
                 className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
-                loading="lazy"
+                effect="blur"
+                wrapperClassName="lazy-image-wrapper"
+                beforeLoad={() => ({
+                  style: {
+                    filter: "blur(20px)",
+                    transform: "scale(1)",
+                  },
+                })}
+                afterLoad={() => ({
+                  style: {
+                    filter: "blur(0)",
+                    transition: "filter 0.5s ease-out, transform 0.7s ease",
+                  },
+                })}
+                threshold={300}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#6A1B9A]/10 to-transparent" />
             </div>
