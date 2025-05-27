@@ -56,13 +56,14 @@ function Navbar() {
     <nav className="bg-[#6A1B9A] w-full z-50 border-b border-[#FFE500]/20">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <motion.div
+        <motion.a
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="flex items-center"
+          href={internalRoutes.home}
         >
           <img src={logo} alt="Evaga Logo" className="h-10 md:h-12" />
-        </motion.div>
+        </motion.a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-10">
