@@ -60,7 +60,7 @@ function BannerNew({ image, height, category }) {
 
   return (
     <motion.div
-      className="relative w-full min-h-screen overflow-hidden"
+      className="relative w-full min-h-[80dvh] overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -82,7 +82,7 @@ function BannerNew({ image, height, category }) {
       </motion.div>
 
       {/* Content Container */}
-      <div className="relative z-10 container mx-auto px-6 h-full min-h-screen flex flex-col justify-end pb-[10%]">
+      <div className="relative z-10 container mx-auto px-6 h-full min-h-[80dvh] flex flex-col justify-end pb-[10%]">
         <motion.div className="text-center space-y-8" variants={textVariants}>
           <motion.div variants={itemVariants}>
             <motion.h1

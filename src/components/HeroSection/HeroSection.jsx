@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full min-h-[80dvh] overflow-hidden">
       {/* Background Image */}
       <motion.div
         initial={{ opacity: 0 }}

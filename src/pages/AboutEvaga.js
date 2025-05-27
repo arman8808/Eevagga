@@ -87,7 +87,7 @@
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../utils/motion";
 import image1 from "../assets/aboutus1.webp";
-import image2 from "../assets/Picture2.jpg";
+import image2 from "../assets/aboutus2.webp";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 const AboutUs = () => {
