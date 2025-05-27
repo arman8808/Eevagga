@@ -264,9 +264,9 @@ const AppContent = () => {
           />
           <Route
             element={
-              <Suspense fallback={<Loader />}>
+              // <Suspense fallback={<Loader />}>
                 <AboutEvaga />
-              </Suspense>
+              // </Suspense>
             }
             path={internalRoutes.aboutUs}
           />

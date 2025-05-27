@@ -88,6 +88,8 @@ import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../utils/motion";
 import image1 from "../assets/Picture1.jpg";
 import image2 from "../assets/Picture2.jpg";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 const AboutUs = () => {
   const sections = [
     {
@@ -187,23 +189,32 @@ const AboutUs = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.img
-                  src={section.src}
-                  alt={section.alt}
-                  className="w-full h-auto object-cover aspect-video"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 20,
-                    delay: 0.2 + index * 0.1,
-                  }}
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.style.display = "none"; // Hide broken images
-                  }}
-                />
+             <LazyLoadImage
+  src={section.src}
+  alt={section.alt}
+  className="w-full h-auto object-cover aspect-video"
+  effect="blur"
+  placeholderSrc={section.placeholderSrc} // Add small placeholder image in your data
+  wrapperProps={{
+    style: {
+      display: 'block', // Ensures proper layout
+      transition: 'filter 0.5s ease-out', // Custom blur transition
+    }
+  }}
+  beforeLoad={() => ({
+    style: {
+      filter: 'blur(20px)',
+    }
+  })}
+  afterLoad={() => ({
+    style: {
+      filter: 'blur(0)',
+    }
+  })}
+  onError={(e) => {
+    e.target.style.display = "none";
+  }}
+/>
 
                 {/* Optional Hover Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
