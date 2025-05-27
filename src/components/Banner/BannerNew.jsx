@@ -93,10 +93,10 @@ function BannerNew({ image, height, category }) {
             </motion.h1>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="flex items-center justify-center">
             <motion.button
-              className="bg-[#FFE500] text-[#6A1B9A] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all text-lg lg:text-xl"
-              onClick={handleBooking} 
+              className="flex items-center justify-center bg-[#FFE500] text-[#6A1B9A] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all text-lg lg:text-xl w-full md:w-auto"
+              onClick={handleBooking}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
