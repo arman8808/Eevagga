@@ -26,10 +26,10 @@ const HeroSection = () => {
         className="absolute bottom-[10%] left-0 right-0 px-4 text-center"
       >
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-          Your Dream Wedding, One Click Away
+         Weddings. Birthdays. Corporate Events.
         </h1>
         <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto">
-          Discover amazing experiences and create unforgettable memories
+          Whatever you’re planning, we make it effortless and unforgettable.
         </p>
 
     
