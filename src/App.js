@@ -26,6 +26,7 @@ import WhatsAppButton from "./utils/WhatsAppButton";
 import ThankYou from "./pages/ThankYou.js";
 import StickyAd from "./utils/StickyAd.js";
 import Navbar from "./components/navbar/Navbar.jsx";
+import AboutEvaga from "./pages/AboutEvaga";
 const Home = lazy(() => import("./pages/HomepageNew.jsx"));
 const SinglePackage = lazy(() => import("./pages/SinglePackage"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
@@ -57,7 +58,8 @@ const UserForgotPassword = lazy(() =>
 const UserProfile = lazy(() => import("./pages/User/UserProfile"));
 const PressRelease = lazy(() => import("./pages/PressRelease"));
 const CheckOut = lazy(() => import("./pages/CheckOut"));
-const AboutEvaga = lazy(() => import("./pages/AboutEvaga"));
+// const AboutEvaga = lazy(() => import("./pages/AboutEvaga"));
+
 const RefundAndCancellation = lazy(() =>
   import("./pages/RefundAndCancellation")
 );
@@ -110,18 +112,16 @@ const AppContent = () => {
       dispatch(fetchUserWishlist(userId));
     }
   }, [auth, allWishlist, userId, dispatch]);
- useEffect(() => {
+  useEffect(() => {
     const preventDefault = (e) => e.preventDefault();
-    const events = [
-      'selectstart', 'contextmenu', 'copy', 'cut', 'dragstart'
-    ];
-    
-    events.forEach(event => {
+    const events = ["selectstart", "contextmenu", "copy", "cut", "dragstart"];
+
+    events.forEach((event) => {
       document.addEventListener(event, preventDefault);
     });
-    
+
     return () => {
-      events.forEach(event => {
+      events.forEach((event) => {
         document.removeEventListener(event, preventDefault);
       });
     };
@@ -265,7 +265,7 @@ const AppContent = () => {
           <Route
             element={
               // <Suspense fallback={<Loader />}>
-                <AboutEvaga />
+              <AboutEvaga />
               // </Suspense>
             }
             path={internalRoutes.aboutUs}

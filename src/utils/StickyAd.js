@@ -12,7 +12,7 @@ const StickyAd = () => {
   }, []);
 
   const handleDismiss = () => {
-    Cookies.set("adDismissed", "true", { expires: 30 });
+    Cookies.set("adDismissed", "true", { expires: 3 });
     setShowAd(false);
   };
 
