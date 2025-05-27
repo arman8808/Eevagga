@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import expertImage from "../../assets/guidence.jpeg";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ExpertSection = () => {
-   const handleBooking = () => {
+  const handleBooking = () => {
     // Scroll to booking section
     const section = document.getElementById("booking-section");
     if (section) {
@@ -32,10 +33,34 @@ const ExpertSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <img
+          {/* <img
             src={expertImage}
             alt="Expert consultation"
             className="w-full h-full object-cover"
+          /> */}
+          <LazyLoadImage
+            src={expertImage}
+            alt={"expert"}
+            decoding="async"
+            className="w-full h-full object-cover"
+            wrapperClassName="group transition-transform duration-300" // Moved group and transition to wrapper
+            effect="blur"
+            placeholderSrc={'expert'} // Add low-res placeholder to your data
+            beforeLoad={() => ({ style: { filter: "blur(20px)" } })}
+            afterLoad={() => ({ style: { filter: "blur(0)" } })}
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+            visibleByDefault={false}
+            threshold={200} // Load 200px before entering viewport
+            style={{
+              transition: "transform 0.3s ease-in-out",
+            }}
+            // Combine lazy-load transition with hover effect
+            onLoad={() => {
+              const img = document.querySelector(`img[alt="${'expert'}"]`);
+              img.classList.add("group-hover:scale-105");
+            }}
           />
         </motion.div>
 
@@ -50,7 +75,7 @@ const ExpertSection = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-         Speak to an advisor 
+          Speak to an advisor
         </motion.button>
       </div>
 

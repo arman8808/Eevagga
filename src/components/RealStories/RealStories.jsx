@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import story1 from "../../assets/decor.webp";
 import story2 from "../../assets/img4.webp";
 import story3 from "../../assets/img7.webp";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const RealStories = () => {
   const stories = [
     {
@@ -81,11 +82,31 @@ const RealStories = () => {
             >
               {/* Image Container */}
               <div className="relative h-64 overflow-hidden">
-                <img
+                <LazyLoadImage
                   src={story.image}
                   alt={story.title}
                   decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
+                  wrapperClassName="group transition-transform duration-300" // Moved group and transition to wrapper
+                  effect="blur"
+                  placeholderSrc={story.placeholder} // Add low-res placeholder to your data
+                  beforeLoad={() => ({ style: { filter: "blur(20px)" } })}
+                  afterLoad={() => ({ style: { filter: "blur(0)" } })}
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                  }}
+                  visibleByDefault={false}
+                  threshold={200} // Load 200px before entering viewport
+                  style={{
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  // Combine lazy-load transition with hover effect
+                  onLoad={() => {
+                    const img = document.querySelector(
+                      `img[alt="${story.title}"]`
+                    );
+                    img.classList.add("group-hover:scale-105");
+                  }}
                 />
 
                 {/* Gradient Overlay */}
