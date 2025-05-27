@@ -3,7 +3,7 @@ import BookingForm from "../../pages/BookingForm";
 
 function BookingSection() {
   return (
-    <section id="booking-section" className=" relative py-16 md:py-28 bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <section id="booking-section" className=" relative py-10 md:py-10 bg-gradient-to-br from-gray-50 to-blue-50/30">
       {/* Decorative Elements */}
       <div className="absolute inset-0  bg-center opacity-10" />
       <div className="absolute left-0 top-1/2 w-1/3 h-3/4 bg-gradient-to-r from-white/50 to-transparent -translate-y-1/2" />
@@ -11,7 +11,7 @@ function BookingSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
         <div className="flex flex-col lg:flex-row gap-14 xl:gap-28">
           {/* Left Content */}
-          <div className="lg:w-1/2 flex flex-col justify-center">
+          <div className="lg:w-1/2 flex flex-col justify-start ">
             <div className="relative space-y-8">
               <div className="max-w-2xl">
                 <h2 className="text-4xl md:text-4xl font-normal text-primary leading-tight tracking-tight">

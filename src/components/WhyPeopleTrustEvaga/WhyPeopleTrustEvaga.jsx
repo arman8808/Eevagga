@@ -1,27 +1,28 @@
 import { motion } from "framer-motion";
-import trustBg from "../../assets/WhyPeopleTrustEvaga.webp"; 
-
+import trustBg from "../../assets/WhyPeopleTrustEvaga.webp";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const WhyPeopleTrustEvaga = () => {
   const trustItems = [
     {
       title: "End To End Service ",
-      text: "From Start to Finish, we provide end-to-end service."
+      text: "From Start to Finish, we provide end-to-end service.",
     },
     {
       title: "Pricing You Can Trust",
-      text: "Upfront, clear, and fair — no surprises, just honest deals."
+      text: "Upfront, clear, and fair — no surprises, just honest deals.",
     },
     {
       title: "Your Personal Event Partner",
-      text: "Expert guidance tailored to your unique celebration."
+      text: "Expert guidance tailored to your unique celebration.",
     },
     {
       title: "Effortless Event Planning",
-      text: "Smooth, simple, and stress-free from start to finish."
-    }
+      text: "Smooth, simple, and stress-free from start to finish.",
+    },
   ];
 
- const cardVariants = {
+  const cardVariants = {
     hidden: { opacity: 0, y: 50, rotateX: -15, scale: 0.95 },
     visible: {
       opacity: 1,
@@ -32,25 +33,43 @@ const WhyPeopleTrustEvaga = () => {
         type: "spring",
         stiffness: 120,
         damping: 15,
-        mass: 0.5
-      }
-    }
+        mass: 0.5,
+      },
+    },
   };
   return (
-   <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Parallax Background */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.1 }}
         whileInView={{ scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <img 
-          src={trustBg} 
-          alt="Trust Background" 
+        <LazyLoadImage
+          src={trustBg}
+          alt="Trust Background"
           className="w-full h-full object-cover"
+          effect="blur"
+          placeholderSrc={"trustBg"} // Add low-res placeholder image
+          wrapperClassName="lazy-load-background-wrapper"
+          beforeLoad={() => ({
+            style: {
+              filter: "blur(20px)",
+              scale: 1.1,
+            },
+          })}
+          afterLoad={() => ({
+            style: {
+              filter: "blur(0)",
+              transition: "filter 0.8s ease-out, scale 1.5s ease-out",
+            },
+          })}
+          onError={(e) => {
+            e.target.style.display = "none";
+          }}
         />
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -80,12 +99,12 @@ const WhyPeopleTrustEvaga = () => {
             className="mx-auto h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent"
             initial={{ width: 0 }}
             whileInView={{ width: "40%" }}
-            transition={{ duration: 1.5, delay: 0.8 }}
+            transition={{ duration: 1.5, delay: 0.4 }}
           />
         </motion.div>
 
         {/* Cards Grid with Enhanced Interactions */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           initial="hidden"
           whileInView="visible"
@@ -94,8 +113,8 @@ const WhyPeopleTrustEvaga = () => {
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: { staggerChildren: 0.2, delayChildren: 0.5 }
-            }
+              transition: { staggerChildren: 0.2, delayChildren: 0.5 },
+            },
           }}
         >
           {trustItems.map((item, index) => (
@@ -103,10 +122,10 @@ const WhyPeopleTrustEvaga = () => {
               key={index}
               variants={cardVariants}
               className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 cursor-pointer overflow-hidden"
-              whileHover={{ 
+              whileHover={{
                 y: -15,
                 scale: 1.03,
-                boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.15)"
+                boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.15)",
               }}
               whileTap={{ scale: 0.98 }}
             >
@@ -116,7 +135,8 @@ const WhyPeopleTrustEvaga = () => {
                 initial={{ opacity: 0 }}
                 whileHover={{
                   opacity: 1,
-                  background: "linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)"
+                  background:
+                    "linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                 }}
                 transition={{ duration: 0.4 }}
               />
@@ -152,7 +172,7 @@ const WhyPeopleTrustEvaga = () => {
                 initial={{ opacity: 0 }}
                 whileHover={{
                   opacity: 0.3,
-                  boxShadow: "0 0 40px 10px rgba(255,255,255,0.2)"
+                  boxShadow: "0 0 40px 10px rgba(255,255,255,0.2)",
                 }}
                 transition={{ duration: 0.3 }}
               />
@@ -169,7 +189,7 @@ const WhyPeopleTrustEvaga = () => {
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
         style={{
           background: `linear-gradient(
@@ -178,7 +198,7 @@ const WhyPeopleTrustEvaga = () => {
             rgba(255,255,255,0.03) 50%,
             rgba(255,255,255,0.01) 100%
           )`,
-          backgroundSize: "200% 200%"
+          backgroundSize: "200% 200%",
         }}
       />
     </section>

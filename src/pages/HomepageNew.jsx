@@ -13,7 +13,7 @@ import BookingSection from '../components/BookingSection/BookingSection'
 
 function HomepageNew() {
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col '>
         <SliderNew/>
         <NewCatgeories/>
         <WhyPeopleTrustEvaga/>

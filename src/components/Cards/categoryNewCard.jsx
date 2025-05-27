@@ -1,10 +1,13 @@
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 const CategoryNewCard = ({
   imageUrl,
   title,
   text,
   link,
 }) => {
+  
   return (
 <a
   href={link}
@@ -13,11 +16,29 @@ const CategoryNewCard = ({
 >
   {/* Background Image with Darker Blur */}
   <div className="absolute inset-0">
-    <img 
-      src={imageUrl} 
-      className="w-full h-full object-cover blur-[3px] brightness-90" // Increased blur and reduced brightness
-      alt="Background" 
-    />
+<LazyLoadImage
+  src={imageUrl}
+  alt="Background"
+  className="w-full h-full object-cover"
+  effect="blur"
+  placeholderSrc={"UNIVERSAL_PLACEHOLDER"}
+  wrapperClassName="lazy-load-blur-wrapper"
+  beforeLoad={() => ({
+    style: {
+      filter: 'blur(20px) brightness(0.9)',
+    }
+  })}
+  afterLoad={() => ({
+    style: {
+      filter: 'blur(0) brightness(1)',
+      transition: 'filter 0.4s ease-out'
+    }
+  })}
+  onError={(e) => {
+    e.target.style.display = "none";
+  }}
+  threshold={200}
+/>
     <div className="absolute inset-0 bg-black/50" /> {/* Increased opacity from 30% to 50% */}
   </div>
 
