@@ -28,7 +28,8 @@ import StickyAd from "./utils/StickyAd.js";
 import Navbar from "./components/navbar/Navbar.jsx";
 import AboutEvaga from "./pages/AboutEvaga";
 import OurService from "./pages/OurService.jsx";
-const Home = lazy(() => import("./pages/HomepageNew.jsx"));
+import Home from "./pages/HomepageNew.jsx";
+// const Home = lazy(() => import("./pages/HomepageNew.jsx"));
 const SinglePackage = lazy(() => import("./pages/SinglePackage"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
 const VendorDashboard = lazy(() => import("./pages/Vendor/VendorDashboard"));
@@ -201,9 +202,9 @@ const AppContent = () => {
           />
           <Route
             element={
-              <Suspense fallback={<Loader />}>
+              // <Suspense fallback={<Loader />}>
                 <Home />
-              </Suspense>
+              // </Suspense>
             }
             path={internalRoutes.home}
           />
