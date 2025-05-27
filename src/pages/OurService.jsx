@@ -4,6 +4,7 @@ import FAQSection from "../components/FAQSection/FAQSection";
 import OurWorkSection from "../components/OurWorkSection/OurWorkSection";
 import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs";
 import ServicesSection from "../components/ServiceWeOffer/ServiceWeOffer";
+import HowItWorks from "../components/HowItWorks/HowItWorks";
 
 function OurService() {
   return (
@@ -12,6 +13,7 @@ function OurService() {
       <ServicesSection/>
       <WhyChooseUs />
       <OurWorkSection />
+       <HowItWorks/>
       <FAQSection />
     </div>
   );

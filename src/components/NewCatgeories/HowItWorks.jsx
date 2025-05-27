@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import decor from "../../assets/decor.webp";
+import weddingCard from "../../assets/weddingCard.webp";
+import birthdaycard from "../../assets/birthdaycard.webp";
+import FinancialCard from "../../assets/FinancialCard.webp";
+import PrivateCard from "../../assets/PrivateCard.webp";
 import wedding from "../../assets/wedding.webp";
 import CategoryNewCard from "../Cards/categoryNewCard";
 import { internalRoutes } from "../../utils/internalRoutes";
@@ -23,13 +26,13 @@ function NewCatgeories() {
 
   const data = [
     {
-      image: wedding,
+      image: weddingCard,
       title: "Weddings ",
       text: "Stress-free planning for your big day ",
       link: internalRoutes?.bookingForm,
     },
     {
-      image: decor,
+      image: birthdaycard,
       title: "Birthdays",
       text: "Memorable celebrations for all ages",
       link: internalRoutes?.bookingForm,
@@ -41,19 +44,19 @@ function NewCatgeories() {
       link: internalRoutes?.bookingForm,
     },
     {
-      image: decor,
+      image: wedding,
       title: "College & School",
       text: "Fests, farewells & more - fun made easy",
       link: internalRoutes?.bookingForm,
     },
     {
-      image: decor,
+      image: PrivateCard,
       title: "Private Parties",
       text: "Intimate gatherings, perfectly tailored",
       link: internalRoutes?.bookingForm,
     },
     {
-      image: wedding,
+      image: FinancialCard,
       title: "Financial Services",
       text: "Ceremonies managed with care and respect",
       link: internalRoutes?.bookingForm,
