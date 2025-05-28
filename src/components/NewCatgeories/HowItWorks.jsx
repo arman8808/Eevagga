@@ -4,6 +4,8 @@ import birthdaycard from "../../assets/birthdaycard.webp";
 import FinancialCard from "../../assets/FinancialCard.webp";
 import PrivateCard from "../../assets/PrivateCard.webp";
 import wedding from "../../assets/wedding.webp";
+import corporateCard from "../../assets/corporateCard.webp";
+import SchoolCard from "../../assets/SchoolCard.webp";
 import CategoryNewCard from "../Cards/categoryNewCard";
 import { internalRoutes } from "../../utils/internalRoutes";
 
@@ -28,37 +30,37 @@ function NewCatgeories() {
     {
       image: weddingCard,
       title: "Weddings ",
-      text: "Stress-free planning for your big day ",
+      text: "Designed with emotion, delivered with elegance.",
       link: internalRoutes?.bookingForm,
     },
     {
       image: birthdaycard,
       title: "Birthdays",
-      text: "Memorable celebrations for all ages",
+      text: "Celebrate your way — fun, fresh, and unforgettable.",
       link: internalRoutes?.bookingForm,
     },
     {
-      image: wedding,
+      image: corporateCard,
       title: "Corporate Events",
-      text: "Professional execution, on time & on brand",
+      text: "Smart setups for lasting impressions.",
       link: internalRoutes?.bookingForm,
     },
     {
-      image: wedding,
+      image: SchoolCard,
       title: "College & School",
-      text: "Fests, farewells & more - fun made easy",
+      text: "Youthful energy, seamless execution.",
       link: internalRoutes?.bookingForm,
     },
     {
       image: PrivateCard,
       title: "Private Parties",
-      text: "Intimate gatherings, perfectly tailored",
+      text: " Tailored moments for your closest circles.",
       link: internalRoutes?.bookingForm,
     },
     {
       image: FinancialCard,
-      title: "Financial Services",
-      text: "Ceremonies managed with care and respect",
+      title: "Evaga Financials",
+      text: "Flexible payment plans for stress-free planning.",
       link: internalRoutes?.bookingForm,
     },
   ];

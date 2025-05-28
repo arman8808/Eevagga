@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import whyChooseImage from "../../assets/whychooseus.webp"; // Replace with your image path
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 function WhyChooseUs() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -22,19 +22,32 @@ function WhyChooseUs() {
 
   const features = [
     {
-      number: "500+",
-      title: "Successful Events",
-      description: "Across various categories and scales",
+      title: "Customer-First",
+      description: "Your vision leads — we tailor every detail to reflect you.",
     },
     {
-      number: "98%",
-      title: "Client Satisfaction",
-      description: "Consistently high feedback ratings",
+      title: "Total Flexibility",
+      description:
+        "Book full packages or single services — it's your event, your way.",
     },
     {
-      number: "24/7",
-      title: "Support Team",
-      description: "Dedicated professional assistance",
+      title: "Truly Bespoke",
+      description:
+        "No templates. Every experience is crafted with care and cultural nuance.",
+    },
+    {
+      title: "Smart & Seamless",
+      description:
+        "Plan, book, and manage effortlessly with our intuitive tech.",
+    },
+    {
+      title: "Always-On Support",
+      description: "From start to finish, we’ve got your back — 24/7.",
+    },
+    {
+      title: "Modern Meets Meaningful",
+      description:
+        "We blend innovation with tradition for events that truly resonate.",
     },
   ];
 
@@ -58,7 +71,7 @@ function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 120 }}
           >
-            Why Choose Us For Your Events?
+            Why Choose Eevagga?
             <motion.div
               className="h-1 w-24 bg-[#FFE500] mt-4 mx-auto"
               initial={{ scaleX: 0 }}
@@ -81,10 +94,10 @@ function WhyChooseUs() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              With years of expertise in event management, we bring precision,
-              creativity, and unmatched dedication to every celebration. Our
-              team works tirelessly to transform your vision into unforgettable
-              experiences.
+              With a passion for unforgettable experiences, Eevagga is built to
+              simplify and elevate every step of event planning. Our commitment
+              is rooted in innovation, reliability, and a deep understanding of
+              what makes celebrations truly special.
             </motion.p>
 
             <div className="space-y-8">
@@ -118,9 +131,7 @@ function WhyChooseUs() {
                     whileHover={{ x: 10 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="text-[#6A1B9A] text-2xl font-bold min-w-[60px]">
-                      {feature.number}
-                    </div>
+                 
                     <div>
                       <h4 className="text-[#6A1B9A] font-semibold text-lg">
                         {feature.title}
