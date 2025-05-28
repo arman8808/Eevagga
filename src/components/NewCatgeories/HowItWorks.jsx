@@ -59,7 +59,7 @@ function NewCatgeories() {
     },
     {
       image: FinancialCard,
-      title: "Evaga Financials",
+      title: "Eevagga Financials",
       text: "Flexible payment plans for stress-free planning.",
       link: internalRoutes?.bookingForm,
     },

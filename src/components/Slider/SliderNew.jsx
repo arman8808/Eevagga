@@ -1,11 +1,38 @@
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 import BannerImg from "../../assets/banner.webp";
+import BannerImg1 from "../../assets/Home1.jpeg";
+import BannerImg2 from "../../assets/Home2.jpeg";
+import BannerImg3 from "../../assets/Home3.jpeg";
+import BannerImg4 from "../../assets/Home4.jpeg";
 import BannerNew from "../Banner/BannerNew";
 
 function SliderNew({}) {
+  const responsive = {
+    0: {
+      items: 1,
+    },
+    1024: {
+      items: 1,
+      itemsFit: "contain",
+    },
+  };
+  const img = [BannerImg,   BannerImg3,BannerImg1, BannerImg2,BannerImg4];
   return (
-    <div className="relative w-full">
-      <BannerNew image={BannerImg} />
-    </div>
+    <AliceCarousel
+      mouseTracking
+      responsive={responsive}
+      disableButtonsControls
+      autoPlay
+      infinite
+      autoPlayInterval={3000}
+      paddingRight={0}
+      paddingLeft={0}
+    >
+      {img?.map((item) => (
+        <BannerNew image={item} />
+      ))}
+    </AliceCarousel>
   );
 }
 

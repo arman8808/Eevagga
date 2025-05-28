@@ -39,7 +39,7 @@ const CategoryNewCard = ({
   }}
   threshold={200}
 />
-    <div className="absolute inset-0 bg-black/50" /> {/* Increased opacity from 30% to 50% */}
+    <div className="absolute inset-0 bg-black/45" /> {/* Increased opacity from 30% to 50% */}
   </div>
 
   {/* Centered Text Container */}
