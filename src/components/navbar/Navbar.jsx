@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaPhone } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/Temporary Images/Evaga Logo.png";
+import logo from "../../assets/Temporary Images/Eevagga_yellow.webp";
 import { internalRoutes } from "../../utils/internalRoutes";
 
 function Navbar() {
@@ -62,7 +62,7 @@ function Navbar() {
           className="flex items-center"
           href={internalRoutes.home}
         >
-          <img src={logo} alt="Evaga Logo" className="h-10 md:h-12" />
+          <img src={logo} alt="Evaga Logo" className="h-10 md:h-10 object-contain" />
         </motion.a>
 
         {/* Desktop Navigation */}
