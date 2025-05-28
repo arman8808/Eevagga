@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const OurServiceCta = () => {
   const handleBooking = () => {
     // Scroll to booking section
-    const section = document.getElementById("booking-section");
+    const section = document.getElementById("booking-section1");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
@@ -11,24 +11,7 @@ const OurServiceCta = () => {
 
   return (
     <section className="h-[40dvh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4 py-8">
-      {/* Decorative SVG Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <svg
-          viewBox="0 0 1000 800"
-          className="w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <path
-            d="M0,400Q0,200,200,150Q400,100,500,200Q600,300,700,350Q800,400,900,400Q1000,400,1000,500L900,600Q800,700,700,750Q600,800,500,800Q400,800,300,750Q200,700,100,600Q0,500,0,400Z"
-            fill="#3b82f6"
-          />
-          <path
-            d="M0,500Q0,400,100,350Q200,300,300,250Q400,200,500,250Q600,300,700,350Q800,400,900,400Q1000,400,1000,500L900,600Q800,700,700,750Q600,800,500,800Q400,800,300,750Q200,700,100,600Q0,500,0,500Z"
-            fill="#60a5fa"
-            opacity="0.5"
-          />
-        </svg>
-      </div>
+   
 
       {/* Content Container */}
       <div className="container mx-auto max-w-6xl px-4">

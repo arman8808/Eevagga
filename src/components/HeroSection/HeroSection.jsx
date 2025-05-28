@@ -51,7 +51,7 @@ const HeroSection = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           className="w-full lg:w-1/2 px-6 py-12 flex justify-center "
-          id="booking-section"
+          id="booking-section1"
         >
           <BookingForm />
         </motion.div>
