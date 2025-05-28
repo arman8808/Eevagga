@@ -5,6 +5,7 @@ import OurWorkSection from "../components/OurWorkSection/OurWorkSection";
 import WhyChooseUs from "../components/WhyChooseUs/WhyChooseUs";
 import ServicesSection from "../components/ServiceWeOffer/ServiceWeOffer";
 import HowItWorks from "../components/HowItWorks/HowItWorks";
+import OurServiceCta from "../components/OurServiceCta/OurServiceCta";
 
 function OurService() {
   return (
@@ -14,6 +15,7 @@ function OurService() {
       <WhyChooseUs />
       <OurWorkSection />
        <HowItWorks/>
+       <OurServiceCta/>
       <FAQSection />
     </div>
   );

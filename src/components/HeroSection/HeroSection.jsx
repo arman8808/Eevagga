@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import BookingForm from "../../pages/BookingForm";
 
 const HeroSection = () => {
   return (
@@ -15,25 +16,46 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Overlay (optional) */}
-      <div className="absolute inset-0 bg-black bg-opacity-30" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
 
-      {/* Text Content positioned at bottom 10% */}
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-        className="absolute bottom-[10%] left-0 right-0 px-4 text-center"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-         Weddings. Birthdays. Corporate Events.
-        </h1>
-        <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto">
-          Whatever you’re planning, we make it effortless and unforgettable.
-        </p>
+      <div className="container mx-auto relative z-10 min-h-[80dvh] flex flex-col lg:flex-row items-center pl-[2.55%]">
+        {/* Left Content - Text */}
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:w-1/2 px-6 py-16 lg:py-0 text-center lg:text-left"
+        >
+          <div className="max-w-lg mx-auto lg:ml-0">
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+              whileHover={{ scale: 1.02 }}
+            >
+              Weddings. Birthdays. Corporate Events.
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-white mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Whatever you're planning, we make it effortless and unforgettable.
+            </motion.p>
+          </div>
+        </motion.div>
 
-    
-      </motion.div>
+        {/* Right Content - Form */}
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="w-full lg:w-1/2 px-6 py-12 flex justify-center "
+          id="booking-section"
+        >
+          <BookingForm />
+        </motion.div>
+      </div>
     </section>
   );
 };

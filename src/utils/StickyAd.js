@@ -96,7 +96,7 @@ const StickyAd = () => {
                     animate="visible"
                     className="text-2xl font-medium text-gray-900 whitespace-nowrap relative"
                   >
-                    Wedding Planning Overload?
+                  Too Much to Plan?
                     <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -117,7 +117,7 @@ const StickyAd = () => {
                   }}
                   className="text-gray-500 text-sm"
                 >
-                  We handle the details so you can enjoy the magic
+                 We handle the details — you enjoy the moment.
                 </motion.p>
 
                 {/* Bouncing buttons */}
