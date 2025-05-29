@@ -209,7 +209,7 @@ const HowItWorks = () => {
             id="how-it-works-heading"
             className="text-primary text-4xl  font-normal text-center"
           >
-            How Evaga Works - Simple, Transparent, Reliable
+            How Eevagga Works - Simple, Transparent, Reliable
           </h2>
         </motion.div>
 

@@ -30,6 +30,8 @@ import img24 from "../../assets/ourServices/Pic7.jpeg";
 import img25 from "../../assets/ourServices/Pic8.jpeg";
 import img26 from "../../assets/ourServices/Pic9.jpeg";
 import img27 from "../../assets/ourServices/pic5.jpeg";
+import img28 from "../../assets/ourServices//29.jpeg";
+import img29 from "../../assets/ourServices/30.jpeg";
 
 const images = [
   img,
@@ -60,6 +62,8 @@ const images = [
   img25,
   img26,
   img27,
+  img28,
+  img29,
 ];
 
 export default function OurWorkSection() {
@@ -88,7 +92,7 @@ export default function OurWorkSection() {
     });
   }, [leftControls, rightControls]);
 
-  const [speed, setSpeed] = useState(80); 
+  const [speed, setSpeed] = useState(80);
   const [isHovered, setIsHovered] = useState(false);
 
   // Calculate animation duration based on speed

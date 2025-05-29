@@ -11,8 +11,6 @@ const OurServiceCta = () => {
 
   return (
     <section className="h-[40dvh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4 py-8">
-   
-
       {/* Content Container */}
       <div className="container mx-auto max-w-6xl px-4">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
@@ -25,10 +23,10 @@ const OurServiceCta = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-6 text-gray-800"
+              className="text-3xl  font-normal text-primary mb-4"
               whileHover={{ scale: 1.02 }}
             >
-              Transform Your Digital Experience
+              LET’S BEGIN YOUR CELEBRATION JOURNEY
             </motion.h2>
             <motion.p
               className="text-xl text-gray-600 mb-8 leading-relaxed"
@@ -36,9 +34,8 @@ const OurServiceCta = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Discover innovative solutions that redefine how you interact with
-              technology. Our platform combines cutting-edge design with
-              intuitive functionality.
+              Connect with our trusted event advisors to bring your dream
+              celebration to life.
             </motion.p>
           </motion.div>
 
@@ -51,7 +48,7 @@ const OurServiceCta = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <motion.button
-              className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-5 px-10 rounded-full text-xl shadow-lg relative overflow-hidden group"
+              className="bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold py-5 px-10 rounded-full text-xl shadow-lg relative overflow-hidden group"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)",
@@ -59,7 +56,7 @@ const OurServiceCta = () => {
               whileTap={{ scale: 0.95 }}
               onClick={handleBooking}
             >
-              <span className="relative z-10">Get Started Now</span>
+              <span className="relative z-10">Book Free Consultation</span>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
             </motion.button>
           </motion.div>

@@ -8,18 +8,27 @@ const RealStories = () => {
   const stories = [
     {
       image: story1,
-      title: "Sarah & John's Fairytale Wedding",
-      text: "A magical winter wonderland celebration in the mountains",
+      title: "Jhanvi s First Birthday Celebration",
+      text: "I planned my daughter’s 1st birthday with Eevagga, and it was nothing short of magical. From the décor to the entertainment, everything was handled so smoothly — I actually got to enjoy the party instead of running around!",
+      name: "— Neha S.",
     },
     {
       image: story2,
-      title: "TechCorp Annual Conference",
-      text: "2000+ attendees, flawless execution",
+      title: "Pavan & Ananya’s Wedding Celebration",
+      text: "We were drowning in wedding decisions until we found Eevagga. One platform, endless options, and a team that truly understood what we wanted. They brought our dream wedding to life with such grace and professionalism.",
+      name: "— Pavan & Ananya.",
     },
     {
       image: story3,
-      title: "Riya's Sweet 16 Celebration",
-      text: "A night of glitter, music, and unforgettable memories",
+      title: "Vinay’s Housewarming Celebration",
+      text: "Our housewarming felt so personal and well-organized, thanks to Eevagga. The decor was elegant, catering was spot-on, and the guests couldn’t stop complimenting everything. It made our new beginning feel extra special.",
+      name: "—  Vinay K.",
+    },
+    {
+      image: story3,
+      title: "Corporate Offsite Event",
+      text: " We booked Eevagga for our annual corporate offsite and were impressed by how streamlined the entire process was. Vendor coordination, tech setup, even branding — all seamless. We’re already planning the next one with them. ",
+      name: "— AnjaliD HR Head.",
     },
   ];
 
@@ -123,6 +132,7 @@ const RealStories = () => {
 
                 {/* Description */}
                 <p className="text-gray-600">{story.text}</p>
+                <p className="text-primary">{story.name}</p>
               </div>
 
               {/* Border Glow */}
