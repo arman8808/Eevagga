@@ -4,6 +4,8 @@ import story2 from "../../assets/img4.webp";
 import story3 from "../../assets/img7.webp";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 const RealStories = () => {
   const stories = [
     {
@@ -44,6 +46,23 @@ const RealStories = () => {
       },
     },
   };
+  const responsive = {
+    0: {
+      items: 1,
+    },
+    600: {
+      items: 2,
+      itemsFit: "contain",
+    },
+    750: {
+      items: 3,
+      itemsFit: "contain",
+    },
+    1024: {
+      items: 3,
+      itemsFit: "contain",
+    },
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#fffbf0]">
@@ -72,7 +91,6 @@ const RealStories = () => {
 
         {/* Stories Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -84,61 +102,72 @@ const RealStories = () => {
             },
           }}
         >
-          {stories.map((story, index) => (
-            <div
-              key={index}
-              className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all overflow-hidden cursor-pointer"
-            >
-              {/* Image Container */}
-              <div className="relative h-64 overflow-hidden">
-                <LazyLoadImage
-                  src={story.image}
-                  alt={story.title}
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                  wrapperClassName="group transition-transform duration-300" // Moved group and transition to wrapper
-                  effect="blur"
-                  placeholderSrc={story.placeholder} // Add low-res placeholder to your data
-                  beforeLoad={() => ({ style: { filter: "blur(20px)" } })}
-                  afterLoad={() => ({ style: { filter: "blur(0)" } })}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                  visibleByDefault={false}
-                  threshold={200} // Load 200px before entering viewport
-                  style={{
-                    transition: "transform 0.3s ease-in-out",
-                  }}
-                  // Combine lazy-load transition with hover effect
-                  onLoad={() => {
-                    const img = document.querySelector(
-                      `img[alt="${story.title}"]`
-                    );
-                    img.classList.add("group-hover:scale-105");
-                  }}
-                />
+          <AliceCarousel
+            mouseTracking
+            responsive={responsive}
+            disableButtonsControls
+            autoPlay
+            infinite
+            autoPlayInterval={3000}
+            paddingRight={0}
+            paddingLeft={0}
+          >
+            {stories.map((story, index) => (
+              <div
+                key={index}
+                className="group relative mx-4 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all overflow-hidden cursor-pointer"
+              >
+                {/* Image Container */}
+                <div className="relative h-64 overflow-hidden">
+                  <LazyLoadImage
+                    src={story.image}
+                    alt={story.title}
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                    wrapperClassName="group transition-transform duration-300" // Moved group and transition to wrapper
+                    effect="blur"
+                    placeholderSrc={story.placeholder} // Add low-res placeholder to your data
+                    beforeLoad={() => ({ style: { filter: "blur(20px)" } })}
+                    afterLoad={() => ({ style: { filter: "blur(0)" } })}
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                    }}
+                    visibleByDefault={false}
+                    threshold={200} // Load 200px before entering viewport
+                    style={{
+                      transition: "transform 0.3s ease-in-out",
+                    }}
+                    // Combine lazy-load transition with hover effect
+                    onLoad={() => {
+                      const img = document.querySelector(
+                        `img[alt="${story.title}"]`
+                      );
+                      img.classList.add("group-hover:scale-105");
+                    }}
+                  />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent group-hover:opacity-80 transition-opacity duration-300" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent group-hover:opacity-80 transition-opacity duration-300" />
+                </div>
+
+                {/* Text Content */}
+                <div className="p-6 space-y-4">
+                  {/* Title with Underline */}
+                  <h3 className="text-xl font-semibold text-gray-900 relative text-primary">
+                    {story.title}
+                    <div className="absolute bottom-0 h-[2px] bg-gradient-to-r from-primary to-secondary w-full" />
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600">{story.text}</p>
+                  <p className="text-primary">{story.name}</p>
+                </div>
+
+                {/* Border Glow */}
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-indigo-200 group-hover:shadow-glow transition-all duration-300" />
               </div>
-
-              {/* Text Content */}
-              <div className="p-6 space-y-4">
-                {/* Title with Underline */}
-                <h3 className="text-xl font-semibold text-gray-900 relative text-primary">
-                  {story.title}
-                  <div className="absolute bottom-0 h-[2px] bg-gradient-to-r from-primary to-secondary w-full" />
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600">{story.text}</p>
-                <p className="text-primary">{story.name}</p>
-              </div>
-
-              {/* Border Glow */}
-              <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-indigo-200 group-hover:shadow-glow transition-all duration-300" />
-            </div>
-          ))}
+            ))}
+          </AliceCarousel>
         </motion.div>
       </div>
     </section>
