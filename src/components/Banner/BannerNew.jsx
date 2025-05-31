@@ -103,9 +103,9 @@ function BannerNew({ image, height, category }) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.2, delay: 0.2, type: "spring" }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              // transition={{ duration: 0.2, delay: 0.2, type: "spring" }}
+              // whileHover={{ scale: 1.05 }}
+              // whileTap={{ scale: 0.95 }}
             >
               Free Expert Advice
             </motion.button>

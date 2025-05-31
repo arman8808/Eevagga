@@ -118,11 +118,10 @@ export default function OurWorkSection() {
           className="text-center mb-14"
         >
           <h2 className="text-white text-3xl md:text-4xl font-normal text-center mb-4">
-            Our work speaks for us
+            Most Booked Decor Styles
           </h2>
           <p className="text-normal text-white/80  leading-5 tracking-[.25em]">
-            People love the way we planned their <br /> events. We made it
-            perfect
+            Themes & setups that are setting celebrations apart this season
           </p>
         </motion.div>
 
