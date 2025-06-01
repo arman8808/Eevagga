@@ -13,6 +13,7 @@ export const internalRoutes = {
   bookingForm: "/booking-form",
   thankyou: "/thank-you",
   ourServices: "/services",
+  categoryPage: "/category",
 
   userSignup: "/user/signup",
   userLogin: "/user/login",

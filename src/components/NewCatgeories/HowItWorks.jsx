@@ -31,7 +31,7 @@ function NewCatgeories() {
       image: weddingCard,
       title: "Weddings ",
       text: "Designed with emotion, delivered with elegance.",
-      link: internalRoutes?.bookingForm,
+      link: `${internalRoutes?.categoryPage}/wedding`,
     },
     {
       image: birthdaycard,

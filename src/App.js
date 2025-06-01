@@ -29,6 +29,7 @@ import Navbar from "./components/navbar/Navbar.jsx";
 import AboutEvaga from "./pages/AboutEvaga";
 import OurService from "./pages/OurService.jsx";
 import Home from "./pages/HomepageNew.jsx";
+import CategoryPage from "./pages/CatgeoryPage.jsx";
 // const Home = lazy(() => import("./pages/HomepageNew.jsx"));
 const SinglePackage = lazy(() => import("./pages/SinglePackage"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
@@ -187,10 +188,18 @@ const AppContent = () => {
           <Route
             element={
               // <Suspense fallback={<Loader />}>
-                <OurService />
+              <OurService />
               // </Suspense>
             }
             path={internalRoutes.ourServices}
+          />{" "}
+          <Route
+            element={
+              // <Suspense fallback={<Loader />}>
+              <CategoryPage />
+              // </Suspense>
+            }
+            path={`${internalRoutes.categoryPage}/:category`}
           />
           <Route
             element={
@@ -203,7 +212,7 @@ const AppContent = () => {
           <Route
             element={
               // <Suspense fallback={<Loader />}>
-                <Home />
+              <Home />
               // </Suspense>
             }
             path={internalRoutes.home}
