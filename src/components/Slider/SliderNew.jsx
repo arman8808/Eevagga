@@ -1,7 +1,7 @@
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import BannerImg from "../../assets/banner.webp";
-import BannerImg1 from "../../assets/Home1.jpeg";
+import BannerImg from "../../assets/banner_imresizer.jpeg";
+import BannerImg1 from "../../assets/Home1_imresizer.jpeg";
 import BannerImg2 from "../../assets/Home2.jpeg";
 import BannerImg3 from "../../assets/Home3.jpeg";
 import BannerImg4 from "../../assets/Home4.jpeg";

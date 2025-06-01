@@ -60,7 +60,7 @@ function BannerNew({ image, height, category }) {
 
   return (
     <motion.div
-      className="relative w-full min-h-[80dvh] overflow-hidden"
+      className="relative w-full min-h-[85dvh] overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -72,10 +72,11 @@ function BannerNew({ image, height, category }) {
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
+        {/* Fixed image styling */}
         <img
           src={image}
           alt="Banner"
-          className="object-cover w-full h-full"
+          className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
           decoding="async"
         />
         <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]"></div>
