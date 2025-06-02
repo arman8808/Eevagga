@@ -7,6 +7,10 @@ import BannerImg3 from "../../assets/Home3.webp";
 import BannerImg4 from "../../assets/Home4.jpeg";
 import BannerImg5 from "../../assets/try.jpg";
 import BannerImg6 from "../../assets/try1.jpg";
+import BannerImg7 from "../../assets/banner_new4.webp";
+import BannerImg8 from "../../assets/banner_new1.webp";
+import BannerImg9 from "../../assets/banner_new2.webp";
+import BannerImg10 from "../../assets/banner_new3.webp";
 import BannerNew from "../Banner/BannerNew";
 
 function SliderNew({}) {
@@ -20,6 +24,11 @@ function SliderNew({}) {
     },
   };
   const img = [
+ 
+    BannerImg10,
+    BannerImg9,
+    BannerImg8,
+    BannerImg7,
     BannerImg,
     BannerImg6,
     BannerImg3,
