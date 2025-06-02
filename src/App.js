@@ -129,6 +129,37 @@ const AppContent = () => {
       });
     };
   }, []);
+
+useEffect(() => {
+  // Test if sessionStorage is available
+  try {
+    sessionStorage.setItem('test_storage', 'works');
+    const testValue = sessionStorage.getItem('test_storage');
+    console.log('Storage test:', testValue); // Should log "works"
+    
+    // Now try with actual UTM code
+    const params = new URLSearchParams(window.location.search);
+    console.log('URL params:', params.toString());
+    
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    const utms = {};
+    
+    utmKeys.forEach(key => {
+      const value = params.get(key);
+      if (value) utms[key] = value;
+    });
+    
+    if (Object.keys(utms).length > 0) {
+      sessionStorage.setItem('utmParams', JSON.stringify(utms));
+      console.log('Stored UTMs:', utms);
+    } else {
+      console.log('No UTMs found in URL');
+    }
+  } catch (error) {
+    console.error('Storage error:', error);
+  }
+}, [location.search]);
+console.log("Actual URL parameters:", window.location.search);
   return (
     <>
       {/* {!noNavbarPaths.includes(location.pathname) && <DynamicNav />} */}

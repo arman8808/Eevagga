@@ -74,15 +74,16 @@ const BookingForm = () => {
       //   new Date(data.preferredDate).toISOString()
       // );
 
-      // 2. Get UTM parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmParams = {
-        utm_source: urlParams.get("utm_source") || null,
-        utm_medium: urlParams.get("utm_medium") || null,
-        utm_campaign: urlParams.get("utm_campaign") || null,
-        utm_term: urlParams.get("utm_term") || null,
-        utm_content: urlParams.get("utm_content") || null,
-      };
+      const storedUtms = sessionStorage.getItem("utmParams");
+      const utmParams = storedUtms
+        ? JSON.parse(storedUtms)
+        : {
+            utm_source: null,
+            utm_medium: null,
+            utm_campaign: null,
+            utm_term: null,
+            utm_content: null,
+          };
 
       // 3. Call your original API
       const response = await bookingCtaApi.callApi(formdata);
@@ -93,12 +94,11 @@ const BookingForm = () => {
         interestedDate: data?.eventMonth,
         submittedAt: new Date().toISOString(),
         device: navigator.userAgent,
-        utm_params: utmParams, // Structured UTM data
+        utm_params: utmParams,
       };
 
-      // 5. Send to Make.com (using fetch instead of axios to avoid CORS issues)
       const makeResponse = await fetch(
-        "https://hook.us2.make.com/boqfxicjksa1otbong8fni9qfq4fxagh",
+        "https://hook.us2.make.com/kuo3ufmp7udaos5gcsk7fvnvcgyw2b3k",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
