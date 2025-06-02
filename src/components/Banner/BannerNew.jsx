@@ -99,14 +99,15 @@ function BannerNew({ image, height, category }) {
             className="flex items-center justify-center"
           >
             <motion.button
-              className="px-12 py-4 bg-[#FFE500] text-[#6A1B9A]  rounded-[0.5rem] text-xl font-bold  transition-colors text-primary"
+               className="px-12 py-4 bg-[#FFE500] rounded-[0.5rem] text-xl font-bold text-primary relative z-10" 
               onClick={handleBooking}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
+              style={{ pointerEvents: 'auto' }}
               // transition={{ duration: 0.2, delay: 0.2, type: "spring" }}
-              // whileHover={{ scale: 1.05 }}
-              // whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Free Expert Advice
             </motion.button>
@@ -115,7 +116,7 @@ function BannerNew({ image, height, category }) {
 
         {/* Decorative Element */}
         <motion.div
-          className="absolute left-1/2 -bottom-20 w-64 h-64 bg-[#6A1B9A]/30 blur-[80px] -translate-x-1/2"
+          className="absolute left-1/2 -bottom-20 w-64 h-64 bg-[#6A1B9A]/30 blur-[80px] -translate-x-1/2 z-[-1]" // 👈 Add negative z-index
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
