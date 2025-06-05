@@ -82,7 +82,7 @@ function BannerNew({ image, height, category }) {
             aspectRatio: "16 / 9",
           }}
         />
-        <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]"></div>
       </motion.div>
 
       {/* Content Container */}

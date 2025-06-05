@@ -8,12 +8,10 @@ import BannerImg14 from "../../assets/banner 4.jpeg";
 import BannerImg15 from "../../assets/banner 5.jpg";
 import BannerImg16 from "../../assets/banner 6.jpg";
 import BannerImg17 from "../../assets/banner 7.jpg";
-import BannerImg18 from "../../assets/trynew1.jpeg";
 import BannerImg19 from "../../assets/trynew2.jpeg";
 import BannerImg20 from "../../assets/trynew3.jpeg";
-import BannerImg21 from "../../assets/trynew4.jpeg";
-import BannerImg22 from "../../assets/trynew5.jpeg";
-import BannerImg23 from "../../assets/trynew6.jpeg";
+import BannerImg21 from "../../assets/banner purchased.jpg";
+import BannerImg22 from "../../assets/banner purchased medieum.jpg";
 import BannerNew from "../Banner/BannerNew";
 
 function SliderNew({}) {
@@ -27,12 +25,10 @@ function SliderNew({}) {
     },
   };
   const img = [
-    BannerImg23,
     BannerImg22,
     BannerImg21,
     BannerImg20,
     BannerImg19,
-    BannerImg18,
     BannerImg4,
     BannerImg16,
     BannerImg15,
