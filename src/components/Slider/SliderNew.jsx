@@ -27,7 +27,6 @@ function SliderNew({}) {
     BannerImg15,
     BannerImg14,
     BannerImg13,
-    BannerImg18,
     BannerImg11,
     BannerImg,
     BannerImg17,
