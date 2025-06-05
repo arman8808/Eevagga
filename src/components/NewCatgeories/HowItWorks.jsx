@@ -31,37 +31,37 @@ function NewCatgeories() {
       image: weddingCard,
       title: "Weddings ",
       text: "Designed with emotion, delivered with elegance.",
-      link: `${internalRoutes?.categoryPage}/wedding`,
+      link: `${internalRoutes?.bookingForm}?category=Wedding`,
     },
     {
       image: birthdaycard,
       title: "Birthdays",
       text: "Celebrate your way — fun, fresh, and unforgettable.",
-      link: internalRoutes?.bookingForm,
+      link: `${internalRoutes?.bookingForm}?category=Birthdays`,
     },
     {
       image: corporateCard,
       title: "Corporate Events",
       text: "Smart setups for lasting impressions.",
-      link: internalRoutes?.bookingForm,
+      link: `${internalRoutes?.bookingForm}?category=Corporate Events`,
     },
     {
       image: SchoolCard,
       title: "College & School",
       text: "Youthful energy, seamless execution.",
-      link: internalRoutes?.bookingForm,
+      link: `${internalRoutes?.bookingForm}?category=College School`,
     },
     {
       image: PrivateCard,
       title: "Private Parties",
       text: " Tailored moments for your closest circles.",
-      link: internalRoutes?.bookingForm,
+      link: `${internalRoutes?.bookingForm}?category=Private Parties`,
     },
     {
       image: FinancialCard,
       title: "Eevagga Financials",
       text: "Flexible payment plans for stress-free planning.",
-      link: internalRoutes?.bookingForm,
+      // link: `${internalRoutes?.bookingForm}?category=wedding`,
     },
   ];
 

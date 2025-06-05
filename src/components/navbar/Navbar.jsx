@@ -20,7 +20,7 @@ function Navbar() {
   ];
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   const menuVariants = {

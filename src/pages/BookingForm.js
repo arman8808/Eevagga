@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   TextField,
   Select,
@@ -18,6 +18,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { generateMonthOptions } from "../utils/generateMonthOptions";
 const BookingForm = () => {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
+  console.log(category);
+
   const {
     register,
     handleSubmit,
@@ -26,36 +30,6 @@ const BookingForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const bookingCtaApi = useServices(commonApis.bookingCta);
-  // const onSubmit = async (data) => {
-  //   try {
-  //     setLoading(true);
-
-  //     const formdata = new FormData();
-
-  //     // Append all form fields
-  //     formdata.append('name', data.name);
-  //     formdata.append('phone', data.phone);
-  //     formdata.append('email', data.email);
-  //     formdata.append('eventType', data.eventType);
-  //     formdata.append('preferredDate', new Date(data.preferredDate).toISOString());
-
-  //     // If you have file uploads, append them like this:
-  //     // formdata.append('file', data.file[0]);
-
-  //     const response = await bookingCtaApi.callApi(formdata);
-
-  //     if (response.success) {
-  //       navigate("/thank-you");
-  //     } else {
-  //       throw new Error(response.message || 'Submission failed');
-  //     }
-  //   } catch (error) {
-  //     console.error("Submission error:", error);
-  //     // Optionally show error to user
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const onSubmit = async (data) => {
     try {
@@ -69,6 +43,7 @@ const BookingForm = () => {
       formdata.append("eventType", data.eventType);
       formdata.append("eventLocation", data.eventLocation);
       formdata.append("eventMonth", data.eventMonth);
+      formdata.append("pageCatgeory", category ?? "");
       // formdata.append(
       //   "preferredDate",
       //   new Date(data.preferredDate).toISOString()
@@ -97,6 +72,7 @@ const BookingForm = () => {
         utm_params: utmParams,
       };
 
+      // 5. Send to Make.com (using fetch instead of axios to avoid CORS issues)
       const makeResponse = await fetch(
         "https://hook.us2.make.com/kuo3ufmp7udaos5gcsk7fvnvcgyw2b3k",
         {
