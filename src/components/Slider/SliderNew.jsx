@@ -9,6 +9,7 @@ import BannerImg14 from "../../assets/banner 4.jpeg";
 import BannerImg15 from "../../assets/banner 5.jpg";
 import BannerImg16 from "../../assets/banner 6.jpg";
 import BannerImg17 from "../../assets/banner 7.jpg";
+import BannerImg18 from "../../assets/banner 8.jpg";
 import BannerNew from "../Banner/BannerNew";
 
 function SliderNew({}) {
@@ -27,6 +28,7 @@ function SliderNew({}) {
     BannerImg15,
     BannerImg14,
     BannerImg13,
+    BannerImg18,
     BannerImg12,
     BannerImg11,
     BannerImg,
