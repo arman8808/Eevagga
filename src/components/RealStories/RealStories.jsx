@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import story1 from "../../assets/janvi.jpeg";
-import story2 from "../../assets/img4.webp";
+import story2 from "../../assets/testimonal.jpg";
 import story3 from "../../assets/vinay.jpeg";
+import story4 from "../../assets/corpareate.jpg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import AliceCarousel from "react-alice-carousel";
@@ -27,7 +28,7 @@ const RealStories = () => {
       name: "—  Vinay K.",
     },
     {
-      image: story1,
+      image: story4,
       title: "Corporate Offsite Event",
       text: " We booked Eevagga for our annual corporate offsite and were impressed by how streamlined the entire process was. Vendor coordination, tech setup, even branding — all seamless. We’re already planning the next one with them. ",
       name: "— AnjaliD HR Head.",
