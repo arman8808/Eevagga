@@ -3,7 +3,6 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import BannerImg from "../../assets/banner_imresizer.jpeg";
 import BannerImg4 from "../../assets/Home4.jpeg";
 import BannerImg11 from "../../assets/banner 1.jpeg";
-import BannerImg12 from "../../assets/banner 2.jpg";
 import BannerImg13 from "../../assets/banner 3.jpeg";
 import BannerImg14 from "../../assets/banner 4.jpeg";
 import BannerImg15 from "../../assets/banner 5.jpg";
@@ -29,7 +28,6 @@ function SliderNew({}) {
     BannerImg14,
     BannerImg13,
     BannerImg18,
-    BannerImg12,
     BannerImg11,
     BannerImg,
     BannerImg17,
