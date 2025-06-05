@@ -62,7 +62,11 @@ function Navbar() {
           className="flex items-center"
           href={internalRoutes.home}
         >
-          <img src={logo} alt="Evaga Logo" className="h-10 md:h-10 object-contain" />
+          <img
+            src={logo}
+            alt="Evaga Logo"
+            className="h-10 md:h-10 object-contain"
+          />
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -113,55 +117,81 @@ function Navbar() {
         </motion.button>
 
         {/* Mobile Menu */}
+
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={menuVariants}
-              className="md:hidden fixed top-16 right-0 w-64 h-full bg-[#6A1B9A] shadow-lg"
-            >
-              <div className="flex flex-col p-6 space-y-8">
-                {navLinks.map((link) => (
-                  <NavLink
-                    key={link.name}
-                    to={link.path}
-                    className={({ isActive }) =>
-                      `flex items-center text-sm font-medium py-3 px-4 rounded-lg transition-all ${
-                        isActive
-                          ? "text-[#FFE500] bg-[#FFE500]/20"
-                          : "text-white hover:bg-[#FFE500]/20"
-                      }`
-                    }
-                    onClick={() => setIsOpen(false)}
+            <>
+              {/* Backdrop with blur effect */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                onClick={toggleMenu}
+              />
+
+              {/* Mobile menu panel */}
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={menuVariants}
+                className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#6A1B9A] shadow-2xl z-50 flex flex-col"
+              >
+                {/* Close button at top */}
+                <div className="p-4 flex justify-end">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="text-white p-2"
+                    onClick={toggleMenu}
                   >
-                    {({ isActive }) => (
-                      <motion.div
-                        className="flex items-center w-full"
-                        variants={linkVariants}
-                        whileHover="hover"
-                        whileTap="tap"
-                      >
-                        <span className="mr-3 text-sm">{link.icon}</span>
-                        {link.name}
-                        {isActive && (
-                          <motion.span
-                            layoutId="mobileActiveIndicator"
-                            className="ml-auto w-2 h-2 rounded-full bg-[#FFE500]"
-                            transition={{
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            }}
-                          />
-                        )}
-                      </motion.div>
-                    )}
-                  </NavLink>
-                ))}
-              </div>
-            </motion.div>
+                    <FaTimes size={28} />
+                  </motion.button>
+                </div>
+
+                {/* Menu items with scroll */}
+                <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                  {navLinks.map((link) => (
+                    <NavLink
+                      key={link.name}
+                      to={link.path}
+                      className={({ isActive }) =>
+                        `flex items-center text-base font-medium py-3 px-4 rounded-xl transition-all ${
+                          isActive
+                            ? "text-[#FFE500] bg-[#FFE500]/20"
+                            : "text-white hover:bg-[#FFE500]/20"
+                        }`
+                      }
+                      onClick={toggleMenu}
+                    >
+                      {({ isActive }) => (
+                        <motion.div
+                          className="flex items-center w-full"
+                          variants={linkVariants}
+                          whileHover="hover"
+                          whileTap="tap"
+                        >
+                          <span className="mr-3 text-lg">{link.icon}</span>
+                          <span className="flex-grow">{link.name}</span>
+                          {isActive && (
+                            <motion.span
+                              layoutId="mobileActiveIndicator"
+                              className="ml-2 w-2.5 h-2.5 rounded-full bg-[#FFE500]"
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              }}
+                            />
+                          )}
+                        </motion.div>
+                      )}
+                    </NavLink>
+                  ))}
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>
