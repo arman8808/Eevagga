@@ -137,6 +137,7 @@ const RealStories = () => {
                     threshold={200} // Load 200px before entering viewport
                     style={{
                       transition: "transform 0.3s ease-in-out",
+                      aspectRatio: "16 / 12",
                     }}
                     // Combine lazy-load transition with hover effect
                     onLoad={() => {
