@@ -162,7 +162,7 @@ function WhyChooseUs() {
               },
             }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#6A1B9A]/10">
+            <div className="relative rounded-2xl overflow-hidden ">
               <LazyLoadImage
                 src={whyChooseImage}
                 alt="Why Choose Us"
