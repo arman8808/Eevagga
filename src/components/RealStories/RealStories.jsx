@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import story1 from "../../assets/janvi.jpeg";
 import story2 from "../../assets/testimonal.jpg";
-import story3 from "../../assets/vinay.jpeg";
+import story3 from "../../assets/house.jpeg";
 import story4 from "../../assets/corpareate.jpg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
