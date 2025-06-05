@@ -89,7 +89,18 @@ const AppContent = () => {
   const userId = Cookies.get("userId");
   const { allWishlist } = useSelector((state) => state.wishlist);
   const noNavbarPaths = [
-    internalRoutes.userSignup,
+       internalRoutes.vendorDashboard,
+    internalRoutes.vendorProfile,
+    internalRoutes.vendorServices,
+    internalRoutes.vendorOrders,
+    internalRoutes.vendorOrderDeatil,
+    internalRoutes.vendorSupport,
+    internalRoutes.vendorCommunity,
+    internalRoutes.vendorCreateservice,
+    internalRoutes.vendorEditservice,
+  ];
+  const noNewNavbarPaths = [
+    internalRoutes.vendorOrders,
     internalRoutes.userLogin,
     internalRoutes.adminSignup,
     internalRoutes.adminLogin,
@@ -99,6 +110,15 @@ const AppContent = () => {
     internalRoutes.userForgotPassword,
     internalRoutes.adminDashboard,
     internalRoutes.interest,
+    internalRoutes.vendorDashboard,
+    internalRoutes.vendorProfile,
+    internalRoutes.vendorServices,
+    internalRoutes.vendorOrders,
+    internalRoutes.vendorOrderDeatil,
+    internalRoutes.vendorSupport,
+    internalRoutes.vendorCommunity,
+    internalRoutes.vendorCreateservice,
+    internalRoutes.vendorEditservice,
   ];
   const noWhatsappPaths = [
     internalRoutes.adminSignup,
@@ -148,8 +168,9 @@ const AppContent = () => {
   }, [location.search]);
   return (
     <>
-      {/* {!noNavbarPaths.includes(location.pathname) && <DynamicNav />} */}
-      <Navbar />
+      {noNavbarPaths.includes(location.pathname) && <DynamicNav />}
+      {!noNewNavbarPaths.includes(location.pathname) && <Navbar />}
+
       <GlobalEventHandlers>
         <GlobalLoader />
         <ToastContainer
