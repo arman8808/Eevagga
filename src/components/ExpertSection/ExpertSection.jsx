@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import expertImage from "../../assets/expert.jpeg";
+import expertImage from "../../assets/expertpurchased.jpg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 

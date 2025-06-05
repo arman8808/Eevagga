@@ -12,6 +12,7 @@ import BannerImg19 from "../../assets/trynew2.jpeg";
 import BannerImg20 from "../../assets/trynew3.jpeg";
 import BannerImg21 from "../../assets/banner purchased.jpg";
 import BannerImg22 from "../../assets/banner purchased medieum.jpg";
+import BannerImg23 from "../../assets/banner purchased small.jpg";
 import BannerNew from "../Banner/BannerNew";
 
 function SliderNew({}) {
@@ -25,10 +26,7 @@ function SliderNew({}) {
     },
   };
   const img = [
-    BannerImg22,
-    BannerImg21,
-    BannerImg20,
-    BannerImg19,
+    BannerImg23,
     BannerImg4,
     BannerImg16,
     BannerImg15,

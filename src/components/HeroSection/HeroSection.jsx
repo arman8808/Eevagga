@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import BookingForm from "../../pages/BookingForm";
-import bg from '../../assets/ourservicenew.jpeg'
+import bg from '../../assets/ourservicepurcchased.jpg'
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-[80dvh] overflow-hidden">
