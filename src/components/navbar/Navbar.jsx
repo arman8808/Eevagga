@@ -8,7 +8,7 @@ import { internalRoutes } from "../../utils/internalRoutes";
 function Navbar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [menuVisible, setMenuVisible] = useState(false);
   const navLinks = [
     { name: "Home", path: internalRoutes.home, icon: <FaHome /> },
     { name: "About Us", path: internalRoutes.aboutUs, icon: <FaInfoCircle /> },
@@ -20,9 +20,11 @@ function Navbar() {
   ];
 
   const toggleMenu = () => {
+    if (!isOpen) {
+      setMenuVisible(true);
+    }
     setIsOpen((prev) => !prev);
   };
-
   const menuVariants = {
     open: {
       opacity: 1,
@@ -51,6 +53,11 @@ function Navbar() {
       scale: 0.95,
       transition: { duration: 0.2 },
     },
+  };
+    const handleAnimationComplete = () => {
+    if (!isOpen) {
+      setMenuVisible(false);
+    }
   };
   useEffect(() => {
     setIsOpen(false);
@@ -123,23 +130,25 @@ function Navbar() {
         {/* Mobile Menu */}
 
         <AnimatePresence>
-          {isOpen && (
+          {menuVisible  && (
             <>
               {/* Backdrop with blur effect */}
-              <motion.div
+               <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: isOpen ? 1 : 0 }}
                 exit={{ opacity: 0 }}
                 className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
                 onClick={toggleMenu}
+                style={{ pointerEvents: isOpen ? 'auto' : 'none' }} // Crucial fix
               />
 
               {/* Mobile menu panel */}
               <motion.div
                 initial="closed"
-                animate="open"
+                animate={isOpen ? "open" : "closed"}
                 exit="closed"
                 variants={menuVariants}
+                onAnimationComplete={handleAnimationComplete} // Handle visibility
                 className="md:hidden fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#6A1B9A] shadow-2xl z-50 flex flex-col"
               >
                 {/* Close button at top */}

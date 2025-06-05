@@ -6,7 +6,7 @@ export const footerMenuItems = {
     { label: "Press Releases", path: internalRoutes.pressReleases },
     { label: "Blog", path: internalRoutes.blog },
     { label: "Customer Service", path: internalRoutes.customerService },
-    { label: "Wishlist", path: internalRoutes.wishlist },
+    // { label: "Wishlist", path: internalRoutes.wishlist },
     // { label: "Advertise with Us", path: internalRoutes.advertiseWithUs },
     // { label: "Grievance Officer", path: internalRoutes.grievanceOfficer },
     // { label: "Popular Searches", path: internalRoutes.popularSearches },

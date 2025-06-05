@@ -183,7 +183,7 @@ function WhyChooseUs() {
                 })}
                 threshold={300}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#6A1B9A]/10 to-transparent" />
+           
             </div>
 
             {/* Decorative Elements */}
