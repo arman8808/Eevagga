@@ -12,7 +12,7 @@ const ExpertSection = () => {
     }
   };
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="relative py-24 pt-4 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
         {/* Heading */}
         <motion.h2

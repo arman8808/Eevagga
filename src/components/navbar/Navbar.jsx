@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaPhone } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/Temporary Images/Eevagga_yellow.webp";
 import { internalRoutes } from "../../utils/internalRoutes";
 
 function Navbar() {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -51,6 +52,9 @@ function Navbar() {
       transition: { duration: 0.2 },
     },
   };
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   return (
     <nav className="bg-[#6A1B9A] w-full z-50 border-b border-[#FFE500]/20">
