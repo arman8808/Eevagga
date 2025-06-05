@@ -78,6 +78,9 @@ function BannerNew({ image, height, category }) {
           alt="Banner"
           className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
           decoding="async"
+          style={{
+            aspectRatio: "16 / 12",
+          }}
         />
         <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]"></div>
       </motion.div>
@@ -99,12 +102,12 @@ function BannerNew({ image, height, category }) {
             className="flex items-center justify-center"
           >
             <motion.button
-               className="px-12 py-4 bg-[#FFE500] rounded-[0.5rem] text-xl font-bold text-primary relative z-10" 
+              className="px-12 py-4 bg-[#FFE500] rounded-[0.5rem] text-xl font-bold text-primary relative z-10"
               onClick={handleBooking}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              style={{ pointerEvents: 'auto' }}
+              style={{ pointerEvents: "auto" }}
               // transition={{ duration: 0.2, delay: 0.2, type: "spring" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
