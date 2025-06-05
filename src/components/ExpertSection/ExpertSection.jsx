@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import expertImage from "../../assets/guidence.jpeg";
+import expertImage from "../../assets/expert.jpeg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -45,7 +45,7 @@ const ExpertSection = () => {
             className="w-full h-full object-cover"
             wrapperClassName="group transition-transform duration-300" // Moved group and transition to wrapper
             effect="blur"
-            placeholderSrc={'expert'} // Add low-res placeholder to your data
+            placeholderSrc={"expert"} // Add low-res placeholder to your data
             beforeLoad={() => ({ style: { filter: "blur(20px)" } })}
             afterLoad={() => ({ style: { filter: "blur(0)" } })}
             onError={(e) => {
@@ -55,10 +55,11 @@ const ExpertSection = () => {
             threshold={200} // Load 200px before entering viewport
             style={{
               transition: "transform 0.3s ease-in-out",
+              aspectRatio: "16 / 9",
             }}
             // Combine lazy-load transition with hover effect
             onLoad={() => {
-              const img = document.querySelector(`img[alt="${'expert'}"]`);
+              const img = document.querySelector(`img[alt="${"expert"}"]`);
               img.classList.add("group-hover:scale-105");
             }}
           />

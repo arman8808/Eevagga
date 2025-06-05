@@ -79,7 +79,7 @@ function BannerNew({ image, height, category }) {
           className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
           decoding="async"
           style={{
-            aspectRatio: "16 / 12",
+            aspectRatio: "16 / 9",
           }}
         />
         <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]"></div>

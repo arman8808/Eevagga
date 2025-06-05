@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import BookingForm from "../../pages/BookingForm";
-
+import bg from '../../assets/ourservicenew.jpeg'
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-[80dvh] overflow-hidden">
@@ -12,7 +12,7 @@ const HeroSection = () => {
         className="absolute inset-0 w-full h-full bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')",
+            `url(${bg})`,
         }}
       />
 
