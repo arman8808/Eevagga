@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import BookingForm from "../../pages/BookingForm";
-import bg from '../../assets/ourservicepurcchased.jpg'
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-[80dvh] overflow-hidden">
@@ -11,8 +10,10 @@ const HeroSection = () => {
         transition={{ duration: 1 }}
         className="absolute inset-0 w-full h-full bg-cover bg-center"
         style={{
-          backgroundImage:
-            `url(${bg})`,
+          backgroundImage: `url(${
+            process.env.REACT_APP_API_Aws_Image_BASE_URL +
+            "gallery/1749380230859_ourservicepurcchased.jpg"
+          })`,
         }}
       />
 

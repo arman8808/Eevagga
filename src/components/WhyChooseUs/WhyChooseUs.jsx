@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import whyChooseImage from "../../assets/whychooseuspurchased.webp"; 
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -131,7 +130,6 @@ function WhyChooseUs() {
                     whileHover={{ x: 10 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                 
                     <div>
                       <h4 className="text-[#6A1B9A] font-semibold text-lg">
                         {feature.title}
@@ -164,10 +162,14 @@ function WhyChooseUs() {
           >
             <div className="relative rounded-2xl overflow-hidden ">
               <LazyLoadImage
-                src={whyChooseImage}
+                src={
+                  process.env.REACT_APP_API_Aws_Image_BASE_URL +
+                  "gallery/1749380373717_whychooseuspurchased.webp"
+                }
                 alt="Why Choose Us"
                 className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
                 effect="blur"
+                placeholderSrc="data:image/jpeg;base64,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"
                 wrapperClassName="lazy-image-wrapper"
                 beforeLoad={() => ({
                   style: {
@@ -183,7 +185,6 @@ function WhyChooseUs() {
                 })}
                 threshold={300}
               />
-           
             </div>
 
             {/* Decorative Elements */}
