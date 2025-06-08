@@ -35,18 +35,6 @@ const RealStories = () => {
     },
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 15,
-      },
-    },
-  };
   const responsive = {
     0: {
       items: 1,

@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import BookingForm from "../../pages/BookingForm";
+
 
 function BannerNew({ image, height, category }) {
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+
 
   const handleBooking = () => {
     // Scroll to booking section
@@ -40,14 +38,7 @@ function BannerNew({ image, height, category }) {
     },
   };
 
-  const formVariants = {
-    hidden: { y: 50, opacity: 0 }, // Changed from x to y
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { delay: 0.6, duration: 0.8, ease: "easeOut" },
-    },
-  };
+
 
   const itemVariants = {
     hidden: { y: 30, opacity: 0 }, // Changed from x to y

@@ -6,7 +6,6 @@ import {
   TextField,
   Select,
   MenuItem,
-  InputAdornment,
   Button,
   FormControl,
   InputLabel,
@@ -15,7 +14,6 @@ import { ExpandMore } from "@mui/icons-material";
 import useServices from "../hooks/useServices";
 import commonApis from "../services/commonApis";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { generateMonthOptions } from "../utils/generateMonthOptions";
 const BookingForm = () => {
   const [searchParams] = useSearchParams();

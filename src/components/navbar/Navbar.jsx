@@ -54,7 +54,7 @@ function Navbar() {
       transition: { duration: 0.2 },
     },
   };
-    const handleAnimationComplete = () => {
+  const handleAnimationComplete = () => {
     if (!isOpen) {
       setMenuVisible(false);
     }
@@ -74,7 +74,10 @@ function Navbar() {
           href={internalRoutes.home}
         >
           <img
-            src={logo}
+            src={
+              process.env.REACT_APP_API_Aws_Image_BASE_URL +
+              "gallery/1749377446139_Eevagga_yellow.webp"
+            }
             alt="Evaga Logo"
             className="h-10 md:h-10 object-contain"
           />
@@ -130,16 +133,16 @@ function Navbar() {
         {/* Mobile Menu */}
 
         <AnimatePresence>
-          {menuVisible  && (
+          {menuVisible && (
             <>
               {/* Backdrop with blur effect */}
-               <motion.div
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isOpen ? 1 : 0 }}
                 exit={{ opacity: 0 }}
                 className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
                 onClick={toggleMenu}
-                style={{ pointerEvents: isOpen ? 'auto' : 'none' }} // Crucial fix
+                style={{ pointerEvents: isOpen ? "auto" : "none" }} // Crucial fix
               />
 
               {/* Mobile menu panel */}
