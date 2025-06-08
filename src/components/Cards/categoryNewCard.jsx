@@ -10,7 +10,7 @@ const CategoryNewCard = ({ imageUrl, title, text, link }) => {
       {/* Background Image with Darker Blur */}
       <div className="absolute inset-0">
         <LazyLoadImage
-          src={imageUrl}
+          src={process.env.REACT_APP_API_Aws_Image_BASE_URL + imageUrl}
           alt="Background"
           className="w-full h-full object-cover"
           effect="blur"

@@ -1,10 +1,6 @@
-
 import { motion } from "framer-motion";
 
-
 function BannerNew({ image, height, category }) {
-
-
   const handleBooking = () => {
     // Scroll to booking section
     const section = document.getElementById("booking-section");
@@ -38,8 +34,6 @@ function BannerNew({ image, height, category }) {
     },
   };
 
-
-
   const itemVariants = {
     hidden: { y: 30, opacity: 0 }, // Changed from x to y
     visible: {
@@ -65,7 +59,7 @@ function BannerNew({ image, height, category }) {
       >
         {/* Fixed image styling */}
         <img
-          src={image}
+          src={process.env.REACT_APP_API_Aws_Image_BASE_URL + image}
           alt="Banner"
           className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
           decoding="async"
