@@ -61,20 +61,7 @@ function VendorEditService() {
   };
   const updateServiceHandle = async () => {
     try {
-      // Validate inputs
-      if (!abouttheService.trim()) {
-        toast.error("Please fill in the 'About the Service' field.");
-        return;
-      }
-
-      if (
-        !yearofExperience.trim() ||
-        isNaN(yearofExperience) ||
-        yearofExperience <= 0
-      ) {
-        toast.error("Please enter a valid 'Year(s) of Experience'.");
-        return;
-      }
+     
 
       setLoading(true);
       const formData = new FormData();
@@ -309,30 +296,7 @@ function VendorEditService() {
               />
             </div>
           </div>
-          <div className="w-full gap-4 grid grid-cols-1 md:grid-cols-4 text-primary">
-            <p className="text-xl font-normal">About the Service</p>
-            <textarea
-              type="text"
-              className="col-span-3 bg-textLightGray p-2 border-none outline-none text-textGray rounded-md"
-              rows={5}
-              value={abouttheService}
-              onChange={(e) => setAbouttheService(e.target.value)}
-            />
-          </div>
-          <div className="w-full gap-4 grid grid-cols-1 md:grid-cols-4 text-primary">
-            <p className="text-xl font-normal">Year(s) of Experience</p>
-            <span className="col-span-1 flex items-center justfiy-center">
-              <input
-                type="number"
-                className="bg-textLightGray outline-none border-none p-1 text-textGray"
-                value={yearofExperience}
-                onChange={(e) => setyearofExperience(e.target.value)}
-              />
-              <p className="bg-textYellow p-1 text-textGray rounded-r-lg">
-                Years
-              </p>
-            </span>
-          </div>
+       
         </div>
       </div>
       <div className="w-11/12 flex items-start justify-start flex-col">

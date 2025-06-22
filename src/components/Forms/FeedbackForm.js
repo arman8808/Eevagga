@@ -22,8 +22,7 @@
 //   } = useForm();
 
 //   const onSubmit = async (data) => {
-  
-  
+
 //     const {
 //       email,
 //       customer,
@@ -49,7 +48,7 @@
 //       unique,
 //       vendor,
 //     } = data;
-  
+
 //     // Prepare the form data
 //     const formData = new FormData();
 //     formData.append("email", email);
@@ -75,26 +74,25 @@
 //     formData.append("technical", technical.join(",")); // Assuming it's an array
 //     formData.append("unique", unique.join(",")); // Assuming it's an array
 //     formData.append("vendor", vendor);
-  
+
 //     try {
 //       // Make the API call
 //       const response = await addFeedBackApi.callApi(formData);
 //       console.log(response);
-      
+
 //       // Show success message
 //       toast.success(response?.message || "Successfully added to the Feedback!");
-  
+
 //       // Reset the form data on success (assuming you have a way to reset the form)
 //       reset(); // Replace this with your actual form reset function
-  
+
 //     } catch (error) {
 //       console.error("Error submitting feedback:", error);
-  
+
 //       // Show error message
 //       toast.error(error?.response?.data?.message || "Something went wrong!");
 //     }
 //   };
-  
 
 //   return (
 //     <motion.div
@@ -677,30 +675,31 @@
 
 // export default FeedbackForm;
 
-
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import StarIcon from "@mui/icons-material/Star";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import useServices from "../../hooks/useServices";
+import commonApis from "../../services/commonApis";
+import { toast } from "react-toastify";
 
 const FeedbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+  const addFeedBackApi = useServices(commonApis.addFeedBack);
   // Custom colors
   const textYellow = "#FFE500";
   const textGray = "#6B7280";
-  
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   const starAnimation = {
     hover: { scale: 1.2 },
-    tap: { scale: 0.9 }
+    tap: { scale: 0.9 },
   };
 
   const {
@@ -709,23 +708,39 @@ const FeedbackForm = () => {
     reset,
     setValue,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
+    const feedbackData = {
+      bookingProcess: parseInt(data.bookingProcess, 10),
+      customerCare: parseInt(data.customerCare, 10),
+      eventExecution: parseInt(data.eventExecution, 10),
+      eventType: data.eventType,
+      heardAbout: data.heardAbout,
+      pricingClarity: parseInt(data.pricingClarity, 10),
+      recommend: data.recommend,
+      responseTime: parseInt(data.responseTime, 10),
+      suggestions: data.suggestions || "",
+    };
+    try {
+      setIsSubmitting(false);
+
+      const response = await addFeedBackApi.callApi(feedbackData);
+
+      toast.success(response?.message || "Feedback submitted successfully!");
+      setIsSubmitting(true);
       reset();
-    }, 3000);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+
+      toast.error(
+        error?.response?.data?.message ||
+          "Failed to submit feedback. Please try again."
+      );
+    } finally {
+      setIsSubmitted(true);
+    }
   };
 
   // Simplified Star Rating Component without radio buttons
@@ -739,15 +754,16 @@ const FeedbackForm = () => {
 
     return (
       <div className="mb-8">
-        <label 
-          className="block text-lg font-bold mb-3"
-          style={{ color: textYellow }}
-        >
+        <label className="block text-lg font-bold mb-3 text-primary">
           {label}
         </label>
         <div className="flex justify-between mb-2">
-          <span className="text-sm" style={{ color: textGray }}>{lowLabel}</span>
-          <span className="text-sm" style={{ color: textGray }}>{highLabel}</span>
+          <span className="text-sm" style={{ color: textGray }}>
+            {lowLabel}
+          </span>
+          <span className="text-sm" style={{ color: textGray }}>
+            {highLabel}
+          </span>
         </div>
         <div className="flex justify-center space-x-1">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -808,8 +824,8 @@ const FeedbackForm = () => {
           Your insights are valuable to us and will help improve our services.
         </p>
         <motion.button
-          className="px-6 py-3 rounded-lg font-bold"
-          style={{ backgroundColor: textYellow, color: "#111827" }}
+          className="px-6 py-3 rounded-lg font-bold text-primary"
+          style={{ backgroundColor: textYellow }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsSubmitted(false)}
@@ -828,16 +844,15 @@ const FeedbackForm = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-8">
-        <motion.h2 
-          className="text-3xl font-bold mb-2"
-          style={{ color: textYellow }}
+        <motion.h2
+          className="text-3xl font-bold mb-2 text-primary"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
           Eevagga - Feedback Form
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="text-lg"
           style={{ color: textGray }}
           initial={{ opacity: 0 }}
@@ -858,10 +873,7 @@ const FeedbackForm = () => {
         >
           {/* Enhanced Dropdown */}
           <div className="mb-8">
-            <label 
-              className="block text-lg font-bold mb-3"
-              style={{ color: textYellow }}
-            >
+            <label className="block text-lg font-bold mb-3 text-primary">
               1. Event Type
             </label>
             <div className="relative">
@@ -876,91 +888,100 @@ const FeedbackForm = () => {
                 <option value="Wedding">Wedding</option>
                 <option value="Birthday">Birthday</option>
                 <option value="Baby Shower">Baby Shower</option>
-                <option value="School/College Event">School/College Event</option>
+                <option value="School/College Event">
+                  School/College Event
+                </option>
                 <option value="Corporate Event">Corporate Event</option>
-                <option value="Loan/Insurance Service">Loan/Insurance Service</option>
+                <option value="Loan/Insurance Service">
+                  Loan/Insurance Service
+                </option>
                 <option value="Other">Other</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
-                <ArrowDropDownIcon 
-                  className="w-6 h-6" 
-                  style={{ color: textYellow }} 
+                <ArrowDropDownIcon
+                  className="w-6 h-6"
+                  style={{ color: textYellow }}
                 />
               </div>
             </div>
             {errors.eventType && (
-              <p className="mt-2 text-red-500 text-sm">Please select an event type</p>
+              <p className="mt-2 text-red-500 text-sm">
+                Please select an event type
+              </p>
             )}
           </div>
 
           {/* How did you hear about Eevagga? */}
           <div className="mb-8">
-            <label 
-              className="block text-lg font-bold mb-3"
-              style={{ color: textYellow }}
-            >
+            <label className="block text-lg font-bold mb-3 text-primary">
               2. How did you hear about Eevagga?
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {["Online Ad", "Social Media", "Referral", "Search Engine", "Other"].map(
-                (option) => (
-                  <label
-                    key={option}
-                    className="flex items-center space-x-3 p-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                  >
-                    <input
-                      type="radio"
-                      value={option}
-                      className="form-radio text-yellow-400 border-2 border-gray-300"
-                      style={{ width: "20px", height: "20px" }}
-                      {...register("heardAbout", { required: true })}
-                    />
-                    <span className="text-gray-800">{option}</span>
-                  </label>
-                )
-              )}
+              {[
+                "Online Ad",
+                "Social Media",
+                "Referral",
+                "Search Engine",
+                "Other",
+              ].map((option) => (
+                <label
+                  key={option}
+                  className="flex items-center space-x-3 p-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    value={option}
+                    className="form-radio text-yellow-400 border-2 border-gray-300"
+                    style={{ width: "20px", height: "20px" }}
+                    {...register("heardAbout", { required: true })}
+                  />
+                  <span className="text-gray-800">{option}</span>
+                </label>
+              ))}
             </div>
             {errors.heardAbout && (
-              <p className="mt-2 text-red-500 text-sm">Please select an option</p>
+              <p className="mt-2 text-red-500 text-sm">
+                Please select an option
+              </p>
             )}
           </div>
 
           {/* Star Ratings */}
-          <StarRating 
-            name="responseTime" 
-            label="3. How satisfied were you with the initial response time from our team?" 
+          <StarRating
+            name="responseTime"
+            label="3. How satisfied were you with the initial response time from our team?"
             required={true}
             lowLabel="Very Slow"
             highLabel="Very Fast"
           />
 
-          <StarRating 
-            name="bookingProcess" 
-            label="4. How easy and smooth was the booking process?" 
+          <StarRating
+            name="bookingProcess"
+            label="4. How easy and smooth was the booking process?"
             required={true}
             lowLabel="Very Difficult"
             highLabel="Very Easy"
           />
 
-          <StarRating 
-            name="pricingClarity" 
-            label="5. How would you rate the clarity and fairness of pricing and quotation?" 
+          <StarRating
+            name="pricingClarity"
+            label="5. How would you rate the clarity and fairness of pricing and quotation?"
             required={true}
             lowLabel="Very Poor"
             highLabel="Very Clear/Fair"
           />
 
-          <StarRating 
-            name="customerCare" 
-            label="6. How satisfied were you with the communication and support from our customer care team during the process?" 
+          <StarRating
+            name="customerCare"
+            label="6. How satisfied were you with the communication and support from our customer care team during the process?"
             required={true}
             lowLabel="Very Unsatisfied"
             highLabel="Very Satisfied"
           />
 
-          <StarRating 
-            name="eventExecution" 
-            label="7. How satisfied were you with the execution of your event?" 
+          <StarRating
+            name="eventExecution"
+            label="7. How satisfied were you with the execution of your event?"
             required={true}
             lowLabel="Very Unsatisfied"
             highLabel="Very Satisfied"
@@ -968,10 +989,7 @@ const FeedbackForm = () => {
 
           {/* Recommendation */}
           <div className="mb-8">
-            <label 
-              className="block text-lg font-bold mb-3"
-              style={{ color: textYellow }}
-            >
+            <label className="block text-lg font-bold mb-3 text-primary">
               8. Would you recommend Eevagga to others?
             </label>
             <div className="flex flex-wrap gap-3">
@@ -992,16 +1010,15 @@ const FeedbackForm = () => {
               ))}
             </div>
             {errors.recommend && (
-              <p className="mt-2 text-red-500 text-sm">Please select an option</p>
+              <p className="mt-2 text-red-500 text-sm">
+                Please select an option
+              </p>
             )}
           </div>
 
           {/* Suggestions */}
           <div className="mb-4">
-            <label 
-              className="block text-lg font-bold mb-3"
-              style={{ color: textYellow }}
-            >
+            <label className="block text-lg font-bold mb-3 text-primary">
               9. Any quick suggestions or comments? (Optional)
             </label>
             <textarea
@@ -1021,16 +1038,33 @@ const FeedbackForm = () => {
           <motion.button
             type="submit"
             className="w-full py-4 rounded-xl font-bold text-lg shadow-lg text-primary"
-            style={{ backgroundColor: textYellow,}}
+            style={{ backgroundColor: textYellow }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5" style={{ color: "#111827" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5"
+                  style={{ color: "#111827" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 Submitting...
               </div>

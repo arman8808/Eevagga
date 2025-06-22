@@ -98,6 +98,9 @@ const AppContent = () => {
     internalRoutes.vendorCommunity,
     internalRoutes.vendorCreateservice,
     internalRoutes.vendorEditservice,
+    internalRoutes.adminDashboard,
+    internalRoutes.adminLogin,
+    internalRoutes.adminSignup,
   ];
   const noNewNavbarPaths = [
     internalRoutes.vendorOrders,

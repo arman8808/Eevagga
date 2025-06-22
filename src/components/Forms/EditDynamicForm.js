@@ -723,7 +723,8 @@ const EditDynamicForm = ({
                               type="text"
                               value={
                                 formValues[field.key]?.[staffType]?.UOM ||
-                                details.UOM || "Per Person"
+                                details.UOM ||
+                                "Per Person"
                               }
                               onChange={(e) =>
                                 handleCapacityChange(
@@ -2187,11 +2188,15 @@ const EditDynamicForm = ({
                   <option value="" disabled>
                     Select an option
                   </option>
-                  {field.items.map((item, index) => (
-                    <option key={index} value={item}>
-                      {item}
-                    </option>
-                  ))}
+                  {field.items && Array.isArray(field.items) ? (
+                    field.items.map((item, index) => (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="">Value Already Selected</option>
+                  )}
                 </select>
               </div>
             </div>

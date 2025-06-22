@@ -97,7 +97,7 @@ const WhyPeopleTrustEvaga = () => {
             animate={{ letterSpacing: "0.05em" }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Why People Trust Evaga?
+            Why People Trust Eevagga?
           </motion.h2>
           <motion.div
             className="mx-auto h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent"

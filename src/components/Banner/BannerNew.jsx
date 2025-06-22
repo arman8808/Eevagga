@@ -62,7 +62,7 @@ function BannerNew({ image, height, category }) {
           src={process.env.REACT_APP_API_Aws_Image_BASE_URL + image}
           alt="Banner"
           className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
-          decoding="async"
+          loading="lazy"
           style={{
             aspectRatio: "16 / 9",
           }}

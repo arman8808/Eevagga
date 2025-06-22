@@ -5,6 +5,9 @@ const commonApis = {
   getAllBanner: () => apiService.get(apiEndpoints.common.getAllBanner()),
   getUserBanner: () => apiService.get(apiEndpoints.common.getUserBanner()),
   getVendorBanner: () => apiService.get(apiEndpoints.common.getVendorBanner()),
+  getAbout2banner: () => apiService.get(apiEndpoints.common.getAbout2banner()),
+  getAbout1banner: () => apiService.get(apiEndpoints.common.getAbout1banner()),
+  getOurServicesBanner: () => apiService.get(apiEndpoints.common.getOurServicesBanner()),
   addToWaitlist: (formdata) =>
     apiService.post(apiEndpoints.common.addtowaitlist, formdata),
   addFeedBack: (formdata) =>

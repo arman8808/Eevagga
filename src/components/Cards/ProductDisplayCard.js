@@ -48,6 +48,7 @@ function ProductDisplayCard({
     eventData?.values?.Price ||
     eventData?.values?.price ||
     eventData?.values?.Pricing ||
+    eventData?.values?.StartingPrice ||
     eventData?.values?.["OrderQuantity&Pricing"]?.[0]?.Rates ||
     eventData?.values?.["Duration&Pricing"]?.[0]?.Amount ||
     eventData?.values?.["SessionLength"]?.[0]?.Amount ||

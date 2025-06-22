@@ -1,8 +1,21 @@
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import BannerNew from "../Banner/BannerNew";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserBanner } from "../../context/redux/slices/bannerSlice.js";
 function SliderNew({}) {
+  const dispatch = useDispatch();
+  const {
+    banner: { userBanner },
+  } = useSelector((state) => ({
+    banner: state.banner,
+  }));
+  useEffect(() => {
+    if (!userBanner || userBanner.length === 0) {
+      dispatch(fetchUserBanner({ showGlobalLoader: false }));
+    }
+  }, [dispatch, userBanner]);
   const responsive = {
     0: {
       items: 1,
@@ -12,6 +25,8 @@ function SliderNew({}) {
       itemsFit: "contain",
     },
   };
+  console.log(userBanner, "userBanner");
+
   const imgUrl = [
     {
       image: "gallery/1749378566986_Home4.jpeg",
@@ -75,8 +90,8 @@ function SliderNew({}) {
       paddingRight={0}
       paddingLeft={0}
     >
-      {imgUrl?.map((item) => (
-        <BannerNew image={item?.image} preview={item?.preview} />
+      {userBanner?.map((item) => (
+        <BannerNew image={item?.BannerUrl} preview={item?.bannerPreview} />
       ))}
     </AliceCarousel>
   );

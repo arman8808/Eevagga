@@ -34,7 +34,7 @@ const EditForm = memo(({ onSubmit, existingData }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage((file));
+      setImage(file);
     }
   };
 
@@ -49,7 +49,7 @@ const EditForm = memo(({ onSubmit, existingData }) => {
       alert("Please fill in all required fields.");
       return;
     }
-    onSubmit({ image, altText, forType, category, status,bannerId });
+    onSubmit({ image, altText, forType, category, status, bannerId });
   };
   useEffect(() => {
     if (!isCategoriesFetched && (!categories || categories.length === 0)) {
@@ -72,9 +72,13 @@ const EditForm = memo(({ onSubmit, existingData }) => {
         onChange={handleImageChange}
         className="mb-4"
       />
-     {(image || existingData?.BannerUrl) && (
+      {(image || existingData?.BannerUrl) && (
         <img
-          src={image ? URL.createObjectURL(image) : `${process.env.REACT_APP_API_Aws_Image_BASE_URL}${existingData.BannerUrl}`}
+          src={
+            image
+              ? URL.createObjectURL(image)
+              : `${process.env.REACT_APP_API_Aws_Image_BASE_URL}${existingData.BannerUrl}`
+          }
           alt="Preview"
           className="w-full h-32 object-contain mb-4"
         />
@@ -97,7 +101,10 @@ const EditForm = memo(({ onSubmit, existingData }) => {
           required
         >
           <MenuItem value="vendor">Vendor</MenuItem>
-          <MenuItem value="user">User</MenuItem>
+          <MenuItem value="user">User</MenuItem>{" "}
+          <MenuItem value="our services">Our Services</MenuItem>
+          <MenuItem value="about1">About 1</MenuItem>
+          <MenuItem value="about2">About 2</MenuItem>
         </Select>
       </FormControl>
 

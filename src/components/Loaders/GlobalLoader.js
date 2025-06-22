@@ -4,9 +4,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 const GlobalLoader = () => {
-  const isLoading = useSelector((state) => state.loader.isLoading);
-
-  if (!isLoading) return null;
+  const loaderState = useSelector((state) => state.loader);
+  if (!loaderState.isLoading || !loaderState.showGlobalLoader) return null;
 
   return (
     <Box

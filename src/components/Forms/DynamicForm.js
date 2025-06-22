@@ -26,10 +26,8 @@ const DynamicForm = ({
   const { fields = [] } = formData || {};
   const [isEditing, setIsEditing] = useState(false);
   const [foodMenu, setFoodMenu] = useState([]);
-  const totalNumberOfPhotoAllowed =
-    process.env.REACT_APP_API_Number_of_Images_allowed || 10;
-  const totalNumberOfVideoAllowed =
-    process.env.REACT_APP_API_Number_of_Video_allowed || 10;
+  const totalNumberOfPhotoAllowed = 6;
+  const totalNumberOfVideoAllowed = 3;
   const editorStyle = {
     backgroundColor: "#7575751a",
   };
@@ -283,7 +281,7 @@ const DynamicForm = ({
               </label>
               <p></p>
               <span className="flex items-center justify-start col-span-2">
-                {(field.key === "Price" || field.key === "Pricing") && (
+                {(field.key === "Price" || field.key === "Pricing" || field.key === "StartingPrice") && (
                   <span className="bg-textYellow px-3 py-1  rounded-l-md font-medium text-primary">
                     ₹
                   </span>
@@ -300,6 +298,7 @@ const DynamicForm = ({
                     field.key === "DeliveryCharges" ||
                     field.key === "Price" ||
                     field.key === "Pricing" ||
+                    field.key === "StartingPrice" ||
                     field.key === "NoofDrivers" ||
                     field.key === "Duration of Stall" ||
                     field.key === "SessionDuration"
@@ -1746,7 +1745,7 @@ const DynamicForm = ({
                             }}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                           />
-                          <p>Upload upto 30 Images</p>
+                          <p>Upload upto 6 Images</p>
                         </div>
 
                         <div className="flex flex-wrap gap-1">
@@ -1815,7 +1814,7 @@ const DynamicForm = ({
                             }}
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                           />
-                          <p>Upload upto 10 Video</p>
+                          <p>Upload upto 3 Video</p>
                           <p className="text-esm">
                             *The total size of all videos should be less than
                             250 MB.

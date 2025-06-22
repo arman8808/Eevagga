@@ -26,27 +26,42 @@ function FeedbackTable() {
   const columns = [
     { label: "No", key: "index", render: (_, i) => i + 1 },
     {
-      label: "Email",
-      key: "email",
+      label: "Event Type",
+      key: "eventType",
     },
     {
-      label: "Phone",
-      key: "phone",
+      label: "Heard From",
+      key: "heardAbout",
     },
 
     {
-      label: "Experience",
-      key: "experience",
-      //   render: () => (true ? "Active" : "Deactive"),
+      label: "Response Time",
+      key: "responseTime",
+
+    },
+    {
+      label: "Pricing Clarity",
+      key: "pricingClarity",
+    },
+    {
+      label: "Booking Process",
+      key: "bookingProcess",
+    },
+    {
+      label: "Customer Care",
+      key: "customerCare",
+    },
+    {
+      label: "Event Execution",
+      key: "eventExecution",
     },
     {
       label: "Recommend",
       key: "recommend",
-      //   render: () => (true ? "Active" : "Deactive"),
     },
     {
-      label: "Support",
-      key: "support",
+      label: "Suggestions",
+      key: "suggestions",
     },
     // {
     //   label: "Action",

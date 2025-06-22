@@ -207,8 +207,8 @@ const VendorDashboard = () => {
                     yearofexp={item?.YearofExperience}
                     category={item?.Category?.name}
                     subCategory={item?.SubCategory?.name}
-                    desc={item?.AbouttheService}
-                    price={item?.services?.[0]?.values?.Price}
+                    desc={item?.services?.[0]?.values?.Description}
+                    price={item?.services?.[0]?.values?.Price||item?.services?.[0]?.values?.StartingPrice}
                     InclusionData={item?.services?.[0]?.values?.Inclusions}
                     DeliverablesData={item?.services?.[0]?.values?.Deliverables}
                     AddOnData={item?.services?.[0]?.values?.AddOns}

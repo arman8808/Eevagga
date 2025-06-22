@@ -77,7 +77,7 @@ const RealStories = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            See how Evaga brought celebrations to life for real people just like
+            See how Eevagga brought celebrations to life for real people just like
             you.
           </motion.p>
         </motion.div>

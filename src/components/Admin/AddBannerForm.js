@@ -77,6 +77,9 @@ function AddBannerForm({ onSubmit }) {
         <Select value={forType} onChange={(e) => setForType(e.target.value)}>
           <MenuItem value="vendor">Vendor</MenuItem>
           <MenuItem value="user">User</MenuItem>
+          <MenuItem value="our services">Our Services</MenuItem>
+          <MenuItem value="about1">About 1</MenuItem>
+          <MenuItem value="about2">About 2</MenuItem>
         </Select>
       </FormControl>
 
