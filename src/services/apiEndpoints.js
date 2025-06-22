@@ -100,7 +100,7 @@ const apiEndpoints = {
     getUserBanner: () => "banner/get-user-banner",
     getVendorBanner: () => "banner/get-vendor-banner",
     getOurServicesBanner: () => "banner/get-getOurServicesBanners",
-    getAbout1banner: () => "banner/get-getAbout1Banners",
+    getAbout1banner: () => "banner/get-getAboutUsBanners",
     getAbout2banner: () => "banner/get-getAbout2Banners",
     addBanner: "banner/add-banner",
     updateOneBanner: "banner/update-one-banner/:bannerId",

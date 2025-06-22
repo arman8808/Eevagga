@@ -13,7 +13,7 @@ function SliderNew({}) {
   }));
   useEffect(() => {
     if (!userBanner || userBanner.length === 0) {
-      dispatch(fetchUserBanner({ showGlobalLoader: false }));
+      dispatch(fetchUserBanner());
     }
   }, [dispatch, userBanner]);
   const responsive = {

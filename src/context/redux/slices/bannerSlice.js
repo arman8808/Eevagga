@@ -5,8 +5,8 @@ const initialState = {
   banner: [],
   userBanner: [],
   vendorBanner: null,
-  about1Banner: null,
-  about2Banner: null,
+  aboutBanner: null,
+
   ourServicesBanner: null,
   error: null,
   status: "idle",
@@ -50,8 +50,8 @@ export const fetchVendorBanner = createAsyncThunk(
 );
 
 // New thunks for additional banner types
-export const fetchAbout1Banner = createAsyncThunk(
-  "banner/fetchAbout1Banner",
+export const getAboutUsBanners = createAsyncThunk(
+  "banner/get-getAboutUsBanners",
   async (_, { rejectWithValue }) => {
     try {
       const response = await commonApis.getAbout1banner();
@@ -62,17 +62,17 @@ export const fetchAbout1Banner = createAsyncThunk(
   }
 );
 
-export const fetchAbout2Banner = createAsyncThunk(
-  "banner/fetchAbout2Banner",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await commonApis.getAbout2banner();
-      return response.data?.banners;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const fetchAbout2Banner = createAsyncThunk(
+//   "banner/fetchAbout2Banner",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await commonApis.getAbout2banner();
+//       return response.data?.banners;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const fetchOurServicesBanner = createAsyncThunk(
   "banner/fetchOurServicesBanner",
@@ -126,26 +126,15 @@ const bannerSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      // New cases for additional banner types
-      .addCase(fetchAbout1Banner.pending, (state) => {
+     
+      .addCase(getAboutUsBanners.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAbout1Banner.fulfilled, (state, action) => {
+      .addCase(getAboutUsBanners.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.about1Banner = action.payload;
+        state.aboutBanner = action.payload;
       })
-      .addCase(fetchAbout1Banner.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      })
-      .addCase(fetchAbout2Banner.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchAbout2Banner.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.about2Banner = action.payload;
-      })
-      .addCase(fetchAbout2Banner.rejected, (state, action) => {
+      .addCase(getAboutUsBanners.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })

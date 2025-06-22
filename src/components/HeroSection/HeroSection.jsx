@@ -1,6 +1,22 @@
 import { motion } from "framer-motion";
 import BookingForm from "../../pages/BookingForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchOurServicesBanner } from "../../context/redux/slices/bannerSlice";
 const HeroSection = () => {
+  const dispatch = useDispatch();
+  const {
+    banner: { ourServicesBanner },
+  } = useSelector((state) => ({
+    banner: state.banner,
+  }));
+  useEffect(() => {
+    if (!ourServicesBanner || ourServicesBanner.length === 0) {
+      dispatch(fetchOurServicesBanner());
+    }
+  }, [dispatch, ourServicesBanner]);
+console.log(ourServicesBanner);
+
   return (
     <section className="relative w-full min-h-[80dvh] overflow-hidden">
       {/* Background Image */}
@@ -12,7 +28,7 @@ const HeroSection = () => {
         style={{
           backgroundImage: `url(${
             process.env.REACT_APP_API_Aws_Image_BASE_URL +
-            "gallery/1749380230859_ourservicepurcchased.jpg"
+            ourServicesBanner?.[0]?.BannerUrl
           })`,
         }}
       />
