@@ -33,7 +33,7 @@ const ProductCardV2 = ({ imageUrl, title, price, onClick }) => (
     </div>
 
     <div className="p-3 flex flex-col flex-1">
-      <h3 className="font-semibold text-base mb-2 line-clamp-2">{title}</h3>
+      <h3 className="font-semibold text-normal mb-2 line-clamp-2">{title}</h3>
 
       <div className="mt-auto flex justify-between items-center">
         <div>

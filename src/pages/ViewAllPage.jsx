@@ -1,8 +1,59 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import ProductCardV2 from "../components/Cards/ProductCardV2";
+import useServices from "../hooks/useServices";
+import commonApis from "../services/commonApis";
+import { useEffect, useState } from "react";
+import CustomPagination from "../utils/CustomPagination";
+import SkeletonProductCardV2 from "../components/Cards/SkeletonProductCardV2";
 const ViewAllPage = () => {
   const navigate = useNavigate();
+  const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
+  const [packageData, setPackageData] = useState([]);
+  const [pages, setPages] = useState({
+    currentPage: 1,
+    totalPages: 0,
+    totalData: 0,
+  });
+  const queryParams = {
+    categoryId: categoryId || "",
+    category: category || "",
+    page: pages.currentPage || 1,
+  };
+  const categoryViewAllPackageApi = useServices(
+    commonApis.categoryViewAllPackage
+  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const handlePageChange = (event, value) => {
+    setPages({ ...pages, currentPage: value });
+  };
+  const categoryViewAllPackageApiHandle = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await categoryViewAllPackageApi.callApi(queryParams);
+      setPackageData(response?.data || []);
+      setPages({
+        ...pages,
+        currentPage: response?.currentPage || 1,
+        totalData: response?.total || 0,
+        totalPages: response?.totalPages || 1,
+      });
+    } catch (err) {
+      setError(err);
+      setPackageData([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (category) categoryViewAllPackageApiHandle();
+  }, [category, pages.currentPage]);
+
   const products = [
     {
       id: 1,
@@ -88,7 +139,7 @@ const ViewAllPage = () => {
             transition={{ duration: 0.4 }}
             className="text-3xl font-semibold text-[#4A0072]"
           >
-            All Products
+            All Packages
           </motion.h1>
 
           <motion.button
@@ -101,21 +152,76 @@ const ViewAllPage = () => {
           </motion.button>
         </div>
 
-        {/* Products Grid */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
         >
-          {products.map((product, index) => (
-            <ProductCardV2
-              title={product.title}
-              price={product.price}
-              imageUrl={product.imageUrl}
-            />
-          ))}
+          {loading
+            ? 
+              Array.from({ length: 8 }).map((_, index) => (
+                <SkeletonProductCardV2 key={`skeleton-${index}`} />
+              ))
+            : 
+              packageData.map((product, index) => {
+                let imageUrl =
+                  (Array.isArray(product.serviceDetails?.values?.CoverImage)
+                    ? product.serviceDetails?.values?.CoverImage[0]
+                    : product.serviceDetails?.values?.CoverImage) ||
+                  (Array.isArray(product.serviceDetails?.values?.ProductImage)
+                    ? product.serviceDetails?.values?.ProductImage[0]
+                    : product.serviceDetails?.values?.ProductImage);
+
+                const processedImageUrl = imageUrl?.startsWith("service/")
+                  ? `${process.env.REACT_APP_API_Aws_Image_BASE_URL}${imageUrl}`
+                  : imageUrl;
+
+                // Parse price to number
+                const rawPrice =
+                  product.serviceDetails?.values?.Price ||
+                  product.serviceDetails?.values?.StartingPrice ||
+                  product.serviceDetails?.values?.price ||
+                  product.serviceDetails?.values?.Pricing ||
+                  product.serviceDetails?.values?.Package?.[0]?.Rates ||
+                  product.serviceDetails?.values?.["OrderQuantity&Pricing"]?.[0]
+                    ?.Rates ||
+                  product.serviceDetails?.values?.["Duration&Pricing"]?.[0]
+                    ?.Amount ||
+                  product.serviceDetails?.values?.["SessionLength"]?.[0]
+                    ?.Amount ||
+                  product.serviceDetails?.values?.["SessionLength&Pricing"]?.[0]
+                    ?.Amount ||
+                  product.serviceDetails?.values?.["QtyPricing"]?.[0]?.Rates;
+
+           
+                const price =
+                  typeof rawPrice === "string"
+                    ? parseFloat(rawPrice.replace(/[^0-9.]/g, "")) || 0
+                    : Number(rawPrice) || 0;
+
+                return (
+                  <ProductCardV2
+                    key={product._id || index}
+                    title={
+                      product.serviceDetails?.values?.Title ||
+                      product.serviceDetails?.values?.FoodTruckName ||
+                      product.serviceDetails?.values?.VenueName
+                    }
+                    price={price}
+                    imageUrl={processedImageUrl}
+                  />
+                );
+              })}
         </motion.div>
+
+        {!loading && packageData?.length > 0 && (
+          <CustomPagination
+            totalPage={pages.totalPages}
+            currentPage={pages?.currentPage}
+            onChange={handlePageChange}
+          />
+        )}
       </div>
     </motion.div>
   );

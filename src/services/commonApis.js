@@ -46,6 +46,8 @@ const commonApis = {
     apiService.post(apiEndpoints.common.bookCta, formdata),
   categoryWissPackage: (queryParams) =>
     apiService.get(apiEndpoints.common.categoryWissPackage, queryParams),
+  categoryViewAllPackage: (queryParams) =>
+    apiService.get(apiEndpoints.common.categoryViewAllPackage, queryParams),
 };
 
 export default commonApis;

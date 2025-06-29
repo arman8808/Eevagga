@@ -124,6 +124,7 @@ function CatgeoryPage() {
               backgroundColor={backgroundColor}
               cards={cards}
               categoryId={categoryItem.category?._id}
+              category={category}
             />
           );
         })}

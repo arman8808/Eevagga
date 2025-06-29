@@ -3,9 +3,15 @@ import ProductCardV2 from "../Cards/ProductCardV2";
 import { useNavigate } from "react-router-dom";
 import { internalRoutes } from "../../utils/internalRoutes";
 
-const ProductSection = ({ title, backgroundColor, cards, categoryId }) => {
+const ProductSection = ({
+  title,
+  backgroundColor,
+  cards,
+  categoryId,
+  category,
+}) => {
   const navigate = useNavigate();
-  
+
   return (
     <section
       className={`py-12 transition-colors duration-300 relative`}
@@ -19,7 +25,7 @@ const ProductSection = ({ title, backgroundColor, cards, categoryId }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl font-semibold text-primary inline-block"
           >
-            {title}
+            {category + " " + title}
           </motion.h2>
 
           {cards?.length > 0 && (
@@ -28,7 +34,9 @@ const ProductSection = ({ title, backgroundColor, cards, categoryId }) => {
               whileTap={{ scale: 0.97 }}
               className="absolute underline top-0 right-0 text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1"
               onClick={() =>
-                navigate(`${internalRoutes.viewAllPage}/${categoryId}`)
+                navigate(
+                  `${internalRoutes.viewAllPage}/${category}?categoryId=${categoryId}`
+                )
               }
             >
               View All
@@ -58,7 +66,9 @@ const ProductSection = ({ title, backgroundColor, cards, categoryId }) => {
           </div>
         ) : (
           <div className="text-center py-10">
-            <p className="text-gray-500">No packages available in this category</p>
+            <p className="text-gray-500">
+              No packages available in this category
+            </p>
           </div>
         )}
       </div>
