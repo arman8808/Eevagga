@@ -137,7 +137,7 @@ const ViewAllPage = () => {
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4 }}
-            className="text-3xl font-semibold text-[#4A0072]"
+            className="text-3xl font-semibold text-primary"
           >
             All Packages
           </motion.h1>
