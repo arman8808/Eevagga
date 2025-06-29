@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactGA from "react-ga4";
 import DynamicNav from "./components/navbar/DynamicNav";
 import Footer from "./components/Footer/Footer";
-import GlobalLoader from "./components/Loaders/GlobalLoader";
 import { lazy, Suspense, useEffect } from "react";
 import GoToTop from "./GoToTop";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +29,7 @@ import AboutEvaga from "./pages/AboutEvaga";
 import OurService from "./pages/OurService.jsx";
 import Home from "./pages/HomepageNew.jsx";
 import CategoryPage from "./pages/CatgeoryPage.jsx";
+import ViewAllPage from "./pages/ViewAllPage.jsx";
 // const Home = lazy(() => import("./pages/HomepageNew.jsx"));
 const SinglePackage = lazy(() => import("./pages/SinglePackage"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
@@ -89,7 +89,7 @@ const AppContent = () => {
   const userId = Cookies.get("userId");
   const { allWishlist } = useSelector((state) => state.wishlist);
   const noNavbarPaths = [
-       internalRoutes.vendorDashboard,
+    internalRoutes.vendorDashboard,
     internalRoutes.vendorProfile,
     internalRoutes.vendorServices,
     internalRoutes.vendorOrders,
@@ -241,6 +241,14 @@ const AppContent = () => {
               // </Suspense>
             }
             path={`${internalRoutes.categoryPage}/:category`}
+          />{" "}
+          <Route
+            element={
+              // <Suspense fallback={<Loader />}>
+              <ViewAllPage />
+              // </Suspense>
+            }
+            path={`${internalRoutes.viewAllPage}/:category`}
           />
           <Route
             element={

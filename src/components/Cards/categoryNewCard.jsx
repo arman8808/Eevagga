@@ -5,7 +5,7 @@ const CategoryNewCard = ({ imageUrl, title, text, link }) => {
     <a
       href={link}
       rel="noopener noreferrer"
-      className="relative block h-[350px] w-full overflow-hidden rounded-[1.5rem] shadow-2xl"
+      className="relative block h-[300px] w-full overflow-hidden rounded-[1.5rem] shadow-2xl"
     >
       {/* Background Image with Darker Blur */}
       <div className="absolute inset-0">

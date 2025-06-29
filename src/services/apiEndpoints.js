@@ -125,6 +125,7 @@ const apiEndpoints = {
     getServiceableRadius: (vendorId) =>
       `vender/getServiceableRadius/${vendorId}`,
     bookCta: "bookingCTA/bookings",
+    categoryWissPackage: "packages/get-package-by-category",
   },
   admin: {
     register: "admin/registerAdmin",
