@@ -31,7 +31,7 @@ import Home from "./pages/HomepageNew.jsx";
 import CategoryPage from "./pages/CatgeoryPage.jsx";
 import ViewAllPage from "./pages/ViewAllPage.jsx";
 // const Home = lazy(() => import("./pages/HomepageNew.jsx"));
-const SinglePackage = lazy(() => import("./pages/SinglePackage"));
+const SinglePackage = lazy(() => import("./pages/SinglePackageNew.jsx"));
 const UserLoginPage = lazy(() => import("./pages/User/UserLoginPage"));
 const VendorDashboard = lazy(() => import("./pages/Vendor/VendorDashboard"));
 const VendorSignUpPage = lazy(() => import("./pages/Vendor/VendorSignUpPage"));

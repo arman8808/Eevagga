@@ -114,6 +114,7 @@ function CatgeoryPage() {
                 price,
                 imageUrl: processedImageUrl || "default-image.jpg",
                 id: pkg._id,
+                packageId: pkg.serviceDetails?._id,
               };
             }) || [];
 
