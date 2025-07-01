@@ -9,7 +9,7 @@ const StickyAd = () => {
 
   useEffect(() => {
     const adDismissed = Cookies.get("adDismissed");
-    if (!adDismissed) setTimeout(() => setShowAd(true), 1000);
+    if (!adDismissed) setTimeout(() => setShowAd(true), 5000);
   }, []);
 
   const handleDismiss = () => {
