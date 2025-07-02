@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useServices from "../hooks/useServices";
 import packageApis from "../services/packageApis";
 import { motion, AnimatePresence } from "framer-motion";
+import ModernVideoPlayer from "../utils/ModernVideoPlayer ";
 function SinglePackageNew() {
   const { serviceId, packageId } = useParams();
   const [singlePageData, setSinglePageData] = useState();
@@ -52,6 +53,7 @@ function SinglePackageNew() {
 
     setImages(allMedia);
   };
+  const isVideo = (url) => /\.(mp4|webm|ogg)$/i.test(url);
   useEffect(() => {
     handlegetOnePackage();
   }, [serviceId, packageId]);
@@ -72,50 +74,92 @@ function SinglePackageNew() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Image Gallery - 45% on desktop */}
-          <div className="md:w-[45%]">
-            {/* Main Image */}
-            <div className="bg-[#DDCDE7] rounded-xl overflow-hidden mb-4 h-[400px] flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={selectedImage}
-                  src={`${imageBaseUrl}${images[selectedImage]}`}
-                  alt={`Product view ${selectedImage + 1}`}
-                  className="max-h-[350px] object-contain"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                />
-              </AnimatePresence>
-            </div>
+       <div className="md:w-[45%]">
+      {/* Main Display */}
+      <div className="bg-[#DDCDE7] rounded-xl overflow-hidden mb-4 h-[400px] flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          {isVideo(imageBaseUrl + images[selectedImage]) ? (
+            <motion.div
+              key={`video-${selectedImage}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="w-full h-full flex items-center justify-center"
+            >
+              <ModernVideoPlayer
+                selectedUrl={`${imageBaseUrl}${images[selectedImage]}`}
+                className="max-h-[350px] mx-auto"
+              />
+            </motion.div>
+          ) : (
+            <motion.img
+              key={`img-${selectedImage}`}
+              src={`${imageBaseUrl}${images[selectedImage]}`}
+              alt={`Product view ${selectedImage + 1}`}
+              className="max-h-[350px] object-contain"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
 
-            {/* Thumbnails - Scrollable container */}
-            <div className="mt-6 overflow-x-auto pb-2 custom-scrollbar">
-              <div className="flex gap-3 w-max">
-                {images.map((img, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
-                      selectedImage === index
-                        ? "border-[#6A1B9A] shadow-md"
-                        : "border-transparent"
-                    }`}
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <div className="bg-[#7575751A] w-20 h-20 flex items-center justify-center">
-                      <img
-                        src={`${imageBaseUrl}${img}`}
-                        alt={`Thumbnail ${index + 1}`}
+      {/* Thumbnails */}
+      <div className="mt-6 overflow-x-auto pb-2 custom-scrollbar">
+        <div className="flex gap-3 w-max">
+          {images.map((file, index) => {
+            const url = `${imageBaseUrl}${file}`;
+            return (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
+                  selectedImage === index
+                    ? "border-[#6A1B9A] shadow-md"
+                    : "border-transparent"
+                }`}
+                onClick={() => setSelectedImage(index)}
+              >
+                <div className="relative bg-[#7575751A] w-20 h-20 flex items-center justify-center">
+                  {isVideo(url) ? (
+                    <>
+                      <video
+                        src={url}
                         className="h-16 object-contain"
+                        muted
+                        loop
+                        playsInline
                       />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
+                      {/* Simple play icon overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6 text-white opacity-75"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
+                        </svg>
+                      </div>
+                    </>
+                  ) : (
+                    <img
+                      src={url}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="h-16 object-contain"
+                    />
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
 
           {/* Product Details - 55% on desktop */}
           <div className="md:w-[55%] md:pl-6">
