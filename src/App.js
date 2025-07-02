@@ -435,11 +435,7 @@ const AppContent = () => {
             path={`${internalRoutes.vendorOrderDeatil + "/:orderId/:itemId"}`}
           />
           <Route
-            element={
-              <Suspense fallback={<Loader />}>
-                <SinglePackage />
-              </Suspense>
-            }
+            element={<SinglePackage />}
             path={`${internalRoutes.SinglePackage + "/:serviceId/:packageId"}`}
           />
           <Route
