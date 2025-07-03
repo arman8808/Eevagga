@@ -1,17 +1,27 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useServices from "../hooks/useServices";
 import packageApis from "../services/packageApis";
 import { motion, AnimatePresence } from "framer-motion";
 import ModernVideoPlayer from "../utils/ModernVideoPlayer ";
+import SinglePageSkeletonLoader from "../utils/singlePageSkeletonLoader";
+import BookNowCTA from "../utils/BookNowCTA";
+import { internalRoutes } from "../utils/internalRoutes";
+import ProductCardV2 from "../components/Cards/ProductCardV2";
 function SinglePackageNew() {
   const { serviceId, packageId } = useParams();
+  const navigate = useNavigate();
   const [singlePageData, setSinglePageData] = useState();
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const getAllPackages = useServices(packageApis.getOnePackage);
   const imageBaseUrl = process.env.REACT_APP_API_Aws_Image_BASE_URL;
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [similarProducts, setSimilarProducts] = useState([]);
+const [relatedProducts, setRelatedProducts] = useState([]);
   const handlegetOnePackage = async () => {
+    setIsLoading(true);
     const response = await getAllPackages.callApi(serviceId, packageId);
     setSinglePageData(response && response?.data);
 
@@ -52,6 +62,7 @@ function SinglePackageNew() {
     }
 
     setImages(allMedia);
+    setIsLoading(false);
   };
   const isVideo = (url) => /\.(mp4|webm|ogg)$/i.test(url);
   useEffect(() => {
@@ -69,97 +80,97 @@ function SinglePackageNew() {
       "Foldable design",
     ],
   };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Image Gallery - 45% on desktop */}
-       <div className="md:w-[45%]">
-      {/* Main Display */}
-      <div className="bg-[#DDCDE7] rounded-xl overflow-hidden mb-4 h-[400px] flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          {isVideo(imageBaseUrl + images[selectedImage]) ? (
-            <motion.div
-              key={`video-${selectedImage}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="w-full h-full flex items-center justify-center"
-            >
-              <ModernVideoPlayer
-                selectedUrl={`${imageBaseUrl}${images[selectedImage]}`}
-                className="max-h-[350px] mx-auto"
-              />
-            </motion.div>
-          ) : (
-            <motion.img
-              key={`img-${selectedImage}`}
-              src={`${imageBaseUrl}${images[selectedImage]}`}
-              alt={`Product view ${selectedImage + 1}`}
-              className="max-h-[350px] object-contain"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            />
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* Thumbnails */}
-      <div className="mt-6 overflow-x-auto pb-2 custom-scrollbar">
-        <div className="flex gap-3 w-max">
-          {images.map((file, index) => {
-            const url = `${imageBaseUrl}${file}`;
-            return (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
-                  selectedImage === index
-                    ? "border-[#6A1B9A] shadow-md"
-                    : "border-transparent"
-                }`}
-                onClick={() => setSelectedImage(index)}
-              >
-                <div className="relative bg-[#7575751A] w-20 h-20 flex items-center justify-center">
-                  {isVideo(url) ? (
-                    <>
-                      <video
-                        src={url}
-                        className="h-16 object-contain"
-                        muted
-                        loop
-                        playsInline
-                      />
-                      {/* Simple play icon overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-6 h-6 text-white opacity-75"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
-                        </svg>
-                      </div>
-                    </>
-                  ) : (
-                    <img
-                      src={url}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="h-16 object-contain"
+          <div className="md:w-[45%]">
+            {/* Main Display */}
+            <div className="bg-[#DDCDE7] rounded-xl overflow-hidden mb-4 h-[400px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {isVideo(imageBaseUrl + images[selectedImage]) ? (
+                  <motion.div
+                    key={`video-${selectedImage}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-full flex items-center justify-center"
+                  >
+                    <ModernVideoPlayer
+                      selectedUrl={`${imageBaseUrl}${images[selectedImage]}`}
+                      className="max-h-[350px] mx-auto"
                     />
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+                  </motion.div>
+                ) : (
+                  <motion.img
+                    key={`img-${selectedImage}`}
+                    src={`${imageBaseUrl}${images[selectedImage]}`}
+                    alt={`Product view ${selectedImage + 1}`}
+                    className="max-h-[350px] object-contain"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Thumbnails */}
+            <div className="mt-6 overflow-x-auto pb-2 custom-scrollbar">
+              <div className="flex gap-3 w-max">
+                {images.map((file, index) => {
+                  const url = `${imageBaseUrl}${file}`;
+                  return (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 ${
+                        selectedImage === index
+                          ? "border-[#6A1B9A] shadow-md"
+                          : "border-transparent"
+                      }`}
+                      onClick={() => setSelectedImage(index)}
+                    >
+                      <div className="relative bg-[#7575751A] w-20 h-20 flex items-center justify-center">
+                        {isVideo(url) ? (
+                          <>
+                            <video
+                              src={url}
+                              className="h-16 object-contain"
+                              muted
+                              loop
+                              playsInline
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6 text-white opacity-75"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path d="M6.5 5.5l7 4.5-7 4.5v-9z" />
+                              </svg>
+                            </div>
+                          </>
+                        ) : (
+                          <img
+                            src={url}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="h-16 object-contain"
+                          />
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
           {/* Product Details - 55% on desktop */}
           <div className="md:w-[55%] md:pl-6">
@@ -182,12 +193,8 @@ function SinglePackageNew() {
               transition={{ delay: 0.15 }}
             >
               {useMemo(() => {
-                // Generate random rating between 3.5 and 4.8
                 const rating = (Math.random() * 1.3 + 3.5).toFixed(1);
-                // Generate random customer count between 50 and 500
                 const customerCount = Math.floor(Math.random() * 451) + 50;
-
-                // Calculate number of full stars (yellow) and whether there's a half star
                 const fullStars = Math.floor(rating);
                 const hasHalfStar = rating % 1 >= 0.5;
 
@@ -196,7 +203,6 @@ function SinglePackageNew() {
                     <div className="flex text-yellow-400 mr-2">
                       {[...Array(5)].map((_, i) => {
                         if (i < fullStars) {
-                          // Full star
                           return (
                             <svg
                               key={i}
@@ -208,7 +214,6 @@ function SinglePackageNew() {
                             </svg>
                           );
                         } else if (i === fullStars && hasHalfStar) {
-                          // Half star
                           return (
                             <svg
                               key={i}
@@ -235,7 +240,6 @@ function SinglePackageNew() {
                             </svg>
                           );
                         } else {
-                          // Empty star
                           return (
                             <svg
                               key={i}
@@ -249,13 +253,12 @@ function SinglePackageNew() {
                         }
                       })}
                     </div>
-                    <span className="text-[#757575] text-sm">
+                    <span className="text-gray-600 text-sm">
                       ({customerCount.toLocaleString()} customer reviews)
                     </span>
                   </div>
                 );
-              }, [])}{" "}
-              {/* Empty dependency array means it only runs once */}
+              }, [])}
             </motion.div>
 
             <motion.div
@@ -288,26 +291,26 @@ function SinglePackageNew() {
                     singlePageData?.services?.[0]?.values?.["QtyPricing"]?.[0]
                       ?.Rates}
                 </span>
-                {/* <span className="ml-2 text-[#757575] line-through">
-                  $299.99
-                </span>
-                <span className="ml-2 text-green-600 font-medium">
-                  Save 17%
-                </span> */}
+                <p className="text-sm text-gray-500 ml-2">
+                  (exclusive of all taxes)
+                </p>
               </div>
-              <p className="text-sm text-[#757575] mt-1">
-                exclusive of all taxes
-              </p>
             </motion.div>
 
-            <motion.p
-              className="text-[#757575] mb-8 leading-relaxed"
+            <motion.div
+              className="mb-8"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              {product.description}
-            </motion.p>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 text-primary">
+                Description
+              </h3>
+              <p className="text-textGray leading-relaxed">
+                {singlePageData?.services?.[0]?.values?.description ||
+                  "No description available."}
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -318,21 +321,146 @@ function SinglePackageNew() {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#6A1B9A] text-white px-8 py-3 rounded-lg font-medium flex-1 min-w-[200px]"
+                className="bg-[#6A1B9A] hover:bg-[#7B2CBF] text-white px-6 py-2.5 rounded-lg font-medium"
+                onClick={() =>
+                  navigate(
+                    `${internalRoutes?.bookingForm}?sku=${singlePageData?.services?.[0]?.sku}`
+                  )
+                }
               >
-                Add to Cart
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="border border-[#6A1B9A] text-[#6A1B9A] px-8 py-3 rounded-lg font-medium flex-1 min-w-[200px]"
-              >
-                Buy Now
+                Book Now
               </motion.button>
             </motion.div>
           </div>
         </div>
+    <section className="mb-16">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse Similar</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {[
+          {
+            _id: "1",
+            serviceDetails: {
+              values: {
+                Title: "Premium Wedding Package",
+                Price: "45,999",
+                images: ["/wedding-package-1.jpg"]
+              }
+            }
+          },
+          {
+            _id: "2",
+            serviceDetails: {
+              values: {
+                Title: "Luxury Birthday Decor",
+                StartingPrice: "24,999",
+                images: ["/birthday-decor-1.jpg"]
+              }
+            }
+          },
+          {
+            _id: "3",
+            serviceDetails: {
+              values: {
+                VenueName: "Grand Ballroom",
+                Price: "32,500",
+                images: ["/venue-1.jpg"]
+              }
+            }
+          },
+          {
+            _id: "4",
+            serviceDetails: {
+              values: {
+                FoodTruckName: "Gourmet Street Eats",
+                StartingPrice: "15,000",
+                images: ["/food-truck-1.jpg"]
+              }
+            }
+          }
+        ].map((product, index) => (
+          <ProductCardV2
+            key={product._id || index}
+            title={
+              product.serviceDetails?.values?.Title ||
+              product.serviceDetails?.values?.FoodTruckName ||
+              product.serviceDetails?.values?.VenueName
+            }
+            price={
+              product.serviceDetails?.values?.Price || 
+              product.serviceDetails?.values?.StartingPrice || 
+              "Price not available"
+            }
+            imageUrl={product.serviceDetails?.values?.images?.[0] || "/placeholder-product.jpg"}
+            onClick={() => navigate(`${internalRoutes.SinglePackage}/${product?._id}/${product?.serviceDetails?._id}`)}
+          />
+        ))}
+      </div>
+    </section>
+
+    {/* People Also Bought Section */}
+    <section>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">People Also Bought</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {[
+          {
+            _id: "5",
+            serviceDetails: {
+              values: {
+                Title: "Photography Basic Package",
+                Price: "12,999",
+                images: ["/photography-1.jpg"]
+              }
+            }
+          },
+          {
+            _id: "6",
+            serviceDetails: {
+              values: {
+                VenueName: "Beachside Pavilion",
+                StartingPrice: "28,750",
+                images: ["/venue-2.jpg"]
+              }
+            }
+          },
+          {
+            _id: "7",
+            serviceDetails: {
+              values: {
+                FoodTruckName: "Artisan Pizza Co.",
+                Price: "18,500",
+                images: ["/food-truck-2.jpg"]
+              }
+            }
+          },
+          {
+            _id: "8",
+            serviceDetails: {
+              values: {
+                Title: "DJ & Sound System",
+                StartingPrice: "9,999",
+                images: ["/dj-equipment.jpg"]
+              }
+            }
+          }
+        ].map((product, index) => (
+          <ProductCardV2
+            key={product._id || index}
+            title={
+              product.serviceDetails?.values?.Title ||
+              product.serviceDetails?.values?.FoodTruckName ||
+              product.serviceDetails?.values?.VenueName
+            }
+            price={
+              product.serviceDetails?.values?.Price || 
+              product.serviceDetails?.values?.StartingPrice || 
+              "Price not available"
+            }
+            imageUrl={product.serviceDetails?.values?.images?.[0] || "/placeholder-product.jpg"}
+            onClick={() => navigate(`${internalRoutes.SinglePackage}/${product?._id}/${product?.serviceDetails?._id}`)}
+          />
+        ))}
+      </div>
+    </section>
       </div>
 
       {/* Custom scrollbar styling */}
@@ -341,21 +469,17 @@ function SinglePackageNew() {
           scrollbar-width: thin;
           scrollbar-color: #ddcde7 #f1f1f1;
         }
-
         .custom-scrollbar::-webkit-scrollbar {
           height: 6px;
         }
-
         .custom-scrollbar::-webkit-scrollbar-track {
           background: #f1f1f1;
           border-radius: 10px;
         }
-
         .custom-scrollbar::-webkit-scrollbar-thumb {
           background: #ddcde7;
           border-radius: 10px;
         }
-
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: #6a1b9a;
         }

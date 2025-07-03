@@ -60,6 +60,7 @@ const ProductSection = ({
                   title={card.title}
                   price={Number(card.price)}
                   imageUrl={card.imageUrl}
+                  onClick={() => navigate(`${internalRoutes.SinglePackage}/${card.id}/${card.packageId}`)}
                 />
               </motion.div>
             ))}

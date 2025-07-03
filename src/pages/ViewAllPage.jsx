@@ -6,6 +6,7 @@ import commonApis from "../services/commonApis";
 import { useEffect, useState } from "react";
 import CustomPagination from "../utils/CustomPagination";
 import SkeletonProductCardV2 from "../components/Cards/SkeletonProductCardV2";
+import { internalRoutes } from "../utils/internalRoutes";
 const ViewAllPage = () => {
   const navigate = useNavigate();
   const { category } = useParams();
@@ -210,6 +211,7 @@ const ViewAllPage = () => {
                     }
                     price={price}
                     imageUrl={processedImageUrl}
+                    onClick={() => navigate(`${internalRoutes.SinglePackage}/${product?._id}/${product?.serviceDetails?._id}`)}
                   />
                 );
               })}
