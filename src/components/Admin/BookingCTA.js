@@ -59,6 +59,9 @@ function BookingCTA({ term }) {
     {
       label: "Event Location",
       key: "eventLocation",
+    },  {
+      label: "Sku Code",
+      key: "sku",
     },
     {
       label: "Form Submitted Date",

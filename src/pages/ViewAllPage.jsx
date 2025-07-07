@@ -211,7 +211,7 @@ const ViewAllPage = () => {
                     }
                     price={price}
                     imageUrl={processedImageUrl}
-                    onClick={() => navigate(`${internalRoutes.SinglePackage}/${product?._id}/${product?.serviceDetails?._id}`)}
+                    onClick={() => navigate(`${internalRoutes.SinglePackage}/${product?._id}/${product?.serviceDetails?._id}?category=${category}`)}
                   />
                 );
               })}

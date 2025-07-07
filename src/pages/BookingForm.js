@@ -18,13 +18,18 @@ import { generateMonthOptions } from "../utils/generateMonthOptions";
 const BookingForm = () => {
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
-  console.log(category);
-
+  const sku = searchParams.get("sku");
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    setValue,
+    watch,
+  } = useForm({
+    defaultValues: {
+      sku: sku || "",
+    },
+  });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const bookingCtaApi = useServices(commonApis.bookingCta);
@@ -42,6 +47,9 @@ const BookingForm = () => {
       formdata.append("eventLocation", data.eventLocation);
       formdata.append("eventMonth", data.eventMonth);
       formdata.append("pageCatgeory", category ?? "");
+      if (data.sku) {
+        formdata.append("sku", data.sku);
+      }
       // formdata.append(
       //   "preferredDate",
       //   new Date(data.preferredDate).toISOString()
@@ -134,6 +142,7 @@ const BookingForm = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name Field */}
+          {sku && <input type="hidden" {...register("sku")} />}
           <motion.div variants={itemVariants}>
             <TextField
               fullWidth

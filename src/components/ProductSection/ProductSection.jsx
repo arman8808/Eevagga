@@ -53,14 +53,14 @@ const ProductSection = ({
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => navigate(`${internalRoutes.SinglePackage}/${card.id}/${card.packageId}`)}
+                onClick={() => navigate(`${internalRoutes.SinglePackage}/${card.id}/${card.packageId}?category=${title}`)}
                 className="cursor-pointer"
               >
                 <ProductCardV2
                   title={card.title}
                   price={Number(card.price)}
                   imageUrl={card.imageUrl}
-                  onClick={() => navigate(`${internalRoutes.SinglePackage}/${card.id}/${card.packageId}`)}
+                  onClick={() => navigate(`${internalRoutes.SinglePackage}/${card.id}/${card.packageId}?category=${title}`)}
                 />
               </motion.div>
             ))}

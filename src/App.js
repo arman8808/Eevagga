@@ -98,9 +98,23 @@ const AppContent = () => {
     internalRoutes.vendorCommunity,
     internalRoutes.vendorCreateservice,
     internalRoutes.vendorEditservice,
-    internalRoutes.adminDashboard,
+  ];
+  const noFooterPaths = [
+    internalRoutes.vendorDashboard,
+    internalRoutes.vendorProfile,
+    internalRoutes.vendorServices,
+    internalRoutes.vendorOrders,
+    internalRoutes.vendorOrderDeatil,
+    internalRoutes.vendorSupport,
+    internalRoutes.vendorCommunity,
+    internalRoutes.vendorCreateservice,
+    internalRoutes.vendorEditservice,
+     internalRoutes.adminSignup,
     internalRoutes.adminLogin,
-    internalRoutes.adminSignup,
+    internalRoutes.adminDashboard,
+    internalRoutes.vendorForgotPassword,
+    internalRoutes.vendorLogin,
+    internalRoutes.vendorSignup,
   ];
   const noNewNavbarPaths = [
     internalRoutes.vendorOrders,
@@ -551,7 +565,7 @@ const AppContent = () => {
             }
           />
         </Routes>
-        {!noNavbarPaths.includes(location.pathname) && <Footer />}
+        {!noFooterPaths.includes(location.pathname) && <Footer />}
       </GlobalEventHandlers>
     </>
   );

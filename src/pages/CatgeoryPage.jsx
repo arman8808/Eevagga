@@ -2,7 +2,7 @@ import BookingSection from "../components/BookingSection/BookingSection";
 import FAQSection from "../components/FAQSection/FAQSection";
 import HeroSection from "../components/HeroSection/HeroSectionCategoryPage";
 import ProductSection from "../components/ProductSection/ProductSection";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import useServices from "../hooks/useServices";
 import commonApis from "../services/commonApis";
 import { useEffect, useState } from "react";
@@ -46,6 +46,7 @@ function CatgeoryPage() {
       </div>
     );
   }
+  console.log(category);
 
   if (error) {
     return (
@@ -64,6 +65,80 @@ function CatgeoryPage() {
   return (
     <div>
       <HeroSection />
+      <div
+        className="category-tabs-container"
+        style={{
+          backgroundColor: "#fff",
+          padding: "1rem 0",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 1rem",
+            overflowX: "auto",
+            scrollbarWidth: "none" /* For Firefox */,
+            msOverflowStyle: "none" /* For IE and Edge */,
+          }}
+        >
+          <div
+            className="tabs"
+            style={{
+              display: "flex",
+              gap: "0.75rem",
+              padding: "0.5rem 0",
+              width: "max-content",
+              margin: "0 auto",
+            }}
+          >
+            {[
+              "Wedding",
+              "Birthdays",
+              "Corporate%20Events",
+              "College%20School",
+              "Private%20Parties",
+            ].map((tab) => {
+              // Decode URL-encoded strings for comparison
+              const decodedTab = decodeURIComponent(tab);
+              const decodedCategory = category
+                ? decodeURIComponent(category)
+                : "";
+              const isActive = decodedCategory === decodedTab;
+
+              return (
+                <NavLink
+                  key={tab}
+                  to={`/category/${tab}`}
+                  className={`tab ${isActive ? "active" : ""}`}
+                  style={{
+                    padding: "0.75rem 1.5rem",
+                    borderRadius: "2rem",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                    color: isActive ? "#fff" : "#333",
+                    backgroundColor: isActive ? "#ff6b6b" : "#f5f5f5",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer",
+                    textTransform: "capitalize",
+                    whiteSpace: "nowrap",
+                    fontSize: "clamp(0.875rem, 2vw, 1rem)",
+                    flexShrink: 0,
+                  }}
+                >
+                  {decodedTab}
+                </NavLink>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {packageData?.length > 0 &&
         packageData?.map((categoryItem, index) => {
           const backgroundColors = ["#f8f3e7", "#f7ead7"];

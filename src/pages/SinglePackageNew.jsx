@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useServices from "../hooks/useServices";
 import packageApis from "../services/packageApis";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +10,8 @@ import { internalRoutes } from "../utils/internalRoutes";
 import ProductCardV2 from "../components/Cards/ProductCardV2";
 function SinglePackageNew() {
   const { serviceId, packageId } = useParams();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
   const navigate = useNavigate();
   const [singlePageData, setSinglePageData] = useState();
   const [images, setImages] = useState([]);
@@ -19,7 +21,7 @@ function SinglePackageNew() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [similarProducts, setSimilarProducts] = useState([]);
-const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const handlegetOnePackage = async () => {
     setIsLoading(true);
     const response = await getAllPackages.callApi(serviceId, packageId);
@@ -324,7 +326,7 @@ const [relatedProducts, setRelatedProducts] = useState([]);
                 className="bg-[#6A1B9A] hover:bg-[#7B2CBF] text-white px-6 py-2.5 rounded-lg font-medium"
                 onClick={() =>
                   navigate(
-                    `${internalRoutes?.bookingForm}?sku=${singlePageData?.services?.[0]?.sku}`
+                    `${internalRoutes?.bookingForm}?sku=${singlePageData?.services?.[0]?.sku}&category=${category}`
                   )
                 }
               >
@@ -333,7 +335,7 @@ const [relatedProducts, setRelatedProducts] = useState([]);
             </motion.div>
           </div>
         </div>
-    <section className="mb-16">
+        {/* <section className="mb-16">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse Similar</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[
@@ -395,10 +397,10 @@ const [relatedProducts, setRelatedProducts] = useState([]);
           />
         ))}
       </div>
-    </section>
+    </section> */}
 
-    {/* People Also Bought Section */}
-    <section>
+        {/* People Also Bought Section */}
+        {/* <section>
       <h2 className="text-2xl font-bold text-gray-900 mb-6">People Also Bought</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[
@@ -460,7 +462,7 @@ const [relatedProducts, setRelatedProducts] = useState([]);
           />
         ))}
       </div>
-    </section>
+    </section> */}
       </div>
 
       {/* Custom scrollbar styling */}
