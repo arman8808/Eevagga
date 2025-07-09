@@ -722,6 +722,7 @@ const FeedbackForm = () => {
       recommend: data.recommend,
       responseTime: parseInt(data.responseTime, 10),
       suggestions: data.suggestions || "",
+      email: data.email,
     };
     try {
       setIsSubmitting(false);
@@ -871,6 +872,32 @@ const FeedbackForm = () => {
           variants={fadeInUp}
           transition={{ delay: 0.4 }}
         >
+          <div className="mb-8">
+            <label className="block text-lg font-bold mb-3 text-primary">
+              Email Address
+            </label>
+            <input
+              type="email"
+              className={`w-full p-4 rounded-lg text-base
+                ${errors.email ? "border-red-500" : "border-gray-300"} 
+                bg-white text-gray-800 border-2 focus:outline-none 
+                focus:ring-2 focus:ring-yellow-400 transition-all`}
+              placeholder="your@email.com"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+            />
+            {errors.email && (
+              <p className="mt-2 text-red-500 text-sm">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
           {/* Enhanced Dropdown */}
           <div className="mb-8">
             <label className="block text-lg font-bold mb-3 text-primary">

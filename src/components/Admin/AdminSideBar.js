@@ -31,7 +31,7 @@ import {
   MdEventNote,
   MdOutlineFeed,
 } from "react-icons/md";
-import { LuMailQuestion } from "react-icons/lu";
+import { LuGalleryThumbnails, LuMailQuestion } from "react-icons/lu";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { IoMdArrowForward } from "react-icons/io";
 import { useSelector } from "react-redux";
@@ -79,6 +79,7 @@ const AdminSideBar = ({ selectedMenu, onMenuSelect }) => {
       icon: <FaRegMoneyBillAlt />,
       children: [
         { id: "Banner", label: "Banner", icon: <FaRegImage /> },
+        { id: "Gallery", label: "Gallery", icon: <LuGalleryThumbnails  /> },
         { id: "Coupons", label: "Coupons", icon: <RiCoupon3Line /> },
         {
           id: "Fee Breakdown by Category",

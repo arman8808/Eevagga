@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDelete } from "react-icons/md";
 import TableComponetWithApi from "../../utils/TableComponetWithApi";
@@ -17,6 +17,13 @@ function AdminBlog() {
   const [oneBlogId, setOneBlogId] = useState(null);
   const [totalPages, setTotalPages] = useState(null);
   const [modalType, setModalType] = useState("addblog");
+  const quillRef = useRef(null);
+
+  const focusEditor = () => {
+    if (quillRef.current) {
+      quillRef.current.focus();
+    }
+  };
   const handlePageChange = (event, value) => {
     setPage(value);
   };
@@ -444,10 +451,11 @@ function AdminBlog() {
                   Blog Content
                 </label>
                 <ReactQuill
+                  ref={quillRef}
                   id="content"
                   value={blogContent}
                   onChange={(value) => setBlogContent(value)}
-                  className="bg-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="bg-white rounded-md h-[300px] shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               <div className="mb-4">

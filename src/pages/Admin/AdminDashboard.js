@@ -45,6 +45,7 @@ import { useForm } from "react-hook-form";
 import adminApi from "../../services/adminApi";
 import { toast } from "react-toastify";
 import BookingCTA from "../../components/Admin/BookingCTA";
+import Gallery from "../../components/Admin/gallery";
 const inputStyles =
   "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent";
 const buttonStyles =
@@ -295,18 +296,18 @@ const AdminDashboard = () => {
           </>
         )}
         {selectedMenu === "Banner" && <BannerTable />}
-        {selectedMenu === "Coupons" && <CouponsTable term={term}/>}
+        {selectedMenu === "Coupons" && <CouponsTable term={term} />}
         {selectedMenu === "Fee Breakdown by Category" && (
           <FeeBreakdownbyCategory />
         )}
         {selectedMenu === "Gst by Category" && <GstTable />}
         {selectedMenu === "Feedback" && <FeedbackTable />}
         {selectedMenu === "Waitlist" && <WaitlistTable term={term} />}
-        {selectedMenu === "New Orders" && <NewOrdertable term={term}/>}
-        {selectedMenu === "Confirmed Orders" && <ConfirmOrder term={term}/>}
-        {selectedMenu === "Ongoing Orders" && <OngoingOrder term={term}/>}
-        {selectedMenu === "Completed Orders" && <CompletedOrder term={term}/>}
-        {selectedMenu === "Cancelled Orders" && <CancelledOrder term={term}/>}
+        {selectedMenu === "New Orders" && <NewOrdertable term={term} />}
+        {selectedMenu === "Confirmed Orders" && <ConfirmOrder term={term} />}
+        {selectedMenu === "Ongoing Orders" && <OngoingOrder term={term} />}
+        {selectedMenu === "Completed Orders" && <CompletedOrder term={term} />}
+        {selectedMenu === "Cancelled Orders" && <CancelledOrder term={term} />}
         {selectedMenu === "Customer Query" && <CustomerQueryTable />}
         {selectedMenu === "Vendor Query" && <VendorQueryTable />}
         {selectedMenu === "All Services" && <AllVendorService term={term} />}
@@ -321,7 +322,8 @@ const AdminDashboard = () => {
         {selectedMenu === "Blog" && <AdminBlog />}
         {selectedMenu === "NewsLetter" && <AdminNewsLetter />}
         {selectedMenu === "Error Logs" && <AdminErrorLogs />}
-        {selectedMenu === "BookingCTA" && <BookingCTA term={term}/>}
+        {selectedMenu === "BookingCTA" && <BookingCTA term={term} />}
+        {selectedMenu === "Gallery" && <Gallery />}
       </div>
       <ReusableModal open={open} onClose={handleClose} width={"50%"}>
         <div className="max-w-ld mx-auto  p-6 bg-white rounded-lg ">

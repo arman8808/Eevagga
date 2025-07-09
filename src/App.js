@@ -152,20 +152,36 @@ const AppContent = () => {
       dispatch(fetchUserWishlist(userId));
     }
   }, [auth, allWishlist, userId, dispatch]);
-  useEffect(() => {
-    const preventDefault = (e) => e.preventDefault();
-    const events = ["selectstart", "contextmenu", "copy", "cut", "dragstart"];
+useEffect(() => {
+  const preventDefault = (e) => {
+    // Check if target is an element that supports closest()
+    if (!e.target || typeof e.target.closest !== 'function') {
+      return; // Skip if not a DOM element
+    }
 
+    // Check if the event target is inside a ReactQuill editor
+    const isInsideQuill = e.target.closest('.ql-editor') || 
+                         e.target.closest('.ql-toolbar');
+    
+    // If it's inside Quill, allow default behavior
+    if (isInsideQuill) return;
+    
+    // Otherwise, prevent default
+    e.preventDefault();
+  };
+
+  const events = ["selectstart", "contextmenu", "copy", "cut", "dragstart"];
+
+  events.forEach((event) => {
+    document.addEventListener(event, preventDefault, { capture: true });
+  });
+
+  return () => {
     events.forEach((event) => {
-      document.addEventListener(event, preventDefault);
+      document.removeEventListener(event, preventDefault, { capture: true });
     });
-
-    return () => {
-      events.forEach((event) => {
-        document.removeEventListener(event, preventDefault);
-      });
-    };
-  }, []);
+  };
+}, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);

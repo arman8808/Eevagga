@@ -26,6 +26,10 @@ function FeedbackTable() {
   const columns = [
     { label: "No", key: "index", render: (_, i) => i + 1 },
     {
+      label: "Email",
+      key: "email",
+    },
+    {
       label: "Event Type",
       key: "eventType",
     },
@@ -37,7 +41,6 @@ function FeedbackTable() {
     {
       label: "Response Time",
       key: "responseTime",
-
     },
     {
       label: "Pricing Clarity",
