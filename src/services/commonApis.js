@@ -48,6 +48,14 @@ const commonApis = {
     apiService.get(apiEndpoints.common.categoryWissPackage, queryParams),
   categoryViewAllPackage: (queryParams) =>
     apiService.get(apiEndpoints.common.categoryViewAllPackage, queryParams),
+  createGallery: (formdata) =>
+    apiService.post(apiEndpoints.common.createGallery, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+  getGallery: (queryParams) => apiService.get(apiEndpoints.common.getGallery,queryParams),
+  deleteGallery: (galleryId) => apiService.delete(apiEndpoints.common.deleteGallery(galleryId)),
 };
 
 export default commonApis;

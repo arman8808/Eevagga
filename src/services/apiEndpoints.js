@@ -127,6 +127,9 @@ const apiEndpoints = {
     bookCta: "bookingCTA/bookings",
     categoryWissPackage: "packages/get-package-by-category",
     categoryViewAllPackage: "packages/get-all-packages",
+    createGallery: "galleryRoute/add-gallery",
+    getGallery: "galleryRoute",
+    deleteGallery: (galleryId) =>`galleryRoute/${galleryId}`,
   },
   admin: {
     register: "admin/registerAdmin",
