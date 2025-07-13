@@ -61,11 +61,10 @@ function Gallery() {
 
       const response = await createGalleryApi.callApi(formData);
 
-      if (response.status===201) {
+      if (response.status === 201) {
         toast.success("Gallery image uploaded successfully!");
         setModalType(null);
-        handleClose()
-
+        handleClose();
       } else {
         toast.error(response.message || "Failed to upload gallery image");
       }
@@ -107,8 +106,7 @@ function Gallery() {
     },
 
     {
-      label: "Form Submitted Date",
-      key: "preferredDate",
+      label: "Uploaded At",
       render: (row) => formatDateTime(row?.createdAt),
     },
     {

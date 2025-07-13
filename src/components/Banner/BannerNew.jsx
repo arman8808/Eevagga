@@ -1,15 +1,36 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function BannerNew({ image, height, category }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.querySelector('.banner-container');
+    if (element) observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   const handleBooking = () => {
-    // Scroll to booking section
     const section = document.getElementById("booking-section");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  // Updated animation variants
   const containerVariants = {
     hidden: { scale: 1.5, opacity: 0 },
     visible: {
@@ -26,7 +47,7 @@ function BannerNew({ image, height, category }) {
   };
 
   const textVariants = {
-    hidden: { y: 50, opacity: 0 }, // Changed from x to y
+    hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -35,7 +56,7 @@ function BannerNew({ image, height, category }) {
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 }, // Changed from x to y
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -45,27 +66,25 @@ function BannerNew({ image, height, category }) {
 
   return (
     <motion.div
-      className="relative w-full min-h-[85dvh] overflow-hidden"
+      className="banner-container relative w-full min-h-[85dvh] overflow-hidden"
       initial="hidden"
-      animate="visible"
+      animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      {/* Background Image */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden"
-        initial={{ scale: 1.5 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        {/* Fixed image styling */}
+      {/* Background Image with Skeleton */}
+      <motion.div className="absolute inset-0 overflow-hidden">
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
+        )}
         <img
           src={process.env.REACT_APP_API_Aws_Image_BASE_URL + image}
           alt="Banner"
-          className="absolute inset-0 w-full h-full object-cover min-w-full min-h-full"
+          className={`absolute inset-0 w-full h-full object-cover min-w-full min-h-full ${
+            !imageLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
           loading="lazy"
-          style={{
-            aspectRatio: "16 / 9",
-          }}
+          onLoad={() => setImageLoaded(true)}
+          style={{ aspectRatio: "16 / 9" }}
         />
         <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]"></div>
       </motion.div>
@@ -93,7 +112,6 @@ function BannerNew({ image, height, category }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               style={{ pointerEvents: "auto" }}
-              // transition={{ duration: 0.2, delay: 0.2, type: "spring" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -104,7 +122,7 @@ function BannerNew({ image, height, category }) {
 
         {/* Decorative Element */}
         <motion.div
-          className="absolute left-1/2 -bottom-20 w-64 h-64 bg-[#6A1B9A]/30 blur-[80px] -translate-x-1/2 z-[-1]" // 👈 Add negative z-index
+          className="absolute left-1/2 -bottom-20 w-64 h-64 bg-[#6A1B9A]/30 blur-[80px] -translate-x-1/2 z-[-1]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}

@@ -55,6 +55,7 @@ const commonApis = {
         },
       }),
   getGallery: (queryParams) => apiService.get(apiEndpoints.common.getGallery,queryParams),
+  getGalleryForUser: (queryParams) => apiService.get(apiEndpoints.common.getGalleryForUser,queryParams),
   deleteGallery: (galleryId) => apiService.delete(apiEndpoints.common.deleteGallery(galleryId)),
 };
 

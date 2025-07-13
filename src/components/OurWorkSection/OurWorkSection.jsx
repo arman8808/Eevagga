@@ -2,7 +2,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
+import useServices from "../../hooks/useServices";
+import commonApis from "../../services/commonApis";
 
 const imagesUrl = [
   {
@@ -157,38 +158,28 @@ const imagesUrl = [
   },
 ];
 export default function OurWorkSection() {
-  const leftControls = useAnimation();
-  const rightControls = useAnimation();
   const [isPaused, setIsPaused] = useState(false);
-  useEffect(() => {
-    leftControls.start({
-      x: ["0%", "-100%"],
-      transition: {
-        duration: 80,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    });
+  const [allGallery, setAllGallery] = useState([]);
+  const [loadedImages, setLoadedImages] = useState({});
+  const getGalleryApi = useServices(commonApis.getGalleryForUser);
+  
+  const getGalleryHandle = async () => {
+    const response = await getGalleryApi.callApi();
+    setAllGallery(response?.data || []);
+  };
 
-    rightControls.start({
-      x: ["-100%", "0%"],
-      transition: {
-        duration: 100,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    });
-  }, [leftControls, rightControls]);
+  const handleImageLoad = (imageUrl) => {
+    setLoadedImages(prev => ({ ...prev, [imageUrl]: true }));
+  };
+
+  useEffect(() => {
+    getGalleryHandle();
+  }, []);
 
   const [speed, setSpeed] = useState(80);
   const [isHovered, setIsHovered] = useState(false);
-
-  // Calculate animation duration based on speed
   const animationDuration = `${speed}s`;
 
-  // Pause animation when hovering over any image
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -196,6 +187,10 @@ export default function OurWorkSection() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  if (allGallery.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-20 px-6 bg-[#6A1B9A] relative overflow-hidden">
@@ -210,7 +205,7 @@ export default function OurWorkSection() {
           <h2 className="text-white text-3xl md:text-4xl font-normal text-center mb-4">
             Most Booked Decor Styles
           </h2>
-          <p className="text-normal text-white/80  leading-5 tracking-[.25em]">
+          <p className="text-normal text-white/80 leading-5 tracking-[.25em]">
             Themes & setups that are setting celebrations apart this season
           </p>
         </motion.div>
@@ -229,21 +224,27 @@ export default function OurWorkSection() {
               animationPlayState: isPaused || isHovered ? "paused" : "running",
             }}
           >
-            {[...imagesUrl, ...imagesUrl].map((item, index) => {
-              const eventIndex = index % imagesUrl.length;
+            {[...allGallery, ...allGallery].map((item, index) => {
+              const galleryIndex = index % allGallery.length;
+              const galleryItem = allGallery[galleryIndex];
+              const imageUrl = process.env.REACT_APP_API_Aws_Image_BASE_URL + galleryItem?.originalImage;
+              const isLoaded = loadedImages[imageUrl];
+
               return (
                 <div
                   key={`left-${index}`}
                   className="relative h-64 w-64 mx-4 flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
                 >
+                  {!isLoaded && (
+                    <div className="absolute inset-0 bg-purple-300 animate-pulse rounded-xl"></div>
+                  )}
                   <img
-                    src={
-                      process.env.REACT_APP_API_Aws_Image_BASE_URL + item?.image
-                    }
-                    alt={`Event ${eventIndex + 1}`}
-                    className="h-full w-full object-cover"
+                    src={imageUrl}
+                    alt={`Gallery ${galleryIndex + 1}`}
+                    className={`h-full w-full object-cover ${!isLoaded ? 'opacity-0' : 'opacity-100'}`}
                     loading="lazy"
                     decoding="async"
+                    onLoad={() => handleImageLoad(imageUrl)}
                   />
                 </div>
               );
@@ -265,26 +266,30 @@ export default function OurWorkSection() {
               animationPlayState: isPaused || isHovered ? "paused" : "running",
             }}
           >
-            {[...imagesUrl]
+            {[...allGallery]
               .reverse()
-              .concat([...imagesUrl].reverse())
+              .concat([...allGallery].reverse())
               .map((item, index) => {
-                const originalIndex =
-                  imagesUrl.length - 1 - (index % imagesUrl.length);
+                const originalIndex = allGallery.length - 1 - (index % allGallery.length);
+                const galleryItem = allGallery[originalIndex];
+                const imageUrl = process.env.REACT_APP_API_Aws_Image_BASE_URL + galleryItem?.originalImage;
+                const isLoaded = loadedImages[imageUrl];
+
                 return (
                   <div
                     key={`right-${index}`}
                     className="relative h-64 w-64 mx-4 flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
                   >
+                    {!isLoaded && (
+                      <div className="absolute inset-0 bg-purple-300 animate-pulse rounded-xl"></div>
+                    )}
                     <img
-                      src={
-                        process.env.REACT_APP_API_Aws_Image_BASE_URL +
-                        item?.image
-                      }
-                      alt={`Event ${originalIndex + 1}`}
-                      className="h-full w-full object-cover"
+                      src={imageUrl}
+                      alt={`Gallery ${originalIndex + 1}`}
+                      className={`h-full w-full object-cover ${!isLoaded ? 'opacity-0' : 'opacity-100'}`}
                       loading="lazy"
                       decoding="async"
+                      onLoad={() => handleImageLoad(imageUrl)}
                     />
                   </div>
                 );
@@ -311,6 +316,22 @@ export default function OurWorkSection() {
           100% {
             transform: translateX(0);
           }
+        }
+
+        @keyframes pulse {
+          0% {
+            opacity: 0.6;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0.6;
+          }
+        }
+
+        .animate-pulse {
+          animation: pulse 1.5s infinite;
         }
 
         .flex {

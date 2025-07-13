@@ -129,6 +129,7 @@ const apiEndpoints = {
     categoryViewAllPackage: "packages/get-all-packages",
     createGallery: "galleryRoute/add-gallery",
     getGallery: "galleryRoute",
+    getGalleryForUser: "galleryRoute/gallery",
     deleteGallery: (galleryId) =>`galleryRoute/${galleryId}`,
   },
   admin: {
